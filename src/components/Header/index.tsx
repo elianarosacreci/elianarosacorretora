@@ -13,10 +13,10 @@ export function Header() {
     return (
         <header className={styles.headerContainer}>
             <Link href="/">
-                <a><h1>Eliana Rosa Corretora</h1></a>
+                <a><h1>Eliana Rosa</h1></a>
             </Link>
 
-            {/* <h3>Encontre o seu próximo imóvel!</h3> */}
+            <h3>Corretora de imóveis</h3>
 
             <span>
                 <Link href="/">

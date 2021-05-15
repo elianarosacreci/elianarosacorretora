@@ -1,49 +1,90 @@
-import styles from './home.module.scss';
-
-import { Select, Input, Space } from 'antd';
-const { Option } = Select;
-const { Search } = Input;
+import styles from './home.module.scss'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 
 export default function Home() {
 
-  function acquisitionSelectOnChange(value) {
-    console.log(`Acquisition Select: ${value}`);
+  const [acquisitionKindSelect, setAcquisitionKindSelect] = useState('')
+  const [immobileKindSelect, setImmobileKindSelect] = useState('')
+  const [districtAndCity, setDistrictAndCity] = useState('')
+  const [codeImmobile, setCodeImmobile] = useState('')
+
+  const [researchFields, setResearchFields] = useState(true)
+
+  function onResearchFieldsOrResearchCode() {
+    if (researchFields == true) {
+      setResearchFields(false)
+    } else {
+      setResearchFields(true)
+    }
   }
 
-  function immobileKindSelectOnChange(value) {
-    console.log(`Immobile Kind Select: ${value}`);
+  const router = useRouter()
+  const preventDefault = f => e => {
+    e.preventDefault()
+    f(e)
   }
+  const onResearch = preventDefault(() => {
 
-  function onSearch(value) {
-    console.log(`Immobile Kind Select: ${value}`);
-  }
+    // router.push({
+    //   pathname: '/advancedSearch',
+    //   query: formValues,
+    // })
+  })
+
 
   return (
     <div className={styles.homepage}>
 
       <section className={styles.imageHome}>
-
         <h1>Encontre o seu próximo imóvel!</h1>
 
-        <div className={styles.fields}>
-          <Select style={{ width: 130 }} defaultValue="comprar" onChange={acquisitionSelectOnChange}>
-            <Option value="comprar">Comprar</Option>
-            <Option value="alugar">Alugar</Option>
-          </Select>
+        {researchFields == true ?
+          <div className={styles.researchFields}>
+            <select
+              style={{ width: 120 }}
+              defaultValue="comprar"
+              onChange={event => setAcquisitionKindSelect(event.target.value)}
+            >
+              <option value="comprar">Comprar</option>
+              <option value="alugar">Alugar</option>
+            </select>
 
-          <Select style={{ width: 150 }} defaultValue="apartamento" onChange={immobileKindSelectOnChange}>
-            <Option value="apartamento">Apartamento</Option>
-            <Option value="casa">Casa   </Option>
-          </Select>
+            <select
+              style={{ width: 170 }}
+              defaultValue="apartamento"
+              onChange={event => setImmobileKindSelect(event.target.value)}
+            >
+              <option value="apartamento">Apartamento</option>
+              <option value="casa">Casa   </option>
+            </select>
 
-          <Space direction="vertical">
-            <Search style={{ width: 380 }} placeholder="Digite um bairro ou cidade" onSearch={onSearch} enterButton="Buscar" />
-          </Space>
-        </div>
+            <input
+              style={{ width: 350 }}
+              type="text"
+              placeholder="Digite o nome de um bairro ou cidade..."
+              onChange={event => setDistrictAndCity(event.target.value)}
+            />
 
+            <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
+          </div>
+          :
+          <div className={styles.researchCode}>
+            <input
+              style={{ width: 320 }}
+              type="text"
+              placeholder="Digite o código do imóvel..."
+              onChange={event => setCodeImmobile(event.target.value)}
+            />
+
+            <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
+          </div>}
+
+        <button className={styles.researchFieldsOrResearchCode} type="button" onClick={onResearchFieldsOrResearchCode}>
+          {researchFields == true ? <span>Buscar por código do imóvel →</span> : <span>← Buscar por localização</span>}
+        </button>
       </section>
-
 
     </div>
   )
