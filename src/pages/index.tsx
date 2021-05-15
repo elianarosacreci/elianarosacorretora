@@ -38,7 +38,7 @@ export default function Home() {
     <div className={styles.homepage}>
 
       <section className={styles.imageHome}>
-        <h1>Encontre o seu próximo imóvel!</h1>
+        <h1>Encontre o seu imóvel!</h1>
 
         {researchFields == true ?
           <div className={styles.researchFields}>
