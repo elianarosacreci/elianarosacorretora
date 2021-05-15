@@ -1,5 +1,4 @@
 .homepage {
-    // padding: 4rem;
     height: calc(100vh - 6.5rem);
     overflow-y: scroll;
 }
@@ -25,17 +24,17 @@
         margin-top: 3rem;
 
         select {
-            padding: 0.55rem 1rem;
+            padding: 0.95rem 1rem;
             border: none;
         }
 
         input {
-            padding: 0.6rem 1rem;
+            padding: 1rem 1rem;
             border: none;
         }
 
         .research {
-            padding: 0.6rem 2rem;
+            padding: 1rem 2rem;
             background-color: var(--green-500);
             color: var(--white);
             font-weight: bold;
@@ -45,15 +44,14 @@
 
     .researchCode {
         margin-top: 3rem;
-        border-radius: 0.5rem;
 
         input {
-            padding: 0.6rem 2rem;
+            padding: 1rem 2rem;
             border: none;
         }
 
         .research {
-            padding: 0.6rem 1rem;
+            padding: 1rem 2rem;
             background-color: var(--green-500);
             color: var(--white);
             font-weight: bold;
@@ -63,7 +61,7 @@
 
     .researchFieldsOrResearchCode {
         margin-top: 2rem;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 2rem;
         background-color: var(--pink-400);
         font-weight: bold;
         border: none;
