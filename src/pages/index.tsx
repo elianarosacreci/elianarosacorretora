@@ -43,7 +43,7 @@ export default function Home() {
         {researchFields == true ?
           <div className={styles.researchFields}>
             <select
-              style={{ width: 120 }}
+              style={{ width: 150 }}
               defaultValue="comprar"
               onChange={event => setAcquisitionKindSelect(event.target.value)}
             >
@@ -52,7 +52,7 @@ export default function Home() {
             </select>
 
             <select
-              style={{ width: 170 }}
+              style={{ width: 180 }}
               defaultValue="apartamento"
               onChange={event => setImmobileKindSelect(event.target.value)}
             >
@@ -61,7 +61,7 @@ export default function Home() {
             </select>
 
             <input
-              style={{ width: 350 }}
+              style={{ width: 380 }}
               type="text"
               placeholder="Digite o nome de um bairro ou cidade..."
               onChange={event => setDistrictAndCity(event.target.value)}
@@ -72,7 +72,7 @@ export default function Home() {
           :
           <div className={styles.researchCode}>
             <input
-              style={{ width: 320 }}
+              style={{ width: 380 }}
               type="text"
               placeholder="Digite o código do imóvel..."
               onChange={event => setCodeImmobile(event.target.value)}

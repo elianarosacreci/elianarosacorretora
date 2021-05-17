@@ -1,13 +1,18 @@
-import Link from 'next/link';
 import styles from './styles.module.scss';
 
 
-export function Header() {
+export function Footer() {
 
     return (
-        <header className={styles.headerContainer}>
-            <Link href="/">
-            </Link>
-        </header>
+        <footer className={styles.footerContainer}>
+            <section className={styles.infos}>
+                <span>Social Media, About and Contacts</span>
+            </section>
+            <section className={styles.copyrigth}>
+                <span>
+                    2021 ©Copyright: <a href="https://github.com/gabrielfelipeio" target="_blank"> Gabriel Felipe</a>
+                </span>
+            </section>
+        </footer>
     );
 }
