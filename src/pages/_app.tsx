@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       <main>
         <Header />
         <Component {...pageProps} />
-        <Footer />
+        {/* <Footer />   */}
       </main>
 
     </div>

@@ -1,6 +1,9 @@
 import styles from './home.module.scss'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import Image from 'next/image';
+
+import { Footer } from '../components/Footer'
 
 
 export default function Home() {
@@ -38,7 +41,7 @@ export default function Home() {
     <div className={styles.homepage}>
 
       <section className={styles.imageHome}>
-        <h1>Encontre o seu imóvel!</h1>
+        <h1>Encontre o seu próximo imóvel!</h1>
 
         {researchFields == true ?
           <div className={styles.researchFields}>
@@ -86,6 +89,172 @@ export default function Home() {
         </button>
       </section>
 
-    </div>
+      <section className={styles.immobileList}>
+        <div>
+          <h1>Imóveis Mais Populares</h1>
+          <ul>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-2.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-3.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-1.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h1>Preços Atraentes</h1>
+          <ul>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-1.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-2.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-3.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h1>Acabaram de Chegar</h1>
+          <ul>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-3.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-1.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className={styles.immobileCards}>
+                <Image
+                  width={500}
+                  height={500}
+                  src="/example-2.jpg"
+                  objectFit="cover"
+                />
+                <div className={styles.container}>
+                  <h2>R$ 275.898</h2>
+                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                  <span>VER OS DETALHES →</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </section>
+
+      <Footer />
+    </div >
   )
 }

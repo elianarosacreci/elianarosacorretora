@@ -1,6 +1,5 @@
 .homepage {
     height: calc(100vh - 6.5rem);
-    overflow-y: scroll;
 }
 
 .imageHome {
@@ -12,7 +11,6 @@
 
     h1 {
         font-size: 3rem;
-        font-weight: 400;
         line-height: 40px;
         padding-top: 3rem;
         margin-bottom: 1rem;
@@ -69,6 +67,78 @@
 
         span {
             color: var(--white);
+        }
+    }
+}
+
+.immobileList {
+    text-align: center;
+    margin: 0rem 10rem;
+
+    h1 {
+        padding-top: 7rem;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        font-size: 40px;
+        color: var(--gray-800);
+        text-decoration-line: underline;
+        // border-bottom: 4px solid var(--green-300);
+    }
+
+    ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        li {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            .immobileCards {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+                text-align: justify;
+                transition: 0.3s;
+                width: 20rem;
+                border-radius: 5px;
+                padding-bottom: 1rem;
+
+                img {
+                    width: 100%;
+                    border-radius: 5px 5px 0 0;
+                }
+
+                .container {
+                    padding: 1rem 1rem;
+
+                    h2 {
+                        padding-bottom: 1rem;
+                        color: var(--gray-800);
+                    }
+
+                    p {
+                        padding-bottom: 1rem;
+                    }
+
+                    span {
+                        font-weight: bold;
+                        color: var(--green-800);
+                    }
+                }
+
+                &:hover {
+                    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+
+                    img {
+                        opacity: 70%;
+                    }
+
+                    span {
+                        color: var(--pink-800);
+                    }
+                }
+            }
         }
     }
 }
