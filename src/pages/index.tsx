@@ -1,7 +1,8 @@
 import styles from './home.module.scss'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image';
+import Link from 'next/link'
 
 import { Footer } from '../components/Footer'
 
@@ -94,20 +95,24 @@ export default function Home() {
           <h1>Imóveis Mais Populares</h1>
           <ul>
             <li>
-              <div className={styles.immobileCards}>
-                <Image
-                  width={500}
-                  height={500}
-                  src="/example-2.jpg"
-                  objectFit="cover"
-                />
-                <div className={styles.container}>
-                  <h2>R$ 275.898</h2>
-                  <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
-                  <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
-                  <span>VER OS DETALHES →</span>
-                </div>
-              </div>
+              <Link href='/immobiles/immobile'>
+                <a>
+                  <div className={styles.immobileCards}>
+                    <Image
+                      width={500}
+                      height={500}
+                      src="/example-2.jpg"
+                      objectFit="cover"
+                    />
+                    <div className={styles.container}>
+                      <h2>R$ 275.898</h2>
+                      <p><b>67</b> m² <b>2</b> Quartos <b>2</b> Banheiros <b>1</b> Vaga</p>
+                      <p>Apartamento com 2 Quartos à Venda na Rua Bonita e Bem Segura, no Bairro da Cidade do Estado</p>
+                      <span>VER OS DETALHES →</span>
+                    </div>
+                  </div>
+                </a>
+              </Link>
             </li>
             <li>
               <div className={styles.immobileCards}>

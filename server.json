@@ -1,0 +1,667 @@
+{
+    "immobiles": [
+        {
+            "id": "a21ab00f-5c0b-455c-a59d-5f13e5c37ead",
+            "slug": "apartamento-com-2-quartos-e-2-banheiros-a-venda-55-m2-por-rdollar-590000",
+            "title": "Apartamento com 2 Quartos e 2 banheiros à Venda, 55 m2 por R$ 590.000",
+            "code": "a21ab00f-5c0b-455c-a59d-5f13e5c37ead",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/d5af28c19c8240f0e57ca07d32d354dd.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/20d35d6636d02b4cc92e189cfeca538b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ca5e6992762afb4337f8fabcee6381a8.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/9b4f11997bc80eae0e69c40433e70126.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/64b5727c8ee31a822fe332b83239cbe6.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0a8a600887de0e4ff668e11fd88d91f5.jpg"
+            ],
+            "footage": "55",
+            "bedrooms": "2",
+            "bathrooms": "2",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Aceita animais",
+                "Ar-condicionado",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Residencial - Parque Continental",
+            "description": "IMÓVEL A VENDA: APARTAMENTO NO BAIRRO CONTINENTAL - OSASCO/SP\n Com 2 dormitórios sendo 1 suíte, sala dois ambientes, varanda gourmet, ótimo acabamento, cozinha com armários, fogão cook top, forno elétrico, depurador de ar e filtro, banheiro com armários, e vaga de garagem.\n ZEQUINHA IMOVEIS - imobiliária em Osasco com amplo cadastro da imóveis a venda e locação. Ligue para Zequinha Imóveis - Vila Campesina ou e fale com um de nossos corretores. Se preferir envie uma mensagem ou acesse nosso site www.zequinhaimoveis.com.br",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 590.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Pronto pra Morar",
+            "kind": "apartamento",
+            "createdAt": "2021-05-19T01:18:32.366Z"
+        },
+        {
+            "id": "a2382266-d262-4f8f-b56b-08dd5a5f0f53",
+            "slug": "apartamento-com-2-quartos-e-2-banheiros-a-venda-61-m2-por-rdollar-550000",
+            "title": "Apartamento com 2 Quartos e 2 banheiros à Venda, 61 m2 por R$ 550.000",
+            "code": "a2382266-d262-4f8f-b56b-08dd5a5f0f53",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/c2606394657eb11214e7d2d6fb084a23.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/22df5c379d7f5fc7683fd34661831c73.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/f0a7666a85cd4f9b711d78de9fab70bd.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/1abc1b858d1c7ab8e33e8bcda7fb6973.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/8c0ebacdf4f58af0144086d2b571de5b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/2fbd41d512c99302cfba62af24b7f5c6.jpg"
+            ],
+            "footage": "61",
+            "bedrooms": "2",
+            "bathrooms": "2",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Apartamento para venda com 61 metros quadrados com 2 quartos em Continental - Osasco - SP",
+            "description": "O apartamento no bairro Continental possui 61 metros quadrados com 2 quartos sendo 1 suite e 2 banheiros\n Possui área de fitness, espaço gourmet, espaço jardinado, área de recreação infantil, salão para festas e eventos.\n Vai lhe possibilitar curtir os dias mais quentes na piscina, praticar diversos esportes na quadra poliesportiva.Churrasqueira para você aproveitar nos momentos de descontração. \n Elevador para mais praticidade no dia-a-dia. \n Está em um condomínio protegido por grades.",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 550.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Em Construção",
+            "kind": "casa",
+            "createdAt": "2021-05-18T01:18:32.366Z"
+        },
+        {
+            "id": "17f2a9f1-1a7e-491d-a172-5463b031d787",
+            "slug": "apartamento-com-2-quartos-e-3-banheiros-a-venda-76-m2-por-rdollar-650000",
+            "title": "Apartamento com 2 Quartos e 3 banheiros à Venda, 76 m2 por R$ 650.000",
+            "code": "17f2a9f1-1a7e-491d-a172-5463b031d787",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/f38061d48b1e494258246ff0d7f5f879.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/5f4da8fda9a9672cbc876d56f1dd93fa.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/20add135d6a5c03b56c67ff24070367e.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ac9f6bdc129a2e9a43eabd0c42076f83.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ad27387748c3003bc6f2b8694b389750.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ed8cd4b2ba423cfde57b05ae14b70833.jpg"
+            ],
+            "footage": "72",
+            "bedrooms": "2",
+            "bathrooms": "3",
+            "suites": "2",
+            "vacancies": "2",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Apartamento para venda com 76 metros quadrados com 2 quartos em Centro - Osasco - São Paulo",
+            "description": "O apartamento está localizado no bairro Centro possui 76 metros quadrados com 2 quartos sendo 2 suites e 3 banheiros",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 650.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Na Planta",
+            "kind": "kitnet",
+            "createdAt": "2021-05-17T01:18:32.366Z"
+        },
+        {
+            "id": "b8a04a7c-80c6-4ca5-89aa-62eb9364d1e1",
+            "slug": "apartamento-com-2-quartos-e-2-banheiros-a-venda-67-m2-por-rdollar-580000",
+            "title": "Apartamento com 2 Quartos e 2 banheiros à Venda, 67 m2 por R$ 580.000",
+            "code": "b8a04a7c-80c6-4ca5-89aa-62eb9364d1e1",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0b0df4087fa4a941c9b6fc79f7ad1e5d.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/6cbc15dbbab702cae689d59d83bd551b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/fff823174962d3be973c5c5d4f80df70.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/1a86b2d69c72aae9b0bc98d7b344c388.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/9bdc84483d1326235933e58741b78c5b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/67eba4d9625fcb2535a9ee1fee10311d.jpg"
+            ],
+            "footage": "67",
+            "bedrooms": "2",
+            "bathrooms": "2",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Apartamento 67m2 Jardins do Brasil - Pronto para Morar com Ar Condicionado e Cortina de Vidro",
+            "description": "Apartamento Completo com Armários embutidos na Cozinha, Banheiros, Quartos e Sacada. Ar condicionado Split quente e frio na Suíte e Sala, arejado, sol da manhã, vista livre com decoração em estilo industrial no condominio Jardins do Brasil. Localização priveligiada entre 2 shoppings (União e Supershopping) ao lado do Atacadão e pertinho da estação Osasco da CPTM (8 minutos a pé). Estrutura excelente com lazer completo para a família com Piscina Adulto e Infantil, Salão de Jogos, Brinquedoteca, Churrasqueiras, Salão de Festas adulto, infantil e gourmet, quadra, pista de caminhada e ampla área comum. Segurança 24 horas.",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 580.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Em Contrução",
+            "kind": "casa",
+            "createdAt": "2021-05-16T01:18:32.366Z"
+        },
+        {
+            "id": "1a505b6b-5281-4d27-9a62-65fc263061c3",
+            "slug": "reserva-jb",
+            "title": "RESERVA JB",
+            "code": "1a505b6b-5281-4d27-9a62-65fc263061c3",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/7ef597e002443fbca316c7c5aec87925.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/dc38173ce6a65da304e2f4a9648b28a2.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0667d0a485a3b4d2377714bb333eb9c0.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/47152edf0a04aed20d58aa2d3654ae1b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/b8c88f788f6875d47759ffbeac57784b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/29a81c2df05220554b1a5297f6e26c74.jpg"
+            ],
+            "footage": "67",
+            "bedrooms": "3",
+            "bathrooms": "1",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "RESERVA JB , 67m², 2 - 3 quartos",
+            "description": "Jardins do Brasil, um bairro planejado que transformou Osasco. Um endereço completo e extraordinário para se viver. Localizado em um ponto estratégico, em uma região revitalizada, valorizada e repleta de acessos! \n    Condições comerciais: 2 E 3 DORMS. COM SUÍTE | 67 A 91 M².\n  Informações complementares: Churrasqueira, Praça de chegada, Praça jovem, quadra de esportes, playground, hall social, sala de estudos, salão de festas, espaço gourmet, terraço festas, brinquedoteca, piscina coberta 25 m aquecida, jacuzzi, sauna seca, deck molhado, solarium, piscina infantil.\n Informações sobre o local do empreendimento: Situado entre dois grandes shoppings, União e Supershopping, a 7 minutos de distância do Parque Villa-Lobos e a 2 minutos da marginal Pinheiros",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 245.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Pronto pra Morar",
+            "kind": "apartamento",
+            "createdAt": "2021-05-15T01:18:32.366Z"
+        },
+        {
+            "id": "d525daeb-c032-4c28-bf21-f75753d5fa83",
+            "slug": "my-helbor-osasco",
+            "title": "My Helbor Osasco",
+            "code": "d525daeb-c032-4c28-bf21-f75753d5fa83",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/29b9cc0a01a096f756d91bb257938f83.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/7dbc953d23d89801e46250602ce62eb6.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/615367ef180be1520a8e147838be1630.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/49d6654027f66624c795af95cfec1884.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/3743f71283e258a4c6e2967578f54874.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/d4d3875dbf85992c575addaf07f5b9d7.jpg"
+            ],
+            "footage": "60",
+            "bedrooms": "2",
+            "bathrooms": "2",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "My Helbor Osasco , 60m², 2 quartos",
+            "description": "O seu novo endereço, em uma localização privilegiada e repleta de facilidades. Aqui, tudo está ao seu redor: estação de ônibus e de trem, que interliga Osasco a São Paulo, SuperShopping e Shopping União, Sam’s Club, Walmart, Cobasi, C&C, Carrefour e muito mais!",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 415.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Na Planta",
+            "kind": "kitnet",
+            "createdAt": "2021-05-14T01:18:32.366Z"
+        },
+        {
+            "id": "90a1d8e3-7278-4f77-9e5d-5b6a9030ac9a",
+            "slug": "apartamento-com-1-quarto-e-1-banheiro-a-venda-39-m2-por-rdollar-295777",
+            "title": "Apartamento com 1 Quarto e 1 banheiro à Venda, 39 m2 por R$ 295.777",
+            "code": "90a1d8e3-7278-4f77-9e5d-5b6a9030ac9a",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/d0e8af79073e0c3f000c9a91ba1ceb7c.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/5c0dc3e185c1b7da92ec8052b25a7b80.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/f9594e0da4b3ef670e7f0928095c6323.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/08d4da661d8e188dc4f8f70faf064af3.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/e509f3898bb08d6b9f8ffd94efe5ada6.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/e366f3e4842972c4f766be7fd6907d43.jpg"
+            ],
+            "footage": "39",
+            "bedrooms": "1",
+            "bathrooms": "1",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Studio 39 metros com 1 quarto - 1 Vaga Osasco - Prox da CPTM Pres. altino - direto com proprietario",
+            "description": "O apartamento está localizado no bairro Centro com 92 metros quadrados com 3 quartos sendo 1 suite e 1 banheiro  \n  Possui área de fitness, espaço gourmet, jardim, parquinho infantil, salão de festas.  \n  Vai lhe possibilitar curtir os dias mais quentes na piscina, praticar diversos esportes na quadra poliesportiva, todo o conforto do ar condicionado nos dias mais quentes.  \n  Além disso alarme de segurança.Encontra-se em um condomínio protegido por muros. \n  Churrasqueira para você aproveitar nos momentos de descontração.\n  Elevador que garante o transporte das suas malas e compras.",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 295.777",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Em Contrução",
+            "kind": "casa",
+            "createdAt": "2021-05-13T01:18:32.366Z"
+        },
+        {
+            "id": "843d5c1b-ea7a-48a7-b7f8-83207abee6f6",
+            "slug": "apartamento-com-2-quartos-e-2-banheiros-a-venda-67-m2-por-rdollar-615000",
+            "title": "Apartamento com 2 Quartos e 2 banheiros à Venda, 67 m2 por R$ 615.000",
+            "code": "843d5c1b-ea7a-48a7-b7f8-83207abee6f6",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0e40dac3aa7278f0dad85ff7838f345d.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/010303b02286a42a3da2a4e3d07ec607.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/f0762cfd06f05a6dea807c8573f81f7c.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/8f26c8f097dca70e68ce21dc6e55cf9a.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/d51f759d031a9ca4f5b05b97e7b64ad1.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/1e91c2bab77623389fdd4712ad2ed1d1.jpg"
+            ],
+            "footage": "67",
+            "bedrooms": "2",
+            "bathrooms": "2",
+            "suites": "1",
+            "vacancies": "1",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Lindo Apto em Condomínio Fechado de Alto Padrão no Centro de Osasco - Excelente Localização!",
+            "description": "Localização privilegiada no centro, complexo residencial completo colado ao Supershopping (Big, Sams Club, Cobase e C&C), Shopping União (Makro, Extra, Poupatempo), Carrefour, Unifiel, etc, curta caminhada das estações Osasco e Pres. Altino da CPTM, apto de 67 mts, 02 dorm. sendo 01 suite, cozinha americana, piso vinílico, nichos de porcelanato nos 02 banheiros, repleto de armários embutidos (portas e gavetas c/ sistema anti-impacto), e sacada fechada com envidraçamento e persianas rolô. 01 vaga",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 615.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Pronto pra Morar",
+            "kind": "apartamento",
+            "createdAt": "2021-05-12T01:18:32.366Z"
+        },
+        {
+            "id": "2c0dd75a-d78e-45b0-b3c5-0a8365b4bb4a",
+            "slug": "apartamento-com-3-quartos-e-2-banheiros-a-venda-78-m2-por-rdollar-554936",
+            "title": "Apartamento com 3 Quartos e 2 banheiros à Venda, 78 m2 por R$ 554.936",
+            "code": "2c0dd75a-d78e-45b0-b3c5-0a8365b4bb4a",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/202823fc8246d05eaa1ae59476e67736.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/9f5b716fdc504e70e99761dbbe10bf4e.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/a548cf0d6588fd1bd3f8d6bba0f20a68.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/168d487c3bdf81ce466a13018e854758.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/6fac5d3838812ce3eb57b4bc41e2b5ba.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/f7b778192c3fbfc50f106d98b15dd2be.jpg"
+            ],
+            "footage": "78",
+            "bedrooms": "3",
+            "bathrooms": "2",
+            "suites": "2",
+            "vacancies": "2",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "ART BELA VISTA - OSASCO - CENTRO",
+            "description": "Lazer completo com pet place, banho pet, salão de festas, salão gourmet, churrasqueira, playground, quadra poliesportiva, piscina descoberta com raia de 25 metros, piscina infantil descoberta, piscina coberta aquecida, sauna úmida, sauna seca, sala de massagem, espaço Spa, brinquedoteca, fitness.",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 554.936",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Na Planta",
+            "kind": "kitnet",
+            "createdAt": "2021-05-11T01:18:32.366Z"
+        },
+        {
+            "id": "f0d12952-3f15-454d-a3f3-931336789493",
+            "slug": "apartamento-com-3-quartos-e-2-banheiros-a-venda-69-m2-por-rdollar-438000",
+            "title": "Apartamento com 3 Quartos e 2 banheiros à Venda, 69 m2 por R$ 438.000",
+            "code": "f0d12952-3f15-454d-a3f3-931336789493",
+            "images": [
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/e311154a3a068ebfb6cea4a2d79b3817.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/5f842bdca3c4438a1992e4dc0f8cf886.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/34bb7a950f16cce77904c605c137b79b.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/2efe68092bcb02d944372285f47aed12.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/3bc9cefccae3d6af10ad39fec28ffad0.jpg",
+                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/8d00037cda64b6c6617ad344e1cb7662.jpg"
+            ],
+            "footage": "69",
+            "bedrooms": "3",
+            "bathrooms": "2",
+            "suites": "1",
+            "vacancies": "2",
+            "features": [
+                "Academia",
+                "Churrasqueira",
+                "Cinema",
+                "Espaço gourmet",
+                "Jardim",
+                "Piscina",
+                "Playground",
+                "Quadra poliesportiva",
+                "Salão de festas",
+                "Salão de jogos",
+                "Spa",
+                "Elevador",
+                "Coworking",
+                "Bicicletário",
+                "Acesso para deficientes",
+                "Condomínio fechado",
+                "Portão eletrônico",
+                "Portaria 24h",
+                "Aceita animais",
+                "Cozinha americana",
+                "Varanda gourmet"
+            ],
+            "descriptionTitle": "Apartamento à venda, 69 m² por R$ 438.000,00 - Presidente Altino - Osasco/SP",
+            "description": "APARTAMENTO A VENDA NO PRESIDENTE ALTINO, 3 DORMITÓRIOS, 1 SUITE. 2 VAGAS DE GARAGEM. LAZER COMPLETO COM PISCINA, CHURRASQUEIRA, FITNESS. LOCALIZADO A 400 M DA ESTAÇÃO PRES. ALTINO, 6 MIN. DO SHOPPING UNIÃO, 10 MIN. DO PQ. VILA LOBOS.\n  69 m², 3 dormitórios sendo 1 suíte. Sala com 2 ambientes, sala de jantar e tv integrada ao terraço gourmet com ponto grill. 2 banheiros com ventilação e iluminação natural. Cozinha americana com bastante espaço para armários + área de serviço reservada.",
+            "address": {
+                "street": "Anastácia",
+                "number": "202",
+                "district": "Bandeiras",
+                "city": "Osasco",
+                "state": "SP",
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
+                "lat": "-23.554894",
+                "long": "-46.816424"
+            },
+            "price": "R$ 438.000",
+            "nearbyTrainsAndSubways": [
+                {
+                    "name": "Estação General Miguel Costa",
+                    "distance": "1.5km"
+                },
+                {
+                    "name": "Estação Quitaúna",
+                    "distance": "1.8km"
+                }
+            ],
+            "status": "Em Construção",
+            "kind": "casa",
+            "createdAt": "2021-05-10T01:18:32.366Z"
+        }
+    ]
+}
