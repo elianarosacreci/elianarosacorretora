@@ -283,6 +283,6 @@ export const getStaticProps: GetStaticProps = async () => {
       justArrivedList,
       mostPopularsList
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: 60 * 60 * 24
   }
 }

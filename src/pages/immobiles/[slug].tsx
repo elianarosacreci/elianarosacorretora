@@ -44,8 +44,8 @@ export default function Immobile({ immobile }: ImmobileProps) {
                 <title> Immobile | Eliana Rosa Corretora</title>
             </Head>
 
-            {/* <div className={styles.carousel}>
-            </div> */}
+            <div className={styles.carousel}>
+            </div>
 
             <div className={styles.immobileDetails}>
             </div>
@@ -85,6 +85,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         props: {
             immobile
         },
-        revalidate: 60 * 60 * 24 // 24 hours
+        revalidate: 60 * 60 * 24
     }
 }
