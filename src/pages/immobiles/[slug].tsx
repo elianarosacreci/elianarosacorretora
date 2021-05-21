@@ -8,15 +8,27 @@ import { GetStaticProps } from 'next';
 import { api } from '../../services/api';
 
 type Immobile = {
-    id: string;
-    title: string;
-    thumbnail: string;
-    members: string;
-    publishedAt: string;
-    duration: number;
-    durationAsString: string;
-    url: string;
-    description: string;
+    id: string,
+    title: string,
+    code: string,
+    images: Array<string>,
+    footage: string,
+    bedrooms: string,
+    bathrooms: string,
+    suites: string,
+    vacancies: string,
+    features: Array<string>,
+    descriptionTitle: string,
+    description: string,
+    address: string,
+    price: string,
+    nearbyTrainsAndSubways: NearbyTrainsAndSubways[],
+    status: string
+}
+
+type NearbyTrainsAndSubways = {
+    name: string,
+    distance: string
 }
 
 type ImmobileProps = {
@@ -35,13 +47,7 @@ export default function Immobile({ immobile }: ImmobileProps) {
             {/* <div className={styles.carousel}>
             </div> */}
 
-            <div className={styles.immobile}>
-                <div className={styles.carouselImages}>
-
-                </div>
-
-                <header>
-                </header>
+            <div className={styles.immobileDetails}>
             </div>
         </div>
     )
@@ -69,7 +75,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         features: data.features,
         descriptionTitle: data.descriptionTitle,
         description: data.description,
-        address: data.address.fullAddress                   ,
+        address: data.address.fullAddress,
         price: data.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
         nearbyTrainsAndSubways: data.nearbyTrainsAndSubways,
         status: data.status,
