@@ -34,6 +34,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
   const [immobileKindSelect, setImmobileKindSelect] = useState('')
   const [districtAndCity, setDistrictAndCity] = useState('')
   const [codeImmobile, setCodeImmobile] = useState('')
+  const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
   const [researchFields, setResearchFields] = useState(true)
 
@@ -119,7 +120,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             {attractivePricesList.map((attractivePrices) => {
               return (
                 <li key={attractivePrices.id}>
-                  <Link href={`/immobiles/${attractivePrices.slug}`}><a>
+                  <Link href={`/immobiles/${attractivePrices.slug}#slug#id#${attractivePrices.id}`}><a>
                     <div className={styles.immobileCards}>
                       <Image
                         width={500}
@@ -130,7 +131,9 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
                       <div className={styles.container}>
                         <h2>{attractivePrices.price}</h2>
                         <p><b>{attractivePrices.footage}</b>m² <b>{attractivePrices.bedrooms}</b> Quartos <b>{attractivePrices.bathrooms}</b> Banheiros <b>{attractivePrices.vacancies}</b> Vaga</p>
-                        <p>{attractivePrices.descriptionTitle}</p>
+                        {attractivePrices.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
+                          <p>{`${attractivePrices.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
+                          <p>{attractivePrices.descriptionTitle}</p>}
                         <span>VER OS DETALHES →</span>
                       </div>
                     </div>
@@ -158,7 +161,9 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
                       <div className={styles.container}>
                         <h2>{justArrived.price}</h2>
                         <p><b>{justArrived.footage}</b>m² <b>{justArrived.bedrooms}</b> Quartos <b>{justArrived.bathrooms}</b> Banheiros <b>{justArrived.vacancies}</b> Vaga</p>
-                        <p>{justArrived.descriptionTitle}</p>
+                        {justArrived.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
+                          <p>{`${justArrived.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
+                          <p>{justArrived.descriptionTitle}</p>}
                         <span>VER OS DETALHES →</span>
                       </div>
                     </div>
@@ -186,7 +191,9 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
                       <div className={styles.container}>
                         <h2>{mostPopular.price}</h2>
                         <p><b>{mostPopular.footage}</b>m² <b>{mostPopular.bedrooms}</b> Quartos <b>{mostPopular.bathrooms}</b> Banheiros <b>{mostPopular.vacancies}</b> Vaga</p>
-                        <p>{mostPopular.descriptionTitle}</p>
+                        {mostPopular.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
+                          <p>{`${mostPopular.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
+                          <p>{mostPopular.descriptionTitle}</p>}
                         <span>VER OS DETALHES →</span>
                       </div>
                     </div>
