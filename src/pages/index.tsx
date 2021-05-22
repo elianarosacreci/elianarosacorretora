@@ -150,7 +150,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             {justArrivedList.map((justArrived) => {
               return (
                 <li key={justArrived.id}>
-                  <Link href={`/immobiles/${justArrived.slug}`}><a>
+                  <Link href={`/immobiles/${justArrived.slug}#slug#id#${justArrived.id}`}><a>
                     <div className={styles.immobileCards}>
                       <Image
                         width={500}
@@ -180,7 +180,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             {mostPopularsList.map((mostPopular) => {
               return (
                 <li key={mostPopular.id}>
-                  <Link href={`/immobiles/${mostPopular.slug}`}><a>
+                  <Link href={`/immobiles/${mostPopular.slug}#slug#id#${mostPopular.id}`}><a>
                     <div className={styles.immobileCards}>
                       <Image
                         width={500}
