@@ -1,46 +1,129 @@
 .carousel {
+    background-image: url("../../../public/imageHome.jpg");
+    background-size: cover;
+    height: 350px;
+    text-align: center;
+    position: relative;
 }
 
 .immobileDetails {
-    max-width: 45rem;
-    padding: 3rem 2rem;
-    margin: 0 auto;
+    padding: 2rem 2rem;
+    margin: 2rem 10rem;
 
     display: flex;
 
     .infoContent {
-        background: orange;
+        margin-left: 3rem;
+        padding-right: 3rem;
 
         h1 {
+            color: var(--gray-800);
+            display: inline;
+            margin-right: 2rem;
         }
 
         .immobileCode {
+            background: var(--gray-100);
+            color: var(--gray-200);
+            border-radius: 2rem;
+            padding: 0rem 0.5rem;
+            display: inline-block;
         }
 
         .immobileAddress {
+            padding-top: 1rem;
+            font-style: italic;
         }
 
         .immobileOptions {
-            .immobileFootage {
-            }
-            .immobileBedrooms {
-            }
-            .immobileBathrooms {
-            }
-            .immobileVacancies {
+            padding-top: 4rem;
+
+            ul {
+                list-style: none;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+
+                li {
+                    span {
+                        vertical-align: middle;
+                        margin-right: 1rem;
+                    }
+                }
             }
         }
 
         .features {
+            padding-top: 4rem;
+
+            .title {
+                display: flex;
+                vertical-align: middle;
+
+                h3 {
+                    margin-left: 1rem;
+                }
+            }
+
+            .itens {
+                padding-top: 1rem;
+
+                ul {
+                    list-style: none;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+
+                    li {
+                        span {
+                            vertical-align: middle;
+                            margin-right: 1rem;
+                            font-size: smaller;
+                            line-height: 1.2rem;
+                        }
+                    }
+                }
+            }
         }
 
         .descriptionTitle {
+            padding-top: 4rem;
+            text-align: justify;
         }
-
         .description {
+            padding-top: 0.5rem;
+            text-align: justify;
+            line-height: 1.2rem;
+            font-size: small;
         }
 
         .nearbyTrainsAndSubways {
+            padding-top: 4rem;
+
+            .title {
+                display: flex;
+                vertical-align: middle;
+
+                h3 {
+                    margin-left: 1rem;
+                }
+            }
+
+            .itens {
+                padding-top: 1rem;
+
+                ul {
+                    list-style: none;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    li {
+                        span {
+                            vertical-align: middle;
+                            margin-right: 1rem;
+                            font-size: smaller;
+                        }
+                    }
+                }
+            }
         }
     }
 

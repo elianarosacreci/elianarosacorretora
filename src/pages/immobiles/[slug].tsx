@@ -1,11 +1,19 @@
 import styles from './immobile.module.scss';
 import React from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
-import Link from 'next/link';
-
 import { GetStaticPaths, GetStaticProps } from 'next';
+
+import { BiArea } from 'react-icons/bi'
+import { IoIosBed } from 'react-icons/io'
+import { FaCar } from 'react-icons/fa'
+import { BiBath } from 'react-icons/bi'
+import { IoSubway } from 'react-icons/io5'
+import { RiArrowRightSFill } from 'react-icons/ri'
+import { GoChecklist } from 'react-icons/go'
+
 import { api } from '../../services/api';
+import { Footer } from '../../components/Footer'
+
 
 type Immobile = {
     id: string,
@@ -61,29 +69,68 @@ export default function Immobile({ immobile }: ImmobileProps) {
             <div className={styles.immobileDetails}>
 
                 <div className={styles.infoContent}>
-                    <h1>{immobile.title}</h1>
 
-                    <span className={styles.immobileCode}>{immobile.code}</span>
+                    <div>
+                        <h1>{immobile.title}</h1>
+                        <span className={styles.immobileCode}>{immobile.code}</span>
+                    </div>
 
-                    <span className={styles.immobileAddress}>{immobile.address}</span>
+                    <p className={styles.immobileAddress}>{immobile.address}</p>
 
                     <div className={styles.immobileOptions}>
-                        <span className={styles.immobileFootage}>{immobile.footage}</span>
-                        <span className={styles.immobileBedrooms}>{immobile.bedrooms}</span>
-                        <span className={styles.immobileBathrooms}>{immobile.bathrooms}</span>
-                        <span className={styles.immobileVacancies}>{immobile.vacancies}</span>
+                        <ul>
+                            <li>
+                                <span><BiArea size={30} /></span>
+                                <span> {immobile.footage}m²</span>
+                            </li>
+                            <li>
+                                <span><IoIosBed size={30} /></span>
+                                <span> {immobile.bedrooms} {parseInt(immobile.bedrooms) > 1 ? "quartos" : "quarto"}</span>
+                            </li>
+                            <li>
+                                <span><BiBath size={30} /></span>
+                                <span> {immobile.bathrooms} {parseInt(immobile.bathrooms) > 1 ? "banheiros" : "banheiro"}</span>
+                            </li>
+                            <li>
+                                <span><FaCar size={30} /></span>
+                                <span> {immobile.vacancies} {parseInt(immobile.vacancies) > 1 ? "vagas" : "vaga"}</span>
+                            </li>
+                        </ul>
                     </div>
 
                     <div className={styles.features}>
-                        {immobile.features}
+                        <div className={styles.title}>
+                            <GoChecklist size={35} />
+                            <h3>Itens & Características</h3>
+                        </div>
+                        <div className={styles.itens}>
+                            <ul>
+                                {immobile.features.map(item => {
+                                    return (
+                                        <li key={item}><span><RiArrowRightSFill />{item}</span></li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
                     </div>
 
-                    <p className={styles.descriptionTitle}>{immobile.descriptionTitle}</p>
+                    <h4 className={styles.descriptionTitle}>{immobile.descriptionTitle}</h4>
                     <p className={styles.description}>{immobile.description}</p>
 
                     <div className={styles.nearbyTrainsAndSubways}>
-                        <h3>Trens e Metrôs na Vizinhança</h3>
-                        {/* {immobile.nearbyTrainsAndSubways} */}
+                        <div className={styles.title}>
+                            <IoSubway size={35} />
+                            <h3>Trens e Metrôs na Vizinhança</h3>
+                        </div>
+                        <div className={styles.itens}>
+                            <ul>
+                                {immobile.nearbyTrainsAndSubways.map(item => {
+                                    return (
+                                        <li key={item.name}><span><RiArrowRightSFill />{`${item.name} - ${item.distance}`}</span></li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -101,6 +148,8 @@ export default function Immobile({ immobile }: ImmobileProps) {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </div>
     )
 }
@@ -109,13 +158,7 @@ export default function Immobile({ immobile }: ImmobileProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
-    const { data } = await api.get('immobiles', {
-        params: {
-            _limit: 3,
-            _sort: 'price',
-            _order: 'asc'
-        }
-    })
+    const { data } = await api.get('immobiles')
 
     const paths = data.map(immobiles => {
         return { params: { slug: immobiles.id } }
