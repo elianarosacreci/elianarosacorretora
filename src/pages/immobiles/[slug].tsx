@@ -10,6 +10,7 @@ import { BiBath } from 'react-icons/bi'
 import { IoSubway } from 'react-icons/io5'
 import { RiArrowRightSFill } from 'react-icons/ri'
 import { GoChecklist } from 'react-icons/go'
+import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
 
 import { api } from '../../services/api';
 import { Footer } from '../../components/Footer'
