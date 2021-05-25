@@ -2,6 +2,8 @@ import styles from './immobile.module.scss';
 import React from 'react';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import { BiArea } from 'react-icons/bi'
 import { IoIosBed } from 'react-icons/io'
@@ -14,6 +16,7 @@ import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
 
 import { api } from '../../services/api';
 import { Footer } from '../../components/Footer'
+
 
 
 type Immobile = {
@@ -32,7 +35,9 @@ type Immobile = {
     address: string,
     price: string,
     nearbyTrainsAndSubways: NearbyTrainsAndSubways[],
-    status: string
+    status: string,
+    imageCard: string,
+    slug: string
 }
 
 type NearbyTrainsAndSubways = {
@@ -42,10 +47,13 @@ type NearbyTrainsAndSubways = {
 
 type ImmobileProps = {
     immobile: Immobile
+    attractivePricesList: Immobile[]
 }
 
 
-export default function Immobile({ immobile }: ImmobileProps) {
+export default function Immobile({ immobile, attractivePricesList }: ImmobileProps) {
+
+    const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
     function getImmobileStatus() {
         if (immobile.status == 'Pronto pra Morar') {
@@ -163,6 +171,38 @@ export default function Immobile({ immobile }: ImmobileProps) {
                 </div>
             </div>
 
+            <div className={styles.immobileList}>
+                <h1>Você Vai Gostar Também</h1>
+                <div>
+                    <ul>
+                        {attractivePricesList.map((attractivePrices) => {
+                            return (
+                                <li key={attractivePrices.id}>
+                                    <Link href={`/immobiles/${attractivePrices.slug}#slug#id#${attractivePrices.id}`}><a>
+                                        <div className={styles.immobileCards}>
+                                            <Image
+                                                width={500}
+                                                height={500}
+                                                src={attractivePrices.imageCard}
+                                                objectFit="cover"
+                                            />
+                                            <div className={styles.container}>
+                                                <h2>{attractivePrices.price}</h2>
+                                                <p><b>{attractivePrices.footage}</b>m² <b>{attractivePrices.bedrooms}</b> Quartos <b>{attractivePrices.bathrooms}</b> Banheiros <b>{attractivePrices.vacancies}</b> Vaga</p>
+                                                {attractivePrices.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
+                                                    <p>{`${attractivePrices.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
+                                                    <p>{attractivePrices.descriptionTitle}</p>}
+                                                <span>VER OS DETALHES →</span>
+                                            </div>
+                                        </div>
+                                    </a></Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+            </div>
+
             <Footer />
         </div>
     )
@@ -186,14 +226,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const { slug } = context.params
-
     const { data } = await api.get('immobiles', {
         params: {
             _limit: 1,
             slug: slug
         }
     })
-
     const immobile = {
         id: data[0].id,
         title: data[0].title,
@@ -211,11 +249,33 @@ export const getStaticProps: GetStaticProps = async (context) => {
         price: data[0].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
         nearbyTrainsAndSubways: data[0].nearbyTrainsAndSubways,
         status: data[0].status,
-    };
+    }
+
+    const dataAttractivePrices = await api.get('immobiles', {
+        params: {
+            _limit: 3,
+            _sort: 'price',
+            _order: 'asc'
+        }
+    })
+    const attractivePricesList = dataAttractivePrices.data.map(attractivePrice => {
+        return {
+            id: attractivePrice.id,
+            slug: attractivePrice.slug,
+            price: attractivePrice.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+            footage: attractivePrice.footage,
+            bedrooms: attractivePrice.bedrooms,
+            bathrooms: attractivePrice.bathrooms,
+            vacancies: attractivePrice.vacancies,
+            descriptionTitle: attractivePrice.descriptionTitle,
+            imageCard: attractivePrice.images[0],
+        }
+    })
 
     return {
         props: {
-            immobile
+            immobile,
+            attractivePricesList
         },
         revalidate: 60 * 60 * 24
     }

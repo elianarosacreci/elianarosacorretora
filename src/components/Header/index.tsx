@@ -3,6 +3,8 @@ import ptBR from 'date-fns/locale/pt-BR';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 
+import { FaInstagramSquare, FaFacebookSquare } from 'react-icons/fa'
+
 
 export function Header() {
 
@@ -17,6 +19,11 @@ export function Header() {
             </Link>
 
             <h3>Corretora de imóveis</h3>
+
+            <div className={styles.socialMedia}>
+                <a href="https://www.facebook.com/anaellynegociosimobiliario" target="_blank"><FaFacebookSquare size={35} /></a>
+                <a href="https://www.instagram.com/anaely_corretora/" target="_blank"><FaInstagramSquare size={35} /></a>
+            </div>
 
             <span>
                 <Link href="/">

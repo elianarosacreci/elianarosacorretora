@@ -2,6 +2,8 @@ import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import styles from './styles.module.scss';
 
+import { FaInstagramSquare, FaFacebookSquare } from 'react-icons/fa'
+
 
 export function Footer() {
 
@@ -12,7 +14,17 @@ export function Footer() {
     return (
         <footer className={styles.footerContainer}>
             <div className={styles.infos}>
-                <span>Midias Sociais e Contatos</span>
+                <div className={styles.contacts}>
+                    <h1>Eliana Rosa</h1>
+                    <h3>Corretora de imóveis</h3>
+                </div>
+                <div>
+                    <h1>Encontre o seu próximo imóvel!</h1>
+                </div>
+                <div className={styles.socialMedia}>
+                    <a href="https://www.facebook.com/anaellynegociosimobiliario" target="_blank"><FaFacebookSquare size={45} /></a>
+                    <a href="https://www.instagram.com/anaely_corretora/" target="_blank"><FaInstagramSquare size={45} /></a>
+                </div>
             </div>
             <div className={styles.copyrigth}>
                 <span>

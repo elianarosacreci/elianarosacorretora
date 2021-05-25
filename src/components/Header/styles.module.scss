@@ -23,6 +23,17 @@
         color: var(--white);
     }
 
+    .socialMedia {
+        margin-left: auto;
+        text-transform: capitalize;
+
+        a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+    }
+
     span {
         margin-left: auto;
         text-transform: capitalize;
