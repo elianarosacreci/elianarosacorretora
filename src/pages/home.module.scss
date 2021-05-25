@@ -77,22 +77,20 @@
 
     h1 {
         padding-top: 7rem;
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
         margin-bottom: 2rem;
         font-size: 40px;
         color: var(--gray-800);
-        text-decoration-line: underline;
-        // border-bottom: 4px solid var(--green-300);
     }
 
     ul {
         list-style: none;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 7rem;
 
         li {
             position: relative;
-
             display: flex;
             align-items: center;
 

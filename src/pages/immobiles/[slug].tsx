@@ -29,21 +29,10 @@ type Immobile = {
     features: Array<string>,
     descriptionTitle: string,
     description: string,
-    address: Address,
+    address: string,
     price: string,
     nearbyTrainsAndSubways: NearbyTrainsAndSubways[],
     status: string
-}
-
-type Address = {
-    street: string,
-    number: string,
-    district: string,
-    city: string,
-    state: string,
-    fullAddress: string,
-    lat: string,
-    long: string
 }
 
 type NearbyTrainsAndSubways = {
@@ -58,6 +47,26 @@ type ImmobileProps = {
 
 export default function Immobile({ immobile }: ImmobileProps) {
 
+    function getImmobileStatus() {
+        if (immobile.status == 'Pronto pra Morar') {
+            return (<>
+                <GrStatusGood size={25} />
+                <p>{immobile.status}</p>
+            </>)
+        } else if (immobile.status == 'Em Construção') {
+            return (<>
+                <GrStatusInfo size={25} />
+                <p>{immobile.status}</p>
+            </>)
+        } else if (immobile.status == 'Na Planta') {
+            return (<>
+                <GrStatusDisabled size={25} />
+                <p>{immobile.status}</p>
+            </>)
+        }
+    }
+
+
     return (
         <div>
             <Head>
@@ -71,12 +80,15 @@ export default function Immobile({ immobile }: ImmobileProps) {
 
                 <div className={styles.infoContent}>
 
-                    <div>
+                    <div className={styles.title}>
                         <h1>{immobile.title}</h1>
-                        <span className={styles.immobileCode}>{immobile.code}</span>
+                        <span className={styles.immobileCode}>{immobile.code.toUpperCase()}</span>
                     </div>
 
                     <p className={styles.immobileAddress}>{immobile.address}</p>
+                    <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
+                        <span className={styles.goToMap}>VER NO MAPA</span>
+                    </a>
 
                     <div className={styles.immobileOptions}>
                         <ul>
@@ -137,11 +149,12 @@ export default function Immobile({ immobile }: ImmobileProps) {
 
                 <div className={styles.priceContent}>
                     <div className={styles.price}>
-                        <span>{immobile.price}</span>
+                        <h2>____</h2>
+                        <h1>{immobile.price}</h1>
                     </div>
 
                     <div className={styles.status}>
-                        <span>{immobile.status}</span>
+                        {getImmobileStatus()}
                     </div>
 
                     <div className={styles.managerContacts}>

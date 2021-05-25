@@ -13,13 +13,13 @@
     display: flex;
 
     .infoContent {
-        margin-left: 3rem;
-        padding-right: 3rem;
+        margin-right: 1rem;
+        padding-right: 1rem;
 
         h1 {
             color: var(--gray-800);
             display: inline;
-            margin-right: 2rem;
+            margin-right: 1rem;
         }
 
         .immobileCode {
@@ -33,6 +33,15 @@
         .immobileAddress {
             padding-top: 1rem;
             font-style: italic;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .goToMap {
+            color: var(--green-1000);
+            font-weight: bold;
         }
 
         .immobileOptions {
@@ -128,15 +137,36 @@
     }
 
     .priceContent {
-        background: burlywood;
+        border-left: 1px solid var(--pink-300);
+        padding: 0rem 1.5rem;
+        max-height: min-content;
 
         .price {
+            h2 {
+                color: var(--pink-1000);
+            }
+
+            h1 {
+                color: var(--green-1000);
+            }
         }
 
         .status {
+            margin-top: 1rem;
+
+            display: flex;
+            vertical-align: middle;
+            font-weight: bold;
+            color: var(--black);
+
+            p {
+                margin-left: 0.5rem;
+                padding-top: 0.2rem;
+            }
         }
 
         .managerContacts {
+            margin-top: 4rem;
         }
     }
 }
