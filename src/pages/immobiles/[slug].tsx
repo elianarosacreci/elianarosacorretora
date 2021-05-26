@@ -15,6 +15,7 @@ import { GoChecklist } from 'react-icons/go'
 import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
 
 import { api } from '../../services/api';
+import { Carousel } from 'react-bootstrap'
 import { Footer } from '../../components/Footer'
 
 
@@ -82,6 +83,19 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
             </Head>
 
             <div className={styles.carousel}>
+                <Carousel prevLabel="" nextLabel="">
+                    {immobile.images.map((image) => {
+                        return (
+                            <Carousel.Item style={{ height: "400px" }}>
+                                <img
+                                    style={{ height: "400px", objectFit: "cover" }}
+                                    className="d-block w-100"
+                                    src={image}
+                                />
+                            </Carousel.Item>
+                        )
+                    })}
+                </Carousel>
             </div>
 
             <div className={styles.immobileDetails}>
@@ -166,7 +180,17 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     </div>
 
                     <div className={styles.managerContacts}>
-                        <span>Contatos Eliana</span>
+                        <div className={styles.buttons}>
+                            <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
+                                <span className={styles.goToMap}>Ver no Mapa</span>
+                            </a>
+                        </div>
+                        <div className={styles.buttons}>
+                            <span className={styles.goToWhatsApp} onClick={() => { navigator.clipboard.writeText("(11) 97990-2343") }}>Copiar Telefone</span>
+                        </div>
+                        <div className={styles.buttons}>
+                            <span className={styles.goToEmail} onClick={() => { navigator.clipboard.writeText("e-mail pendente") }}>Copiar Email</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export function Header() {
                 <a><h1>Eliana Rosa</h1></a>
             </Link>
 
-            <h3>Corretora de imóveis</h3>
+            <h4>Corretora de imóveis</h4>
 
             <div className={styles.socialMedia}>
                 <a href="https://www.facebook.com/anaellynegociosimobiliario" target="_blank"><FaFacebookSquare size={35} /></a>

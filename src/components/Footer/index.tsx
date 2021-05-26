@@ -16,7 +16,7 @@ export function Footer() {
             <div className={styles.infos}>
                 <div className={styles.contacts}>
                     <h1>Eliana Rosa</h1>
-                    <h3>Corretora de imóveis</h3>
+                    <h4>Corretora de imóveis</h4>
                 </div>
                 <div>
                     <h1>Encontre o seu próximo imóvel!</h1>

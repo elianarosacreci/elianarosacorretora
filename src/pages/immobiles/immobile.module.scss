@@ -1,9 +1,5 @@
 .carousel {
-    background-image: url("../../../public/imageHome.jpg");
-    background-size: cover;
-    height: 350px;
     text-align: center;
-    position: relative;
 }
 
 .immobileDetails {
@@ -138,7 +134,6 @@
     .priceContent {
         border-left: 1px solid var(--gray-100);
         padding: 0rem 1.5rem;
-        max-height: min-content;
 
         .price {
             h2 {
@@ -166,6 +161,50 @@
 
         .managerContacts {
             margin-top: 4rem;
+
+            .buttons {
+                margin-top: 2rem;
+
+                a {
+                    text-decoration: none;
+                    cursor: pointer;
+
+                    .goToMap {
+                        background: var(--pink-400);
+                        color: var(--white);
+                        padding: 1rem 1rem;
+                        font-weight: bold;
+                        border-radius: 4px;
+                        display: block;
+                        text-align: center;
+                        font-size: larger;
+                    }
+                }
+
+                .goToWhatsApp {
+                    cursor: pointer;
+                    background: var(--wpp);
+                    color: var(--white);
+                    padding: 1rem 1rem;
+                    font-weight: bold;
+                    border-radius: 4px;
+                    display: block;
+                    text-align: center;
+                    font-size: larger;
+                }
+
+                .goToEmail {
+                    cursor: pointer;
+                    background: var(--green-800);
+                    color: var(--white);
+                    padding: 1rem 1rem;
+                    font-weight: bold;
+                    border-radius: 4px;
+                    display: block;
+                    text-align: center;
+                    font-size: larger;
+                }
+            }
         }
     }
 }
