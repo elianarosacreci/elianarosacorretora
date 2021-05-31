@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap": "5.0.0",
     "date-fns": "^2.21.3",
+    "firebase": "^8.6.2",
     "json-server": "^0.16.3",
     "next": "10.2.0",
     "react": "17.0.2",

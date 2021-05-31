@@ -13,6 +13,8 @@ import { IoSubway } from 'react-icons/io5'
 import { RiArrowRightSFill } from 'react-icons/ri'
 import { GoChecklist } from 'react-icons/go'
 import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
+import { MdContentCopy } from 'react-icons/md'
+import { SiGooglemaps } from 'react-icons/si'
 
 import { api } from '../../services/api';
 import { Carousel } from 'react-bootstrap'
@@ -109,7 +111,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 
                     <p className={styles.immobileAddress}>{immobile.address}</p>
                     <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
-                        <span className={styles.goToMap}>VER NO MAPA</span>
+                        <span className={styles.goToMap}>VER NO MAPA <SiGooglemaps size={25} /></span>
                     </a>
 
                     <div className={styles.immobileOptions}>
@@ -182,14 +184,14 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     <div className={styles.managerContacts}>
                         <div className={styles.buttons}>
                             <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
-                                <span className={styles.goToMap}>Ver no Mapa</span>
+                                <span className={styles.goToMap}>Ver no Mapa <SiGooglemaps size={25} /></span>
                             </a>
                         </div>
                         <div className={styles.buttons}>
-                            <span className={styles.goToWhatsApp} onClick={() => { navigator.clipboard.writeText("(11) 97990-2343") }}>Copiar Telefone</span>
+                            <span className={styles.goToWhatsApp} onClick={() => { navigator.clipboard.writeText("(11) 97990-2343") }}>Copiar Telefone <MdContentCopy size={25} /></span>
                         </div>
                         <div className={styles.buttons}>
-                            <span className={styles.goToEmail} onClick={() => { navigator.clipboard.writeText("e-mail pendente") }}>Copiar Email</span>
+                            <span className={styles.goToEmail} onClick={() => { navigator.clipboard.writeText("e-mail pendente") }}>Copiar Email <MdContentCopy size={25} /></span>
                         </div>
                     </div>
                 </div>
