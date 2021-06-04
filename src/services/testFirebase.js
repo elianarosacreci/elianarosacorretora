@@ -1,11 +1,27 @@
 const firebase = require('./firebase')
 
 function run() {
-    firebase.database().ref("a2382266-d262-4f8f-b56b-08dd5a5f0f53").child('addr').on('value', (snapshot) => {
-        console.log('VALORES: ', snapshot.val());
-    }, (err) => {
-        console.log('ERRO: ', err);
-    })
+
+    // attractivePrices
+    // firebase.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
+    //     console.log('VALORES: ', snapshot.val());
+    // }, (err) => {
+    //     console.log('ERRO: ', err);
+    // })
+
+    // justArrived
+    // firebase.database().ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
+    //     console.log('VALORES: ', snapshot.val());
+    // }, (err) => {
+    //     console.log('ERRO: ', err);
+    // })
+
+    // mostPopular
+    // firebase.database().ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
+    //     console.log('VALORES: ', snapshot.val());
+    // }, (err) => {
+    //     console.log('ERRO: ', err);
+    // })
 }
 
 run()
