@@ -1,6 +1,6 @@
 const firebase = require('./firebase')
 
-function run() {
+async function run() {
 
     // attractivePrices
     // firebase.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
@@ -22,6 +22,7 @@ function run() {
     // }, (err) => {
     //     console.log('ERRO: ', err);
     // })
+
 }
 
 run()
