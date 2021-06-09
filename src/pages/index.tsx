@@ -215,90 +215,11 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  // // attractivePrices
-  // const attractivePricesList = await app.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
-  //   let resultArray = []
-  //   snapshot.forEach((attractivePrice) => {
-  //     let id = attractivePrice.val().id
-  //     let slug = attractivePrice.val().slug
-  //     let price = attractivePrice.val().price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-  //     let footage = attractivePrice.val().footage
-  //     let bedrooms = attractivePrice.val().bedrooms
-  //     let bathrooms = attractivePrice.val().bathrooms
-  //     let vacancies = attractivePrice.val().vacancies
-  //     let descriptionTitle = attractivePrice.val().descriptionTitle
-  //     let imageCard = attractivePrice.val().images[0]
-  //     resultArray.push({ id, slug, price, footage, bedrooms, bathrooms, vacancies, descriptionTitle, imageCard })
-  //   })
-  //   return resultArray
-  // }, (err) => {
-  //   console.log('ERRO: ', err);
-  //   return []
-  // })
-
-  // // justArrived
-  // const justArrivedList = await app.database().ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
-  //   let resultArray = []
-  //   snapshot.forEach((justArrived) => {
-  //     let id = justArrived.val().id
-  //     let slug = justArrived.val().slug
-  //     let price = justArrived.val().price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-  //     let footage = justArrived.val().footage
-  //     let bedrooms = justArrived.val().bedrooms
-  //     let bathrooms = justArrived.val().bathrooms
-  //     let vacancies = justArrived.val().vacancies
-  //     let descriptionTitle = justArrived.val().descriptionTitle
-  //     let imageCard = justArrived.val().images[0]
-  //     resultArray.push({ id, slug, price, footage, bedrooms, bathrooms, vacancies, descriptionTitle, imageCard })
-  //   })
-  //   return resultArray
-  // }, (err) => {
-  //   console.log('ERRO: ', err);
-  //   return []
-  // })
-
-  // // mostPopular
-  // const mostPopularsList = await app.database().ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
-  //   let resultArray = []
-  //   snapshot.forEach((mostPopular) => {
-  //     let id = mostPopular.val().id
-  //     let slug = mostPopular.val().slug
-  //     let price = mostPopular.val().price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
-  //     let footage = mostPopular.val().footage
-  //     let bedrooms = mostPopular.val().bedrooms
-  //     let bathrooms = mostPopular.val().bathrooms
-  //     let vacancies = mostPopular.val().vacancies
-  //     let descriptionTitle = mostPopular.val().descriptionTitle
-  //     let imageCard = mostPopular.val().images[0]
-  //     resultArray.push({ id, slug, price, footage, bedrooms, bathrooms, vacancies, descriptionTitle, imageCard })
-  //   })
-  //   return resultArray
-  // }, (err) => {
-  //   console.log('ERRO: ', err);
-  //   return []
-  // })
-
-
-
   const dataAttractivePrices = await api.get('immobiles', {
     params: {
       _limit: 3,
       _sort: 'price',
       _order: 'asc'
-    }
-  })
-  const dataJustArrived = await api.get('immobiles', {
-    params: {
-      _limit: 3,
-      _sort: 'createdAt',
-      _order: 'desc'
-    }
-  })
-  const dataMostPopulars = await api.get('immobiles', {
-    params: {
-      _limit: 3,
-      _sort: 'price',
-      _order: 'desc'
     }
   })
   const attractivePricesList = dataAttractivePrices.data.map(attractivePrice => {
@@ -314,6 +235,14 @@ export const getStaticProps: GetStaticProps = async () => {
       imageCard: attractivePrice.images[0],
     }
   })
+
+  const dataJustArrived = await api.get('immobiles', {
+    params: {
+      _limit: 3,
+      _sort: 'createdAt',
+      _order: 'desc'
+    }
+  })
   const justArrivedList = dataJustArrived.data.map(justArrived => {
     return {
       id: justArrived.id,
@@ -325,6 +254,14 @@ export const getStaticProps: GetStaticProps = async () => {
       vacancies: justArrived.vacancies,
       descriptionTitle: justArrived.descriptionTitle,
       imageCard: justArrived.images[0],
+    }
+  })
+
+  const dataMostPopulars = await api.get('immobiles', {
+    params: {
+      _limit: 3,
+      _sort: 'price',
+      _order: 'desc'
     }
   })
   const mostPopularsList = dataMostPopulars.data.map(mostPopulars => {
