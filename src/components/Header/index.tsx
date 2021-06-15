@@ -26,7 +26,7 @@ export function Header() {
             </div>
 
             <span>
-                <Link href="/">
+                <Link href="/login/login">
                     <a>{currentDate}</a>
                 </Link>
             </span>

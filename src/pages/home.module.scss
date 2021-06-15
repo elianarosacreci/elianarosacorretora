@@ -37,6 +37,10 @@
             color: var(--white);
             font-weight: bold;
             border: none;
+
+            &:hover {
+                background: var(--green-400);
+            }
         }
     }
 
@@ -54,19 +58,27 @@
             color: var(--white);
             font-weight: bold;
             border: none;
+
+            &:hover {
+                background: var(--green-400);
+            }
         }
     }
 
     .researchFieldsOrResearchCode {
         margin-top: 2rem;
         padding: 0.5rem 1rem;
-        background-color: var(--pink-400);
+        background-color: var(--pink-500);
         font-weight: bold;
         border: none;
         // border-radius: 0.5rem;
 
         span {
             color: var(--white);
+        }
+
+        &:hover {
+            background: var(--pink-400);
         }
     }
 }
