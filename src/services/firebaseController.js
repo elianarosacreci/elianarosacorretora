@@ -128,10 +128,56 @@ const firebaseController = function () {
         });
     };
 
+    async function getImmobileBySlug(slug) {
+        return new Promise(async (resolve, reject) => {
+            try {
+                await firebase.database().ref("immobiles").orderByChild('slug').equalTo(slug).on('value', (snapshot) => {
+                    resolve({
+                        ok: true,
+                        message: 'ok',
+                        content: {
+                            id: snapshot.val()[0].id,
+                            title: snapshot.val()[0].title,
+                            code: snapshot.val()[0].code,
+                            images: snapshot.val()[0].images,
+                            footage: snapshot.val()[0].footage,
+                            bedrooms: snapshot.val()[0].bedrooms,
+                            bathrooms: snapshot.val()[0].bathrooms,
+                            suites: snapshot.val()[0].suites,
+                            vacancies: snapshot.val()[0].vacancies,
+                            features: snapshot.val()[0].features,
+                            descriptionTitle: snapshot.val()[0].descriptionTitle,
+                            description: snapshot.val()[0].description,
+                            address: snapshot.val()[0].address.fullAddress,
+                            price: snapshot.val()[0].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+                            nearbyTrainsAndSubways: snapshot.val()[0].nearbyTrainsAndSubways,
+                            status: snapshot.val()[0].status,
+                        }
+                    })
+                }, (err) => {
+                    console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', err);
+                    reject({
+                        ok: false,
+                        message: err,
+                        content: ''
+                    })
+                })
+            } catch (error) {
+                console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', error);
+                reject({
+                    ok: false,
+                    message: error,
+                    content: ''
+                })
+            }
+        });
+    };
+
     return {
         getAttractivePrices,
         getJustArrived,
-        getMostPopular
+        getMostPopular,
+        getImmobileBySlug
     };
 };
 
