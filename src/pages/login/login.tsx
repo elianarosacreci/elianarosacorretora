@@ -16,7 +16,8 @@ export default function Login() {
                     <form className={styles.loginForm}>
                         <input type="text" placeholder="e-mail" />
                         <input type="password" placeholder="senha" />
-                        <button>entrar</button>
+                        <button className={styles.login}>entrar</button>
+                        <a href="/" className={styles.returnToBrowse}>voltar a navegar</a>
                     </form>
                 </div>
             </div>
