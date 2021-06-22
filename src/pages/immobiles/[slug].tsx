@@ -204,7 +204,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         {attractivePricesList.map((attractivePrices) => {
                             return (
                                 <li key={attractivePrices.id}>
-                                    <Link href={`/immobiles/${attractivePrices.slug}#slug#id#${attractivePrices.id}`}><a>
+                                    <a href={`/immobiles/${attractivePrices.slug}#slug#id#${attractivePrices.id}`} target="_blank">
                                         <div className={styles.immobileCards}>
                                             <Image
                                                 width={500}
@@ -221,7 +221,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                                                 <span>VER OS DETALHES →</span>
                                             </div>
                                         </div>
-                                    </a></Link>
+                                    </a>
                                 </li>
                             )
                         })}
