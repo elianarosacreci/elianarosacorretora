@@ -1,11 +1,10 @@
 import styles from './home.module.scss'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Image from 'next/image';
-import Link from 'next/link'
-import { GetStaticProps } from 'next';
+import Image from 'next/image'
+import { GetStaticProps } from 'next'
 
-import { api } from '../services/api';
+import firebaseController from '../services/firebaseController'
 
 import { Footer } from '../components/Footer'
 
@@ -31,14 +30,14 @@ type HomeProps = {
 
 export default function Home({ attractivePricesList, justArrivedList, mostPopularsList }: HomeProps) {
 
+  const MAX_DESCRIPTION_TITLE_LENGTH = 30
+
   const [acquisitionKindSelect, setAcquisitionKindSelect] = useState('')
   const [immobileKindSelect, setImmobileKindSelect] = useState('')
   const [districtAndCity, setDistrictAndCity] = useState('')
   const [codeImmobile, setCodeImmobile] = useState('')
-  const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
   const [researchFields, setResearchFields] = useState(true)
-
   function onResearchFieldsOrResearchCode() {
     if (researchFields == true) {
       setResearchFields(false)
@@ -53,7 +52,6 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
     f(e)
   }
   const onResearch = preventDefault(() => {
-
     // router.push({
     //   pathname: '/advancedSearch',
     //   query: formValues,
@@ -211,73 +209,15 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
   )
 }
 
-// ----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 export const getStaticProps: GetStaticProps = async () => {
 
-  const dataAttractivePrices = await api.get('immobiles', {
-    params: {
-      _limit: 3,
-      _sort: 'price',
-      _order: 'asc'
-    }
-  })
-  const attractivePricesList = dataAttractivePrices.data.map(attractivePrice => {
-    return {
-      id: attractivePrice.id,
-      slug: attractivePrice.slug,
-      price: attractivePrice.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-      footage: attractivePrice.footage,
-      bedrooms: attractivePrice.bedrooms,
-      bathrooms: attractivePrice.bathrooms,
-      vacancies: attractivePrice.vacancies,
-      descriptionTitle: attractivePrice.descriptionTitle,
-      imageCard: attractivePrice.images[0],
-    }
-  })
+  // TODO - Fazer validação para tratar retornos com erros ou vazios do Firebase
 
-  const dataJustArrived = await api.get('immobiles', {
-    params: {
-      _limit: 3,
-      _sort: 'createdAt',
-      _order: 'desc'
-    }
-  })
-  const justArrivedList = dataJustArrived.data.map(justArrived => {
-    return {
-      id: justArrived.id,
-      slug: justArrived.slug,
-      price: justArrived.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-      footage: justArrived.footage,
-      bedrooms: justArrived.bedrooms,
-      bathrooms: justArrived.bathrooms,
-      vacancies: justArrived.vacancies,
-      descriptionTitle: justArrived.descriptionTitle,
-      imageCard: justArrived.images[0],
-    }
-  })
-
-  const dataMostPopulars = await api.get('immobiles', {
-    params: {
-      _limit: 3,
-      _sort: 'price',
-      _order: 'desc'
-    }
-  })
-  const mostPopularsList = dataMostPopulars.data.map(mostPopulars => {
-    return {
-      id: mostPopulars.id,
-      slug: mostPopulars.slug,
-      price: mostPopulars.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-      footage: mostPopulars.footage,
-      bedrooms: mostPopulars.bedrooms,
-      bathrooms: mostPopulars.bathrooms,
-      vacancies: mostPopulars.vacancies,
-      descriptionTitle: mostPopulars.descriptionTitle,
-      imageCard: mostPopulars.images[0],
-    }
-  })
-
+  const attractivePricesList = await firebaseController.getAttractivePrices()
+  const justArrivedList = await firebaseController.getJustArrived()
+  const mostPopularsList = await firebaseController.getMostPopular()
 
   return {
     props: {

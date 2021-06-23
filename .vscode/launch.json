@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\src\\services\\test.js"
+            "program": "${workspaceFolder}\\testFirebase\\test.js"
         }
     ]
 }

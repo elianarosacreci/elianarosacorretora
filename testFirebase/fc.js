@@ -1,11 +1,11 @@
-const firebase = require('./firebase')
+const app = require('./fb')
 
-const firebaseController = function () {
+const fc = function () {
 
     async function getAttractivePrices() {
         return new Promise(async (resolve, reject) => {
             try {
-                await firebase.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
+                await app.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
                     let result = [];
                     snapshot.forEach(function (childSnapshot) {
                         result.push({
@@ -20,26 +20,14 @@ const firebaseController = function () {
                             imageCard: childSnapshot.child('images/0').val(),
                         })
                     });
-                    resolve({
-                        ok: true,
-                        message: 'ok',
-                        content: result
-                    })
+                    resolve(result)
                 }, (err) => {
                     console.log('services - firebaseController.js - getAttractivePrices - Erro: ', err);
-                    reject({
-                        ok: false,
-                        message: err,
-                        content: ''
-                    })
+                    reject('')
                 })
             } catch (error) {
                 console.log('services - firebaseController.js - getAttractivePrices - Erro: ', error);
-                reject({
-                    ok: false,
-                    message: error,
-                    content: ''
-                })
+                reject('')
             }
         });
     };
@@ -47,7 +35,7 @@ const firebaseController = function () {
     async function getJustArrived() {
         return new Promise(async (resolve, reject) => {
             try {
-                await firebase.database().ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
+                await app.database().ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
                     let result = [];
                     snapshot.forEach(function (childSnapshot) {
                         result.push({
@@ -62,26 +50,14 @@ const firebaseController = function () {
                             imageCard: childSnapshot.child('images/0').val(),
                         })
                     });
-                    resolve({
-                        ok: true,
-                        message: 'ok',
-                        content: result
-                    })
+                    resolve(result)
                 }, (err) => {
                     console.log('services - firebaseController.js - getJustArrived - Erro: ', err);
-                    reject({
-                        ok: false,
-                        message: err,
-                        content: ''
-                    })
+                    reject('')
                 })
             } catch (error) {
                 console.log('services - firebaseController.js - getJustArrived - Erro: ', error);
-                reject({
-                    ok: false,
-                    message: error,
-                    content: ''
-                })
+                reject('')
             }
         });
     };
@@ -89,7 +65,7 @@ const firebaseController = function () {
     async function getMostPopular() {
         return new Promise(async (resolve, reject) => {
             try {
-                await firebase.database().ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
+                await app.database().ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
                     let result = [];
                     snapshot.forEach(function (childSnapshot) {
                         result.push({
@@ -104,26 +80,14 @@ const firebaseController = function () {
                             imageCard: childSnapshot.child('images/0').val(),
                         })
                     });
-                    resolve({
-                        ok: true,
-                        message: 'ok',
-                        content: result
-                    })
+                    resolve(result)
                 }, (err) => {
                     console.log('services - firebaseController.js - getMostPopular - Erro: ', err);
-                    reject({
-                        ok: false,
-                        message: err,
-                        content: ''
-                    })
+                    reject('')
                 })
             } catch (error) {
                 console.log('services - firebaseController.js - getMostPopular - Erro: ', error);
-                reject({
-                    ok: false,
-                    message: error,
-                    content: ''
-                })
+                reject('')
             }
         });
     };
@@ -131,44 +95,33 @@ const firebaseController = function () {
     async function getImmobileBySlug(slug) {
         return new Promise(async (resolve, reject) => {
             try {
-                await firebase.database().ref("immobiles").orderByChild('slug').equalTo(slug).on('value', (snapshot) => {
+                await app.database().ref("immobiles").orderByChild('slug').equalTo(slug).on('value', (snapshot) => {
+                    let idx = Object.keys(snapshot.val())[0]
                     resolve({
-                        ok: true,
-                        message: 'ok',
-                        content: {
-                            id: snapshot.val()[0].id,
-                            title: snapshot.val()[0].title,
-                            code: snapshot.val()[0].code,
-                            images: snapshot.val()[0].images,
-                            footage: snapshot.val()[0].footage,
-                            bedrooms: snapshot.val()[0].bedrooms,
-                            bathrooms: snapshot.val()[0].bathrooms,
-                            suites: snapshot.val()[0].suites,
-                            vacancies: snapshot.val()[0].vacancies,
-                            features: snapshot.val()[0].features,
-                            descriptionTitle: snapshot.val()[0].descriptionTitle,
-                            description: snapshot.val()[0].description,
-                            address: snapshot.val()[0].address.fullAddress,
-                            price: snapshot.val()[0].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-                            nearbyTrainsAndSubways: snapshot.val()[0].nearbyTrainsAndSubways,
-                            status: snapshot.val()[0].status,
-                        }
+                        id: snapshot.val()[idx].id,
+                        title: snapshot.val()[idx].title,
+                        code: snapshot.val()[idx].code,
+                        images: snapshot.val()[idx].images,
+                        footage: snapshot.val()[idx].footage,
+                        bedrooms: snapshot.val()[idx].bedrooms,
+                        bathrooms: snapshot.val()[idx].bathrooms,
+                        suites: snapshot.val()[idx].suites,
+                        vacancies: snapshot.val()[idx].vacancies,
+                        features: snapshot.val()[idx].features,
+                        descriptionTitle: snapshot.val()[idx].descriptionTitle,
+                        description: snapshot.val()[idx].description,
+                        address: snapshot.val()[idx].address.fullAddress,
+                        price: snapshot.val()[idx].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+                        nearbyTrainsAndSubways: snapshot.val()[idx].nearbyTrainsAndSubways,
+                        status: snapshot.val()[idx].status,
                     })
                 }, (err) => {
                     console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', err);
-                    reject({
-                        ok: false,
-                        message: err,
-                        content: ''
-                    })
+                    reject({})
                 })
             } catch (error) {
                 console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', error);
-                reject({
-                    ok: false,
-                    message: error,
-                    content: ''
-                })
+                reject({})
             }
         });
     };
@@ -178,7 +131,8 @@ const firebaseController = function () {
         getJustArrived,
         getMostPopular,
         getImmobileBySlug
-    };
-};
+    }
 
-module.exports = firebaseController;
+}
+
+module.exports = fc;

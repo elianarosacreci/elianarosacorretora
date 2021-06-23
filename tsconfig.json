@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "testFirebase/fc.js", "testFirebase/fb.js"  ],
   "exclude": [
     "node_modules"
   ]

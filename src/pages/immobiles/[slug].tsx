@@ -2,7 +2,6 @@ import styles from './immobile.module.scss';
 import React from 'react';
 import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
 
 import { BiArea } from 'react-icons/bi'
@@ -17,9 +16,10 @@ import { MdContentCopy } from 'react-icons/md'
 import { SiGooglemaps } from 'react-icons/si'
 
 import { api } from '../../services/api';
+import firebaseController from '../../services/firebaseController'
+
 import { Carousel } from 'react-bootstrap'
 import { Footer } from '../../components/Footer'
-
 
 
 type Immobile = {
@@ -238,6 +238,8 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 
 export const getStaticPaths: GetStaticPaths = async () => {
 
+    // TODO - Ajustar esta função para obter as informações pelo Firebase
+
     const { data } = await api.get('immobiles')
 
     const paths = data.map(immobiles => {
@@ -251,52 +253,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const { slug } = context.params
-    const { data } = await api.get('immobiles', {
-        params: {
-            _limit: 1,
-            slug: slug
-        }
-    })
-    const immobile = {
-        id: data[0].id,
-        title: data[0].title,
-        code: data[0].code,
-        images: data[0].images,
-        footage: data[0].footage,
-        bedrooms: data[0].bedrooms,
-        bathrooms: data[0].bathrooms,
-        suites: data[0].suites,
-        vacancies: data[0].vacancies,
-        features: data[0].features,
-        descriptionTitle: data[0].descriptionTitle,
-        description: data[0].description,
-        address: data[0].address.fullAddress,
-        price: data[0].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-        nearbyTrainsAndSubways: data[0].nearbyTrainsAndSubways,
-        status: data[0].status,
-    }
 
-    const dataAttractivePrices = await api.get('immobiles', {
-        params: {
-            _limit: 3,
-            _sort: 'price',
-            _order: 'asc'
-        }
-    })
-    const attractivePricesList = dataAttractivePrices.data.map(attractivePrice => {
-        return {
-            id: attractivePrice.id,
-            slug: attractivePrice.slug,
-            price: attractivePrice.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-            footage: attractivePrice.footage,
-            bedrooms: attractivePrice.bedrooms,
-            bathrooms: attractivePrice.bathrooms,
-            vacancies: attractivePrice.vacancies,
-            descriptionTitle: attractivePrice.descriptionTitle,
-            imageCard: attractivePrice.images[0],
-        }
-    })
+    const { slug } = context.params
+
+    const immobile = await firebaseController.getImmobileBySlug(slug)
+    const attractivePricesList = await firebaseController.getAttractivePrices()
 
     return {
         props: {
