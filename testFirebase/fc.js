@@ -126,11 +126,32 @@ const fc = function () {
         });
     };
 
+    async function getImmobilePaths() {
+        return new Promise(async (resolve, reject) => {
+            try {
+                await app.database().ref("immobiles").on('value', (snapshot) => {
+                    let paths = [];
+                    snapshot.forEach(function (childSnapshot) {
+                        paths.push({ params: { id: childSnapshot.child('id').val() } })
+                    });
+                    resolve(paths)
+                }, (err) => {
+                    console.log('services - firebaseController.js - getImmobilePaths - Erro: ', err);
+                    reject({})
+                })
+            } catch (error) {
+                console.log('services - firebaseController.js - getImmobilePaths - Erro: ', error);
+                reject({})
+            }
+        });
+    };
+
     return {
         getAttractivePrices,
         getJustArrived,
         getMostPopular,
-        getImmobileBySlug
+        getImmobileBySlug,
+        getImmobilePaths
     }
 
 }

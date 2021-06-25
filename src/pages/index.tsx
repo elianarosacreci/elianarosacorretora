@@ -119,7 +119,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             {attractivePricesList.map((attractivePrices) => {
               return (
                 <li key={attractivePrices.id}>
-                  <a href={`/immobiles/${attractivePrices.slug}#slug#id#${attractivePrices.id}`} target="_blank">
+                  <a href={`/immobiles/${attractivePrices.slug}----${attractivePrices.id}`} target="_blank">
                     <div className={styles.immobileCards}>
                       <Image
                         width={500}
@@ -149,7 +149,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             {justArrivedList.map((justArrived) => {
               return (
                 <li key={justArrived.id}>
-                  <a href={`/immobiles/${justArrived.slug}#slug#id#${justArrived.id}`} target="_blank">
+                  <a href={`/immobiles/${justArrived.slug}----${justArrived.id}`} target="_blank">
                     <div className={styles.immobileCards}>
                       <Image
                         width={500}
@@ -179,7 +179,7 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             {mostPopularsList.map((mostPopular) => {
               return (
                 <li key={mostPopular.id}>
-                  <a href={`/immobiles/${mostPopular.slug}#slug#id#${mostPopular.id}`} target="_blank">
+                  <a href={`/immobiles/${mostPopular.slug}----${mostPopular.id}`} target="_blank">
                     <div className={styles.immobileCards}>
                       <Image
                         width={500}
@@ -212,13 +212,11 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 export const getStaticProps: GetStaticProps = async () => {
-
   // TODO - Fazer validação para tratar retornos com erros ou vazios do Firebase
 
   const attractivePricesList = await firebaseController.getAttractivePrices()
   const justArrivedList = await firebaseController.getJustArrived()
   const mostPopularsList = await firebaseController.getMostPopular()
-
   return {
     props: {
       attractivePricesList,

@@ -15,7 +15,6 @@ import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
 import { MdContentCopy } from 'react-icons/md'
 import { SiGooglemaps } from 'react-icons/si'
 
-import { api } from '../../services/api';
 import firebaseController from '../../services/firebaseController'
 
 import { Carousel } from 'react-bootstrap'
@@ -204,7 +203,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         {attractivePricesList.map((attractivePrices) => {
                             return (
                                 <li key={attractivePrices.id}>
-                                    <a href={`/immobiles/${attractivePrices.slug}#slug#id#${attractivePrices.id}`} target="_blank">
+                                    <a href={`/immobiles/${attractivePrices.slug}----${attractivePrices.id}`} target="_blank">
                                         <div className={styles.immobileCards}>
                                             <Image
                                                 width={500}
@@ -237,28 +236,20 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 // ----------------------------------------------------------------------------------------------------
 
 export const getStaticPaths: GetStaticPaths = async () => {
-
-    // TODO - Ajustar esta função para obter as informações pelo Firebase
-
-    const { data } = await api.get('immobiles')
-
-    const paths = data.map(immobiles => {
-        return { params: { slug: immobiles.id } }
-    });
-
     return {
-        paths,
+        paths: [
+            { params: { id: "a21ab00f-5c0b-455c-a59d-5f13e5c37ead" } }
+        ],
         fallback: 'blocking'
     }
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-
-    const { slug } = context.params
-
-    const immobile = await firebaseController.getImmobileBySlug(slug)
+    const { id } = context.params
+    let idx = id.toString()
+    idx = idx.split('----')[1]
+    const immobile = await firebaseController.getImmobileBySlug(idx)
     const attractivePricesList = await firebaseController.getAttractivePrices()
-
     return {
         props: {
             immobile,

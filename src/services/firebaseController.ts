@@ -90,10 +90,10 @@ async function getMostPopular() {
     });
 };
 
-async function getImmobileBySlug(slug) {
+async function getImmobileBySlug(id) {
     return new Promise(async (resolve, reject) => {
         try {
-            await app.database().ref("immobiles").orderByChild('slug').equalTo(slug).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
                 let idx = Object.keys(snapshot.val())[0]
                 resolve({
                     id: snapshot.val()[idx].id,
@@ -123,6 +123,7 @@ async function getImmobileBySlug(slug) {
         }
     });
 };
+
 
 export default {
     getAttractivePrices,
