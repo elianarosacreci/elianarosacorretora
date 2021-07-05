@@ -3,33 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build"
   },
   "dependencies": {
-    "@craco/craco": "^6.1.2",
-    "@tailwindcss/postcss7-compat": "^2.2.4",
     "axios": "^0.21.1",
     "bootstrap": "5.0.0",
     "date-fns": "^2.21.3",
     "firebase": "^8.6.2",
-    "json-server": "^0.16.3",
-    "next": "10.2.0",
-    "postcss": "^7.0.36",
+    "next": "^11.0.1",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.0",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
+    "react-scripts": "^4.0.3",
     "sass": "^1.32.13"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
     "@types/react": "^17.0.5",
-    "autoprefixer": "^9.8.6",
-    "postcss-cli": "^8.3.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",
     "typescript": "^4.2.4"
   }
 }

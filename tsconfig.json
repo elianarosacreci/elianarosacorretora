@@ -17,13 +17,17 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "testFirebase/fc.js", "testFirebase/fb.js"  ],
+    "**/*.tsx",
+    "testFirebase/fc.js",
+    "testFirebase/fb.js"
+  ],
   "exclude": [
     "node_modules"
   ]
