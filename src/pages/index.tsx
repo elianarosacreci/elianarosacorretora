@@ -52,10 +52,10 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
     f(e)
   }
   const onResearch = preventDefault(() => {
-    // router.push({
-    //   pathname: '/advancedSearch',
-    //   query: formValues,
-    // })
+    router.push({
+      pathname: '/research/research',
+      query: '',
+    })
   })
 
 
