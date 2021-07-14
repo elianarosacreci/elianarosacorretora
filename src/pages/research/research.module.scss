@@ -4,11 +4,130 @@
     display: flex;
 
     .researchContent {
-        border: 2px solid var(--gray-100);
-        // border-radius: 0.5rem;
+        border: 1px solid var(--gray-100);
+        border-radius: 0.5rem;
         margin-right: 2rem;
         padding: 1rem 2rem;
-        display: flex;
+
+        .research {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .researchButton {
+                padding: 1rem 2rem;
+                background-color: var(--green-500);
+                color: var(--white);
+                font-weight: bold;
+                border: none;
+
+                &:hover {
+                    background: var(--green-400);
+                }
+            }
+        }
+
+        .address {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .addressLocation {
+                input {
+                    padding: 1rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                }
+            }
+        }
+
+        .price {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .priceMin {
+                input {
+                    padding: 1rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                }
+            }
+
+            .priceMax {
+                input {
+                    padding: 1rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                }
+            }
+        }
+
+        .footage {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .footageMin {
+                input {
+                    padding: 1rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    text-align: right;
+                }
+            }
+
+            .footageMax {
+                input {
+                    padding: 1rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    text-align: right;
+                }
+            }
+        }
+
+        .bedrooms {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .bedroomsNumbers {
+                margin-right: 1rem;
+
+                .buttons {
+                    button {
+                        border: 1px solid var(--gray-100);
+                        padding: 0.5rem;
+                        background: var(--white);
+                    }
+                }
+            }
+        }
+
+        .bathrooms {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .bathroomsNumbers {
+                margin-right: 1rem;
+
+                .buttons {
+                    button {
+                        border: 1px solid var(--gray-100);
+                        padding: 0.5rem;
+                        background: var(--white);
+                    }
+                }
+            }
+        }
+
+        .vacancies {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .vacanciesNumbers {
+                margin-right: 1rem;
+
+                .buttons {
+                    button {
+                        border: 1px solid var(--gray-100);
+                        padding: 0.5rem;
+                        background: var(--white);
+                    }
+                }
+            }
+        }
     }
 
     .immobilesContent {

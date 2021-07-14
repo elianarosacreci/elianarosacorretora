@@ -17,20 +17,91 @@ export default function Research() {
             <div className={styles.immobileDetails}>
 
                 <div className={styles.researchContent}>
+
+                    <div className={styles.research}>
+                        <button className={styles.researchButton} type="button">Buscar</button>
+                    </div>
+
+                    <div className={styles.address}>
+                        <div className={styles.addressLocation}>
+                            <label>Localização do Imóvel</label>
+                            <input
+                                type="text"
+                                placeholder="Digite"
+                            />
+                        </div>
+                    </div>
+
                     <div className={styles.price}>
                         <div className={styles.priceMin}>
-                            <p>Preço Mínimo</p>
+                            <label>Preço Mínimo</label>
                             <input
                                 type="text"
                                 placeholder="R$"
                             />
                         </div>
                         <div className={styles.priceMax}>
-                            <p>Preço Máximo</p>
+                            <label>Preço Máximo</label>
                             <input
                                 type="text"
                                 placeholder="R$"
                             />
+                        </div>
+                    </div>
+
+                    <div className={styles.footage}>
+                        <div className={styles.footageMin}>
+                            <label>Área Mínima</label>
+                            <input
+                                type="text"
+                                placeholder="m²"
+                            />
+                        </div>
+                        <div className={styles.footageMax}>
+                            <label>Área Máxima</label>
+                            <input
+                                type="text"
+                                placeholder="m²"
+                            />
+                        </div>
+                    </div>
+
+                    <div className={styles.bedrooms}>
+                        <div className={styles.bedroomsNumbers}>
+                            <label>Número de Quartos</label>
+                            <div className={styles.buttons}>
+                                <button>1+</button>
+                                <button>2+</button>
+                                <button>3+</button>
+                                <button>4+</button>
+                                <button>5+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.bathrooms}>
+                        <div className={styles.bathroomsNumbers}>
+                            <label>Número de Banheiros</label>
+                            <div className={styles.buttons}>
+                                <button>1+</button>
+                                <button>2+</button>
+                                <button>3+</button>
+                                <button>4+</button>
+                                <button>5+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={styles.vacancies}>
+                        <div className={styles.vacanciesNumbers}>
+                            <label>Número de Vagas de Garagem</label>
+                            <div className={styles.buttons}>
+                                <button>1+</button>
+                                <button>2+</button>
+                                <button>3+</button>
+                                <button>4+</button>
+                                <button>5+</button>
+                            </div>
                         </div>
                     </div>
 
@@ -62,7 +133,6 @@ export default function Research() {
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
