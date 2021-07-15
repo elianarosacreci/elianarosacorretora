@@ -68,21 +68,22 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
         {researchFields == true ?
           <div className={styles.researchFields}>
             <select
-              style={{ width: 150 }}
+              style={{ width: 200 }}
               defaultValue="comprar"
               onChange={event => setAcquisitionKindSelect(event.target.value)}
             >
-              <option value="comprar">Comprar</option>
-              <option value="alugar">Alugar</option>
+              <option value="prontoParaMorar">Pronto para Morar</option>
+              <option value="naPlanta">Na Planta</option>
+              <option value="emConstrucao">Em Construção</option>
             </select>
 
             <select
-              style={{ width: 180 }}
+              style={{ width: 160 }}
               defaultValue="apartamento"
               onChange={event => setImmobileKindSelect(event.target.value)}
             >
               <option value="apartamento">Apartamento</option>
-              <option value="casa">Casa   </option>
+              <option value="casa">Casa</option>
             </select>
 
             <input
