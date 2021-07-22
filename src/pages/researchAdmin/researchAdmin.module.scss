@@ -1,0 +1,252 @@
+.immobileDetails {
+    padding: 2rem 2rem;
+    margin: 2rem 4rem;
+    display: flex;
+
+    .researchContent {
+        border: 1px solid var(--gray-100);
+        border-radius: 0.5rem;
+        margin-right: 2rem;
+        padding: 1rem 2rem;
+        background: var(--green-500);
+        color: var(--white);
+        display: block;
+
+        .research {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .researchButton {
+                padding: 0.5rem 1rem;
+                background-color: var(--pink-500);
+                color: var(--white);
+                font-weight: bold;
+                border-radius: 0.3rem;
+                border: none;
+
+                &:hover {
+                    background: var(--pink-400);
+                }
+            }
+        }
+
+        .address {
+            // display: flex;
+            margin-bottom: 2rem;
+
+            .addressLocation {
+                margin-top: 0.5rem;
+
+                input {
+                    padding: 0.5rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    border-radius: 0.3rem;
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+
+        .price {
+            // display: flex;
+            margin-bottom: 2rem;
+
+            .priceMin {
+                input {
+                    padding: 0.5rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    border-radius: 0.3rem;
+                    margin-top: 0.5rem;
+                }
+            }
+
+            .priceMax {
+                input {
+                    padding: 0.5rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    border-radius: 0.3rem;
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+
+        .footage {
+            // display: flex;
+            margin-bottom: 2rem;
+
+            .footageMin {
+                input {
+                    padding: 0.5rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    text-align: right;
+                    border-radius: 0.3rem;
+                    margin-top: 0.5rem;
+                }
+            }
+
+            .footageMax {
+                input {
+                    padding: 0.5rem 0.5rem;
+                    border: 1px solid var(--gray-100);
+                    text-align: right;
+                    border-radius: 0.3rem;
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+
+        .bedrooms {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .bedroomsNumbers {
+                margin-right: 1rem;
+
+                .buttons {
+                    margin-top: 0.5rem;
+
+                    button {
+                        border: 1px solid var(--gray-100);
+                        padding: 0.5rem;
+                        background: var(--white);
+                        border-radius: 0.8rem;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+
+        .bathrooms {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .bathroomsNumbers {
+                margin-right: 1rem;
+
+                .buttons {
+                    margin-top: 0.5rem;
+
+                    button {
+                        border: 1px solid var(--gray-100);
+                        padding: 0.5rem;
+                        background: var(--white);
+                        border-radius: 0.8rem;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+
+        .vacancies {
+            display: flex;
+            margin-bottom: 2rem;
+
+            .vacanciesNumbers {
+                margin-right: 1rem;
+
+                .buttons {
+                    margin-top: 0.5rem;
+
+                    button {
+                        border: 1px solid var(--gray-100);
+                        padding: 0.5rem;
+                        background: var(--white);
+                        border-radius: 0.8rem;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .immobilesContent {
+        .immobileList {
+            text-align: center;
+            margin: 0rem 2rem;
+
+            .listOptions {
+                display: flex;
+
+                h1 {
+                    margin-left: auto;
+                    padding-bottom: 1rem;
+                    margin-bottom: 2rem;
+                    font-size: 40px;
+                    color: var(--black);
+                }
+
+                span {
+                    margin-left: auto;
+
+                    a {
+                        color: var(--green-1000);
+
+                        &:hover {
+                            color: var(--pink-800);
+                        }
+                    }
+                }
+            }
+
+            ul {
+                list-style: none;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+
+                li {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+
+                    .immobileCards {
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+                        text-align: justify;
+                        transition: 0.3s;
+                        width: 20rem;
+                        border-radius: 5px;
+                        padding-bottom: 1rem;
+
+                        img {
+                            width: 50%;
+                            border-radius: 5px 5px 0 0;
+                        }
+
+                        .container {
+                            padding: 1rem 1rem;
+
+                            h2 {
+                                color: var(--gray-800);
+                            }
+
+                            a {
+                                color: var(--green-1000);
+
+                                &:hover {
+                                    color: var(--pink-800);
+                                }
+                            }
+
+                            button {
+                                color: var(--green-1000);
+                                border: none;
+                                background: none;
+
+                                &:hover {
+                                    color: var(--pink-800);
+                                }
+                            }
+                        }
+
+                        &:hover {
+                            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+
+                            img {
+                                opacity: 70%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

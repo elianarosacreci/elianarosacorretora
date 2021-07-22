@@ -2,6 +2,10 @@ import styles from './login.module.scss'
 
 import React from 'react'
 
+import { FaGooglePlusSquare } from 'react-icons/fa'
+
+import Link from 'next/link'
+
 export default function Login() {
 
 
@@ -14,9 +18,9 @@ export default function Login() {
             <div className={styles.loginContainer}>
                 <div className={styles.form}>
                     <form className={styles.loginForm}>
-                        <input type="text" placeholder="e-mail" />
-                        <input type="password" placeholder="senha" />
-                        <button className={styles.login}>entrar</button>
+                        <Link href="/researchAdmin/researchAdmin">
+                            <button className={styles.login}>entrar com <FaGooglePlusSquare size={30} /></button>
+                        </Link>
                         <a href="/" className={styles.returnToBrowse}>voltar a navegar</a>
                     </form>
                 </div>

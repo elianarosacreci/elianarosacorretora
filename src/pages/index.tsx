@@ -107,9 +107,9 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
           </div>}
 
-        <button className={styles.researchFieldsOrResearchCode} type="button" onClick={onResearchFieldsOrResearchCode}>
+        {/* <button className={styles.researchFieldsOrResearchCode} type="button" onClick={onResearchFieldsOrResearchCode}>
           {researchFields == true ? <span>Buscar por código do imóvel →</span> : <span>← Buscar por localização</span>}
-        </button>
+        </button> */}
       </section>
 
       <section className={styles.immobileList}>
