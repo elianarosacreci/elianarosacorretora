@@ -1,5 +1,5 @@
 import styles from './researchAdmin.module.scss'
-import React from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -7,7 +7,8 @@ import firebaseController from '../../services/firebaseController'
 
 import { Footer } from '../../components/Footer'
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
+
+import { Button, Modal } from 'react-bootstrap'
 
 import { MdLibraryAdd } from 'react-icons/md'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
@@ -34,8 +35,14 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
+    const [addModalShow, setAddModalShow] = useState(false);
+    const handleAddModalClose = () => setAddModalShow(false);
+
+    const [updateModalShow, setUpdateModalShow] = useState(false);
+    const handleUpdateModalClose = () => setUpdateModalShow(false);
+
     return (
-        <div>
+        <>
             <Head>
                 <title></title>
             </Head>
@@ -153,9 +160,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         <div className={styles.listOptions}>
                             <h1>{allImobiles.length} Imóveis Encontrados</h1>
                             <span>
-                                <Link href="/addImmobile/addImmobile">
-                                    <a><MdLibraryAdd size={40} /></a>
-                                </Link>
+                                <button onClick={() => setAddModalShow(true)}><MdLibraryAdd size={40} /></button>
                             </span>
                         </div>
                         <div>
@@ -176,7 +181,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                                     {immobile.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
                                                         <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                         <p>{immobile.descriptionTitle}</p>}
-                                                    <a><FaPencilAlt size={25} /></a>
+                                                    <button onClick={() => setUpdateModalShow(true)}><FaPencilAlt size={25} /></button>
                                                     <button><FaTrashAlt size={25} onClick={() => firebaseController.removeImmobileById(immobile.id)} /></button>
                                                 </div>
                                             </div>
@@ -192,7 +197,40 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
             </div>
 
             <Footer />
-        </div>
+
+            {/* ADD MODAL */}
+            <Modal
+                show={addModalShow}
+                backdrop="static"
+                size="lg"
+            >
+                <Modal.Header>
+                    <Modal.Title>Inserir Novo Imóvel</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Incluir formulário para preencher os dados do imóvel...</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleAddModalClose}>Fechar</Button>
+                    <Button variant="success" onClick={handleAddModalClose}>Salvar</Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* UPDATE MODAL */}
+            <Modal
+                show={updateModalShow}
+                backdrop="static"
+                size="lg"
+            >
+                <Modal.Header>
+                    <Modal.Title>Atualizar Imóvel</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Incluir formulário com dados do imóvel para atualizar...</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="danger" onClick={handleUpdateModalClose}>Fechar</Button>
+                    <Button variant="success" onClick={handleUpdateModalClose}>Atualizar</Button>
+                </Modal.Footer>
+            </Modal>
+
+        </>
     )
 }
 
