@@ -90,7 +90,7 @@ async function getMostPopular() {
     });
 };
 
-async function getImmobileBySlug(id) {
+async function getImmobileById(id) {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
@@ -114,11 +114,11 @@ async function getImmobileBySlug(id) {
                     status: snapshot.val()[idx].status,
                 })
             }, (err) => {
-                console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', err);
+                console.log('services - firebaseController.js - getImmobileById - Erro: ', err);
                 reject({})
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', error);
+            console.log('services - firebaseController.js - getImmobileById - Erro: ', error);
             reject({})
         }
     });
@@ -154,11 +154,49 @@ async function getAllImmobiles() {
     });
 };
 
+async function getImmobileIdx(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
+                let idx = Object.keys(snapshot.val())[0]
+                resolve(idx)
+            }, (err) => {
+                console.log('services - firebaseController.js - getImmobileIdx - Erro: ', err);
+                reject({})
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getImmobileIdx - Erro: ', error);
+            reject({})
+        }
+    });
+};
+
+async function removeImmobileById(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let idx = await getImmobileIdx(id);
+            app.database().ref(`immobiles/${idx}`).remove()
+                .then(function () {
+                    console.log("Remove succeeded.")
+                    resolve('ok')
+                })
+                .catch(function (error) {
+                    console.log('services - firebaseController.js - removeImmobileById - Erro: ', error.message);
+                    reject({})
+                });
+        } catch (error) {
+            console.log('services - firebaseController.js - removeImmobileById - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
 
 export default {
     getAttractivePrices,
     getJustArrived,
     getMostPopular,
-    getImmobileBySlug,
-    getAllImmobiles
+    getImmobileById,
+    getAllImmobiles,
+    removeImmobileById
 };

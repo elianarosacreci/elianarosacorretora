@@ -248,7 +248,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params
     let idx = id.toString()
     idx = idx.split('----')[1]
-    const immobile = await firebaseController.getImmobileBySlug(idx)
+    const immobile = await firebaseController.getImmobileById(idx)
     const attractivePricesList = await firebaseController.getAttractivePrices()
     return {
         props: {

@@ -34,7 +34,6 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
-
     return (
         <div>
             <Head>
@@ -132,18 +131,16 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         </div>
                     </div>
 
-                    <div className={styles.kind}>
-                        <div className={styles.kindImmobiles}>
-                            <label>Tipos de Imóvel</label>
-                            <div className={styles.kindOptions}>
-                            </div>
-                        </div>
-                    </div>
-
                     <div className={styles.status}>
                         <div className={styles.statusImmobiles}>
                             <label>Status do Imóvel</label>
                             <div className={styles.statusOptions}>
+                                <input type="checkbox" id="naPlanta" name="naPlanta" value="naPlanta" />
+                                <label htmlFor="naPlanta"> na planta</label><br />
+                                <input type="checkbox" id="emConstrucao" name="emConstrucao" value="emConstrucao" />
+                                <label htmlFor="emConstrucao"> em construção</label><br />
+                                <input type="checkbox" id="prontoParaMorar" name="prontoParaMorar" value="prontoParaMorar" />
+                                <label htmlFor="prontoParaMorar"> pronto pra morar</label>
                             </div>
                         </div>
                     </div>
@@ -180,7 +177,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                                         <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                         <p>{immobile.descriptionTitle}</p>}
                                                     <a><FaPencilAlt size={25} /></a>
-                                                    <button><FaTrashAlt size={25} /></button>
+                                                    <button><FaTrashAlt size={25} onClick={() => firebaseController.removeImmobileById(immobile.id)} /></button>
                                                 </div>
                                             </div>
                                         </li>
