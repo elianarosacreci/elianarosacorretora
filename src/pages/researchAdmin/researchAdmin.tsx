@@ -296,7 +296,14 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         <Row>
                             <Form.Group className="mb-3" controlId="immobileFeatures">
                                 <Form.Label>Características</Form.Label>
-                                <Form.Control as="textarea" rows={4} type="text" placeholder="digite as características do imóvel separando por vírgulas. Ex: Piscina, Acadêmia, Playground, Churrasqueira..." />
+                                <Form.Control as="textarea" rows={4} type="text" placeholder="Digite as características do imóvel separando por vírgulas. Ex: Piscina, Acadêmia, Playground, Churrasqueira..." />
+                            </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Form.Group className="mb-3" controlId="immobileNearbyTrainsAndSubways">
+                                <Form.Label>Trens e Metrôs Próximos</Form.Label>
+                                <Form.Control as="textarea" rows={4} type="text" placeholder={`Digite: "nome da estação" + "-" + "distacia em km". Caso tenha mais de uma estação, separe por vígula. Ex: Estação General Miguel Costa - 1.5km, Estação Quitaúna - 1.8km...`} />
                             </Form.Group>
                         </Row>
                         <br />
