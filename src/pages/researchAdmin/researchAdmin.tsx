@@ -212,7 +212,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         <Row>
                             <Form.Group className="mb-3" controlId="immobileTitle">
                                 <Form.Label>Título</Form.Label>
-                                <Form.Control type="text" placeholder="digite o título do imóvel..." />
+                                <Form.Control type="text" placeholder="Digite o título do imóvel..." />
                             </Form.Group>
                         </Row>
                         <br />
@@ -220,13 +220,13 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3" controlId="immobileFootage">
                                     <Form.Label>Área</Form.Label>
-                                    <Form.Control type="text" placeholder="digite a área (M²) do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite a área (M²) do imóvel..." />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3" controlId="immobileBedrooms">
                                     <Form.Label>Quartos</Form.Label>
-                                    <Form.Control type="text" placeholder="digite o número de quartos do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o número de quartos do imóvel..." />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -234,13 +234,13 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3" controlId="immobileBathrooms">
                                     <Form.Label>Banheiros</Form.Label>
-                                    <Form.Control type="text" placeholder="digite o número de banheiros do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o número de banheiros do imóvel..." />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3" controlId="immobileVacancies">
                                     <Form.Label>Vagas</Form.Label>
-                                    <Form.Control type="text" placeholder="digite o número de vagas do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o número de vagas do imóvel..." />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -248,13 +248,13 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         <Row>
                             <Form.Group className="mb-3" controlId="immobileDescriptionTitle">
                                 <Form.Label>Título da Descrição</Form.Label>
-                                <Form.Control type="text" placeholder="digite o título da descrição do imóvel..." />
+                                <Form.Control type="text" placeholder="Digite o título da descrição do imóvel..." />
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Group className="mb-3" controlId="immobileDescription">
                                 <Form.Label>Descrição</Form.Label>
-                                <Form.Control as="textarea" rows={3} type="text" placeholder="digite a descrição do imóvel..." />
+                                <Form.Control as="textarea" rows={3} type="text" placeholder="Digite a descrição do imóvel..." />
                             </Form.Group>
                         </Row>
                         <br />
@@ -262,7 +262,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                             <Col xs={8}>
                                 <Form.Group className="mb-3" controlId="immobileStreet">
                                     <Form.Label>Rua</Form.Label>
-                                    <Form.Control type="text" placeholder="digite a rua do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite a rua do imóvel..." />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -282,13 +282,13 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                             <Col xs={7}>
                                 <Form.Group className="mb-3" controlId="immobileDistrict">
                                     <Form.Label>Bairro</Form.Label>
-                                    <Form.Control type="text" placeholder="digite o bairro do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o bairro do imóvel..." />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3" controlId="immobileCity">
                                     <Form.Label>Cidade</Form.Label>
-                                    <Form.Control type="text" placeholder="digite a cidade do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite a cidade do imóvel..." />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -320,7 +320,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                             <Col xl={8}>
                                 <Form.Group className="mb-3" controlId="immobilePrice">
                                     <Form.Label>Preço do Imóvel</Form.Label>
-                                    <Form.Control type="text" placeholder="digite o valor (R$) do imóvel" />
+                                    <Form.Control type="text" placeholder="Digite o valor (R$) do imóvel" />
                                 </Form.Group>
                             </Col>
                         </Row>
