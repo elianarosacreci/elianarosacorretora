@@ -8,7 +8,7 @@ import firebaseController from '../../services/firebaseController'
 import { Footer } from '../../components/Footer'
 import { GetStaticProps } from 'next'
 
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
 
 import { MdLibraryAdd } from 'react-icons/md'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
@@ -207,7 +207,118 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                 <Modal.Header>
                     <Modal.Title>Inserir Novo Imóvel</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Incluir formulário para preencher os dados do imóvel...</Modal.Body>
+                <Modal.Body>
+                    <Form>
+                        <Row>
+                            <Form.Group className="mb-3" controlId="immobileTitle">
+                                <Form.Label>Título</Form.Label>
+                                <Form.Control type="text" placeholder="digite o título do imóvel..." />
+                            </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileFootage">
+                                    <Form.Label>Área</Form.Label>
+                                    <Form.Control type="text" placeholder="digite a área (M²) do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileBedrooms">
+                                    <Form.Label>Quartos</Form.Label>
+                                    <Form.Control type="text" placeholder="digite o número de quartos do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileBathrooms">
+                                    <Form.Label>Banheiros</Form.Label>
+                                    <Form.Control type="text" placeholder="digite o número de banheiros do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileVacancies">
+                                    <Form.Label>Vagas</Form.Label>
+                                    <Form.Control type="text" placeholder="digite o número de vagas do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Form.Group className="mb-3" controlId="immobileDescriptionTitle">
+                                <Form.Label>Título da Descrição</Form.Label>
+                                <Form.Control type="text" placeholder="digite o título da descrição do imóvel..." />
+                            </Form.Group>
+                        </Row>
+                        <Row>
+                            <Form.Group className="mb-3" controlId="immobileDescription">
+                                <Form.Label>Descrição</Form.Label>
+                                <Form.Control as="textarea" rows={3} type="text" placeholder="digite a descrição do imóvel..." />
+                            </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col xs={8}>
+                                <Form.Group className="mb-3" controlId="immobileStreet">
+                                    <Form.Label>Rua</Form.Label>
+                                    <Form.Control type="text" placeholder="digite a rua do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileNumber">
+                                    <Form.Label>Número</Form.Label>
+                                    <Form.Control type="text" placeholder="Ex: 201..." />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileState">
+                                    <Form.Label>Estado</Form.Label>
+                                    <Form.Control type="text" placeholder="Ex: MG..." />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xs={7}>
+                                <Form.Group className="mb-3" controlId="immobileDistrict">
+                                    <Form.Label>Bairro</Form.Label>
+                                    <Form.Control type="text" placeholder="digite o bairro do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="immobileCity">
+                                    <Form.Label>Cidade</Form.Label>
+                                    <Form.Control type="text" placeholder="digite a cidade do imóvel..." />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Form.Group className="mb-3" controlId="immobileFeatures">
+                                <Form.Label>Características</Form.Label>
+                                <Form.Control as="textarea" rows={4} type="text" placeholder="digite as características do imóvel separando por vírgulas. Ex: Piscina, Acadêmia, Playground, Churrasqueira..." />
+                            </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Form.Label className="mb-3">Status do Imóvel</Form.Label>
+                            <Form.Group className="mb-3" controlId="immobileStatus">
+                                <Form.Check inline name="status" type="radio" label="Na Planta" />
+                                <Form.Check inline name="status" type="radio" label="Em Construção" />
+                                <Form.Check inline name="status" type="radio" label="Pronto pra Morar" />
+                            </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col xl={8}>
+                                <Form.Group className="mb-3" controlId="immobilePrice">
+                                    <Form.Label>Preço do Imóvel</Form.Label>
+                                    <Form.Control type="text" placeholder="digite o valor (R$) do imóvel" />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleAddModalClose}>Fechar</Button>
                     <Button variant="success" onClick={handleAddModalClose}>Salvar</Button>

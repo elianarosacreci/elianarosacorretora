@@ -16,7 +16,6 @@
             "footage": "55",
             "bedrooms": "2",
             "bathrooms": "2",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Aceita animais",
@@ -32,9 +31,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 590000,
             "nearbyTrainsAndSubways": [
@@ -66,7 +63,6 @@
             "footage": "61",
             "bedrooms": "2",
             "bathrooms": "2",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Academia",
@@ -99,9 +95,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 550000,
             "nearbyTrainsAndSubways": [
@@ -133,7 +127,6 @@
             "footage": "72",
             "bedrooms": "2",
             "bathrooms": "3",
-            "suites": "2",
             "vacancies": "2",
             "features": [
                 "Academia",
@@ -166,9 +159,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 650000,
             "nearbyTrainsAndSubways": [
@@ -200,7 +191,6 @@
             "footage": "67",
             "bedrooms": "2",
             "bathrooms": "2",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Academia",
@@ -233,9 +223,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 580000,
             "nearbyTrainsAndSubways": [
@@ -267,7 +255,6 @@
             "footage": "67",
             "bedrooms": "3",
             "bathrooms": "1",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Academia",
@@ -300,9 +287,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 245000,
             "nearbyTrainsAndSubways": [
@@ -334,7 +319,6 @@
             "footage": "60",
             "bedrooms": "2",
             "bathrooms": "2",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Academia",
@@ -367,9 +351,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 415000,
             "nearbyTrainsAndSubways": [
@@ -401,7 +383,6 @@
             "footage": "39",
             "bedrooms": "1",
             "bathrooms": "1",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Academia",
@@ -434,9 +415,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 295777,
             "nearbyTrainsAndSubways": [
@@ -468,7 +447,6 @@
             "footage": "67",
             "bedrooms": "2",
             "bathrooms": "2",
-            "suites": "1",
             "vacancies": "1",
             "features": [
                 "Academia",
@@ -501,9 +479,7 @@
                 "district": "Bandeiras",
                 "city": "Osasco",
                 "state": "SP",
-                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP",
-                "lat": "-23.554894",
-                "long": "-46.816424"
+                "fullAddress": "Anastácia, 202 - Bandeiras - Osasco - SP"
             },
             "price": 615000,
             "nearbyTrainsAndSubways": [
