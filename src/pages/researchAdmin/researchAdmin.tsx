@@ -8,7 +8,7 @@ import firebaseController from '../../services/firebaseController'
 import { Footer } from '../../components/Footer'
 import { GetStaticProps } from 'next'
 
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
+import { Alert, Button, Col, Form, Modal, Row } from 'react-bootstrap/'
 
 import { MdLibraryAdd } from 'react-icons/md'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
@@ -40,6 +40,35 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
     const [updateModalShow, setUpdateModalShow] = useState(false);
     const handleUpdateModalClose = () => setUpdateModalShow(false);
+
+    const [immobileTitle, setImmobileTitle] = useState('')
+    const [immobileFootage, setImmobileFootage] = useState('')
+    const [immobileBedrooms, setImmobileBedrooms] = useState('')
+    const [immobileBathrooms, setImmobileBathrooms] = useState('')
+    const [immobileVacancies, setImmobileVacancies] = useState('')
+    const [immobileDescriptionTitle, setImmobileDescriptionTitle] = useState('')
+    const [immobileDescription, setImmobileDescription] = useState('')
+    const [immobileStreet, setImmobileStreet] = useState('')
+    const [immobileNumber, setImmobileNumber] = useState('')
+    const [immobileState, setImmobileState] = useState('')
+    const [immobileDistrict, setImmobileDistrict] = useState('')
+    const [immobileCity, setImmobileCity] = useState('')
+    const [immobileFeatures, setImmobileFeatures] = useState('')
+    const [immobileNearbyTrainsAndSubways, setImmobileNearbyTrainsAndSubways] = useState('')
+    const [immobileStatus, setImmobileStatus] = useState('')
+    const [immobilePrice, setImmobilePrice] = useState('')
+
+
+    async function addImmobile() {
+        if (immobileTitle == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileFootage == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else {
+            alert('Imóvel salvo!')
+        }
+    }
+
 
     return (
         <>
@@ -210,117 +239,117 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                 <Modal.Body>
                     <Form>
                         <Row>
-                            <Form.Group className="mb-3" controlId="immobileTitle">
+                            <Form.Group className="mb-3">
                                 <Form.Label>Título</Form.Label>
-                                <Form.Control type="text" placeholder="Digite o título do imóvel..." />
+                                <Form.Control type="text" placeholder="Digite o título do imóvel..." onChange={event => setImmobileTitle(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileFootage">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Área</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite a área (M²) do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite a área (M²) do imóvel..." onChange={event => setImmobileFootage(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileBedrooms">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Quartos</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite o número de quartos do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o número de quartos do imóvel..." onChange={event => setImmobileBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileBathrooms">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Banheiros</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite o número de banheiros do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o número de banheiros do imóvel..." onChange={event => setImmobileBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileVacancies">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Vagas</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite o número de vagas do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o número de vagas do imóvel..." onChange={event => setImmobileVacancies(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <br />
                         <Row>
-                            <Form.Group className="mb-3" controlId="immobileDescriptionTitle">
+                            <Form.Group className="mb-3">
                                 <Form.Label>Título da Descrição</Form.Label>
-                                <Form.Control type="text" placeholder="Digite o título da descrição do imóvel..." />
+                                <Form.Control type="text" placeholder="Digite o título da descrição do imóvel..." onChange={event => setImmobileDescriptionTitle(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Group className="mb-3" controlId="immobileDescription">
+                            <Form.Group className="mb-3">
                                 <Form.Label>Descrição</Form.Label>
-                                <Form.Control as="textarea" rows={3} type="text" placeholder="Digite a descrição do imóvel..." />
+                                <Form.Control as="textarea" rows={3} type="text" placeholder="Digite a descrição do imóvel..." onChange={event => setImmobileDescription(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <br />
                         <Row>
                             <Col xs={8}>
-                                <Form.Group className="mb-3" controlId="immobileStreet">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Rua</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite a rua do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite a rua do imóvel..." onChange={event => setImmobileStreet(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileNumber">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Número</Form.Label>
-                                    <Form.Control type="text" placeholder="Ex: 201..." />
+                                    <Form.Control type="text" placeholder="Ex: 201..." onChange={event => setImmobileNumber(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileState">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Estado</Form.Label>
-                                    <Form.Control type="text" placeholder="Ex: MG..." />
+                                    <Form.Control type="text" placeholder="Ex: MG..." onChange={event => setImmobileState(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={7}>
-                                <Form.Group className="mb-3" controlId="immobileDistrict">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Bairro</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite o bairro do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite o bairro do imóvel..." onChange={event => setImmobileDistrict(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group className="mb-3" controlId="immobileCity">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Cidade</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite a cidade do imóvel..." />
+                                    <Form.Control type="text" placeholder="Digite a cidade do imóvel..." onChange={event => setImmobileCity(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <br />
                         <Row>
-                            <Form.Group className="mb-3" controlId="immobileFeatures">
+                            <Form.Group className="mb-3">
                                 <Form.Label>Características</Form.Label>
-                                <Form.Control as="textarea" rows={4} type="text" placeholder="Digite as características do imóvel separando por vírgulas. Ex: Piscina, Acadêmia, Playground, Churrasqueira..." />
+                                <Form.Control as="textarea" rows={4} type="text" placeholder="Digite as características do imóvel separando por vírgulas. Ex: Piscina, Acadêmia, Playground, Churrasqueira..." onChange={event => setImmobileFeatures(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <br />
                         <Row>
-                            <Form.Group className="mb-3" controlId="immobileNearbyTrainsAndSubways">
+                            <Form.Group className="mb-3">
                                 <Form.Label>Trens e Metrôs Próximos</Form.Label>
-                                <Form.Control as="textarea" rows={4} type="text" placeholder={`Digite: "nome da estação" + "-" + "distacia em km". Caso tenha mais de uma estação, separe por vígula. Ex: Estação General Miguel Costa - 1.5km, Estação Quitaúna - 1.8km...`} />
+                                <Form.Control as="textarea" rows={4} type="text" onChange={event => setImmobileNearbyTrainsAndSubways(event.target.value)} placeholder={`Digite: "nome da estação" + "-" + "distacia em km". Caso tenha mais de uma estação, separe por vígula. Ex: Estação General Miguel Costa - 1.5km, Estação Quitaúna - 1.8km...`} />
                             </Form.Group>
                         </Row>
                         <br />
                         <Row>
                             <Form.Label className="mb-3">Status do Imóvel</Form.Label>
-                            <Form.Group className="mb-3" controlId="immobileStatus">
-                                <Form.Check inline name="status" type="radio" label="Na Planta" />
-                                <Form.Check inline name="status" type="radio" label="Em Construção" />
-                                <Form.Check inline name="status" type="radio" label="Pronto pra Morar" />
+                            <Form.Group className="mb-3">
+                                <Form.Check inline name="status" type="radio" label="Na Planta" onChange={() => setImmobileStatus("Na Planta")} />
+                                <Form.Check inline name="status" type="radio" label="Em Construção" onChange={() => setImmobileStatus("Em Construção")} />
+                                <Form.Check inline name="status" type="radio" label="Pronto pra Morar" onChange={() => setImmobileStatus("Pronto pra Morar")} />
                             </Form.Group>
                         </Row>
                         <br />
                         <Row>
                             <Col xl={8}>
-                                <Form.Group className="mb-3" controlId="immobilePrice">
+                                <Form.Group className="mb-3">
                                     <Form.Label>Preço do Imóvel</Form.Label>
-                                    <Form.Control type="text" placeholder="Digite o valor (R$) do imóvel" />
+                                    <Form.Control type="text" placeholder="Digite o valor (R$) do imóvel" onChange={event => setImmobilePrice(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -328,7 +357,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleAddModalClose}>Fechar</Button>
-                    <Button variant="success" onClick={handleAddModalClose}>Salvar</Button>
+                    <Button variant="success" onClick={() => addImmobile()}>Salvar</Button>
                 </Modal.Footer>
             </Modal>
 
