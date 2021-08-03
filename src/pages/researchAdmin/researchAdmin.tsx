@@ -3,15 +3,16 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import firebaseController from '../../services/firebaseController'
-
 import { Footer } from '../../components/Footer'
 import { GetStaticProps } from 'next'
 
-import { Alert, Button, Col, Form, Modal, Row } from 'react-bootstrap/'
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
 
 import { MdLibraryAdd } from 'react-icons/md'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
+
+import firebaseController from '../../services/firebaseController'
+import utilities from '../../services/utilities'
 
 
 type Immobile = {
@@ -64,8 +65,36 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
             alert('Preencha todos os campos para salvar!')
         } else if (immobileFootage == '') {
             alert('Preencha todos os campos para salvar!')
+        } else if (immobileBedrooms == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileBathrooms == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileVacancies == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileDescriptionTitle == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileDescription == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileStreet == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileNumber == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileState == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileDistrict == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileCity == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileFeatures == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileNearbyTrainsAndSubways == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobileStatus == '') {
+            alert('Preencha todos os campos para salvar!')
+        } else if (immobilePrice == '') {
+            alert('Preencha todos os campos para salvar!')
         } else {
-            alert('Imóvel salvo!')
+            alert('OK!')
         }
     }
 
