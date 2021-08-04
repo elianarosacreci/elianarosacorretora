@@ -34,13 +34,13 @@ type ImmobileProps = {
 
 export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
-    const MAX_DESCRIPTION_TITLE_LENGTH = 30;
+    const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
-    const [addModalShow, setAddModalShow] = useState(false);
-    const handleAddModalClose = () => setAddModalShow(false);
+    const [addModalShow, setAddModalShow] = useState(false)
+    const handleAddModalClose = () => setAddModalShow(false)
 
-    const [updateModalShow, setUpdateModalShow] = useState(false);
-    const handleUpdateModalClose = () => setUpdateModalShow(false);
+    const [updateModalShow, setUpdateModalShow] = useState(false)
+    const handleUpdateModalClose = () => setUpdateModalShow(false)
 
     const [immobileTitle, setImmobileTitle] = useState('')
     const [immobileFootage, setImmobileFootage] = useState('')
@@ -94,8 +94,63 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
         } else if (immobilePrice == '') {
             alert('Preencha todos os campos para salvar!')
         } else {
-            alert('OK!')
+            let immobileUUID = await utilities.getUUID()
+            let immobileCode = await utilities.getCode()
+            let immobileSlug = await utilities.getSlug(immobileTitle)
+            let immobileFullAddress = `${immobileStreet}, ${immobileNumber} - ${immobileDistrict} - ${immobileCity} - ${immobileState}`
+
+            let date: Date = new Date();
+            let immobileCreatedAt = date.toLocaleString().replace(/\//g, '-')
+            let features = immobileFeatures.split(',').map(Function.prototype.call, String.prototype.trim)
+            let price = parseInt(immobilePrice)
+            let nearbyTrainsAndSubways = []
+            let splitOne = immobileNearbyTrainsAndSubways.split(',').map(Function.prototype.call, String.prototype.trim)
+            splitOne.forEach(element => {
+                let splitTwo = element.split('-').map(Function.prototype.call, String.prototype.trim)
+                nearbyTrainsAndSubways.push({
+                    name: splitTwo[0],
+                    distance: splitTwo[1]
+                })
+            })
+
+            let immobileToSave = {
+                "id": immobileUUID,
+                "slug": immobileSlug,
+                "title": immobileTitle,
+                "code": immobileCode,
+                "images": [
+                    "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0e40dac3aa7278f0dad85ff7838f345d.jpg"
+                ],
+                "footage": immobileFootage,
+                "bedrooms": immobileBedrooms,
+                "bathrooms": immobileBathrooms,
+                "vacancies": immobileVacancies,
+                "features": features,
+                "descriptionTitle": immobileDescriptionTitle,
+                "description": immobileDescription,
+                "address": {
+                    "street": immobileStreet,
+                    "number": immobileNumber,
+                    "district": immobileDistrict,
+                    "city": immobileCity,
+                    "state": immobileState,
+                    "fullAddress": immobileFullAddress
+                },
+                "price": price,
+                "nearbyTrainsAndSubways": nearbyTrainsAndSubways,
+                "status": immobileStatus,
+                "createdAt": immobileCreatedAt
+            }
+
+            await firebaseController.insertImmobile(immobileToSave)
+            setAddModalShow(false)
+            alert('Imóvel salvo!')
+            window.location.reload()
         }
+    }
+
+    async function removeImmobile(idx) {
+        await firebaseController.removeImmobileById(idx)
     }
 
 
@@ -240,7 +295,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                                         <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                         <p>{immobile.descriptionTitle}</p>}
                                                     <button onClick={() => setUpdateModalShow(true)}><FaPencilAlt size={25} /></button>
-                                                    <button><FaTrashAlt size={25} onClick={() => firebaseController.removeImmobileById(immobile.id)} /></button>
+                                                    <button><FaTrashAlt size={25} onClick={() => removeImmobile(immobile.id)} /></button>
                                                 </div>
                                             </div>
                                         </li>

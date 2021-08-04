@@ -115,11 +115,11 @@ async function getImmobileById(id) {
                 })
             }, (err) => {
                 console.log('services - firebaseController.js - getImmobileById - Erro: ', err);
-                reject({})
+                reject('')
             })
         } catch (error) {
             console.log('services - firebaseController.js - getImmobileById - Erro: ', error);
-            reject({})
+            reject('')
         }
     });
 };
@@ -157,16 +157,16 @@ async function getAllImmobiles() {
 async function getImmobileIdx(id) {
     return new Promise(async (resolve, reject) => {
         try {
-            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', async (snapshot) => {
                 let idx = Object.keys(snapshot.val())[0]
                 resolve(idx)
             }, (err) => {
                 console.log('services - firebaseController.js - getImmobileIdx - Erro: ', err);
-                reject({})
+                resolve('')
             })
         } catch (error) {
             console.log('services - firebaseController.js - getImmobileIdx - Erro: ', error);
-            reject({})
+            reject('')
         }
     });
 };
@@ -175,17 +175,61 @@ async function removeImmobileById(id) {
     return new Promise(async (resolve, reject) => {
         try {
             let idx = await getImmobileIdx(id);
-            app.database().ref(`immobiles/${idx}`).remove()
+            await app.database().ref(`immobiles/${idx}`).remove()
                 .then(function () {
                     console.log("Remove succeeded.")
                     resolve('ok')
                 })
                 .catch(function (error) {
                     console.log('services - firebaseController.js - removeImmobileById - Erro: ', error.message);
-                    reject({})
+                    reject('')
                 });
         } catch (error) {
             console.log('services - firebaseController.js - removeImmobileById - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
+async function getNextImmobileLength() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
+                let result = [];
+                snapshot.forEach(function (childSnapshot) {
+                    result.push({
+                        id: childSnapshot.child('id').val(),
+                        slug: childSnapshot.child('slug').val(),
+                        price: childSnapshot.child('price').val().toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+                        footage: childSnapshot.child('footage').val(),
+                        bedrooms: childSnapshot.child('bedrooms').val(),
+                        bathrooms: childSnapshot.child('bathrooms').val(),
+                        vacancies: childSnapshot.child('vacancies').val(),
+                        descriptionTitle: childSnapshot.child('descriptionTitle').val(),
+                        imageCard: childSnapshot.child('images/0').val(),
+                    })
+                });
+                let nextImmobileLength = (result.length + 1)
+                resolve(nextImmobileLength)
+            }, (err) => {
+                console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err);
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
+async function insertImmobile(immobile) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let nextImmobileLength = await getNextImmobileLength()
+            app.database().ref(`immobiles/${nextImmobileLength}`).set(immobile);
+            resolve('ok')
+        } catch (error) {
+            console.log('services - firebaseController.js - insertImmobile - Erro: ', error);
             reject('')
         }
     });
@@ -198,5 +242,8 @@ export default {
     getMostPopular,
     getImmobileById,
     getAllImmobiles,
-    removeImmobileById
+    removeImmobileById,
+    insertImmobile
 };
+
+// TODO: ajustar estrutura do banco de dados para referencia com id(uuid)
