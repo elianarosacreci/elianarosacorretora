@@ -195,22 +195,8 @@ async function getNextImmobileLength() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").on('value', (snapshot) => {
-                let result = [];
-                snapshot.forEach(function (childSnapshot) {
-                    result.push({
-                        id: childSnapshot.child('id').val(),
-                        slug: childSnapshot.child('slug').val(),
-                        price: childSnapshot.child('price').val().toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
-                        footage: childSnapshot.child('footage').val(),
-                        bedrooms: childSnapshot.child('bedrooms').val(),
-                        bathrooms: childSnapshot.child('bathrooms').val(),
-                        vacancies: childSnapshot.child('vacancies').val(),
-                        descriptionTitle: childSnapshot.child('descriptionTitle').val(),
-                        imageCard: childSnapshot.child('images/0').val(),
-                    })
-                });
-                let nextImmobileLength = (result.length + 1)
-                resolve(nextImmobileLength)
+                let keys = Object.keys(snapshot.val())
+                resolve(keys.length)
             }, (err) => {
                 console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err);
                 reject('')
@@ -225,8 +211,8 @@ async function getNextImmobileLength() {
 async function insertImmobile(immobile) {
     return new Promise(async (resolve, reject) => {
         try {
-            let nextImmobileLength = await getNextImmobileLength()
-            app.database().ref(`immobiles/${nextImmobileLength}`).set(immobile);
+            let idx = await getNextImmobileLength()
+            app.database().ref(`immobiles/${idx}`).set(immobile);
             resolve('ok')
         } catch (error) {
             console.log('services - firebaseController.js - insertImmobile - Erro: ', error);

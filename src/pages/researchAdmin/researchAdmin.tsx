@@ -151,6 +151,8 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
     async function removeImmobile(idx) {
         await firebaseController.removeImmobileById(idx)
+        window.location.reload()
+        alert('Imóvel removido!')
     }
 
 
