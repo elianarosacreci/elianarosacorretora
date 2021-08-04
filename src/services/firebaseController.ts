@@ -154,6 +154,36 @@ async function getAllImmobiles() {
     });
 };
 
+async function getNextImmobileLength() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
+                let keys = Object.keys(snapshot.val())
+                resolve(keys.length)
+            }, (err) => {
+                console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err);
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
+async function insertImmobile(immobile) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let idx = await getNextImmobileLength()
+            app.database().ref(`immobiles/${idx}`).set(immobile);
+            resolve('ok')
+        } catch (error) {
+            console.log('services - firebaseController.js - insertImmobile - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
 async function getImmobileIdx(id) {
     return new Promise(async (resolve, reject) => {
         try {
@@ -191,35 +221,6 @@ async function removeImmobileById(id) {
     });
 };
 
-async function getNextImmobileLength() {
-    return new Promise(async (resolve, reject) => {
-        try {
-            await app.database().ref("immobiles").on('value', (snapshot) => {
-                let keys = Object.keys(snapshot.val())
-                resolve(keys.length)
-            }, (err) => {
-                console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err);
-                reject('')
-            })
-        } catch (error) {
-            console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', error);
-            reject('')
-        }
-    });
-};
-
-async function insertImmobile(immobile) {
-    return new Promise(async (resolve, reject) => {
-        try {
-            let idx = await getNextImmobileLength()
-            app.database().ref(`immobiles/${idx}`).set(immobile);
-            resolve('ok')
-        } catch (error) {
-            console.log('services - firebaseController.js - insertImmobile - Erro: ', error);
-            reject('')
-        }
-    });
-};
 
 
 export default {
@@ -228,8 +229,6 @@ export default {
     getMostPopular,
     getImmobileById,
     getAllImmobiles,
-    removeImmobileById,
-    insertImmobile
+    insertImmobile,
+    removeImmobileById
 };
-
-// TODO: ajustar estrutura do banco de dados para referencia com id(uuid)
