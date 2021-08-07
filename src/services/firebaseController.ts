@@ -132,7 +132,7 @@ async function getAllImmobiles() {
                     result.push({
                         id: childSnapshot.child('id').val(),
                         slug: childSnapshot.child('slug').val(),
-                        price: childSnapshot.child('price').val().toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+                        priceFormatted: childSnapshot.child('price').val().toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
                         footage: childSnapshot.child('footage').val(),
                         bedrooms: childSnapshot.child('bedrooms').val(),
                         bathrooms: childSnapshot.child('bathrooms').val(),
@@ -238,10 +238,16 @@ async function getImmobileByIdToUpdate(id) {
                     features: snapshot.val()[idx].features,
                     descriptionTitle: snapshot.val()[idx].descriptionTitle,
                     description: snapshot.val()[idx].description,
-                    address: snapshot.val()[idx].address,
-                    price: snapshot.val()[idx].price,
+                    street: snapshot.val()[idx].address.street,
+                    number: snapshot.val()[idx].address.number,
+                    state: snapshot.val()[idx].address.state,
+                    district: snapshot.val()[idx].address.district,
+                    city: snapshot.val()[idx].address.city,
+                    price: snapshot.val()[idx].price.toString(),
                     nearbyTrainsAndSubways: snapshot.val()[idx].nearbyTrainsAndSubways,
                     status: snapshot.val()[idx].status,
+                    comments: snapshot.val()[idx].comments,
+                    idx
                 })
             }, (err) => {
                 console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', err);
@@ -249,6 +255,18 @@ async function getImmobileByIdToUpdate(id) {
             })
         } catch (error) {
             console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
+async function updateImmobile(immobile, idx) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            app.database().ref(`immobiles/${idx}`).set(immobile);
+            resolve('ok')
+        } catch (error) {
+            console.log('services - firebaseController.js - updateImmobile - Erro: ', error);
             reject('')
         }
     });
@@ -264,5 +282,6 @@ export default {
     getAllImmobiles,
     insertImmobile,
     removeImmobileById,
-    getImmobileByIdToUpdate
+    getImmobileByIdToUpdate,
+    updateImmobile
 };

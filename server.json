@@ -45,6 +45,7 @@
                 }
             ],
             "status": "Pronto pra Morar",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-19 01:18:32"
         },
         {
@@ -109,6 +110,7 @@
                 }
             ],
             "status": "Em Construção",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-18 01:18:32"
         },
         {
@@ -173,6 +175,7 @@
                 }
             ],
             "status": "Na Planta",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-17 01:18:32"
         },
         {
@@ -237,6 +240,7 @@
                 }
             ],
             "status": "Em Contrução",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-16 01:18:32"
         },
         {
@@ -301,6 +305,7 @@
                 }
             ],
             "status": "Pronto pra Morar",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-15 01:18:32"
         },
         {
@@ -365,6 +370,7 @@
                 }
             ],
             "status": "Na Planta",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-14 01:18:32"
         },
         {
@@ -429,6 +435,7 @@
                 }
             ],
             "status": "Em Contrução",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-13 01:18:32"
         },
         {
@@ -493,6 +500,7 @@
                 }
             ],
             "status": "Pronto pra Morar",
+            "comments": "comentários e observações",
             "createdAt": "2021-05-12 01:18:32"
         }
     ]
