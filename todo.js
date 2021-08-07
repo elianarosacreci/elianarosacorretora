@@ -1,5 +1,5 @@
-// TODO -> Estilo Final
-// TODO -> Função do Filtro
-// TODO -> Função do Login
 // TODO -> Salvar Imagens
+// TODO -> Função do Login
 // TODO -> WhatsApp
+// TODO -> Função do Filtro
+// TODO -> Estilo Final
