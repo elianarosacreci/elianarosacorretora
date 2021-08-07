@@ -103,7 +103,6 @@ async function getImmobileById(id) {
                     footage: snapshot.val()[idx].footage,
                     bedrooms: snapshot.val()[idx].bedrooms,
                     bathrooms: snapshot.val()[idx].bathrooms,
-                    suites: snapshot.val()[idx].suites,
                     vacancies: snapshot.val()[idx].vacancies,
                     features: snapshot.val()[idx].features,
                     descriptionTitle: snapshot.val()[idx].descriptionTitle,
@@ -221,6 +220,40 @@ async function removeImmobileById(id) {
     });
 };
 
+async function getImmobileByIdToUpdate(id) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
+                let idx = Object.keys(snapshot.val())[0]
+                resolve({
+                    id: snapshot.val()[idx].id,
+                    slug: snapshot.val()[idx].slug,
+                    title: snapshot.val()[idx].title,
+                    code: snapshot.val()[idx].code,
+                    images: snapshot.val()[idx].images,
+                    footage: snapshot.val()[idx].footage,
+                    bedrooms: snapshot.val()[idx].bedrooms,
+                    bathrooms: snapshot.val()[idx].bathrooms,
+                    vacancies: snapshot.val()[idx].vacancies,
+                    features: snapshot.val()[idx].features,
+                    descriptionTitle: snapshot.val()[idx].descriptionTitle,
+                    description: snapshot.val()[idx].description,
+                    address: snapshot.val()[idx].address,
+                    price: snapshot.val()[idx].price,
+                    nearbyTrainsAndSubways: snapshot.val()[idx].nearbyTrainsAndSubways,
+                    status: snapshot.val()[idx].status,
+                })
+            }, (err) => {
+                console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', err);
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
 
 
 export default {
@@ -230,5 +263,6 @@ export default {
     getImmobileById,
     getAllImmobiles,
     insertImmobile,
-    removeImmobileById
+    removeImmobileById,
+    getImmobileByIdToUpdate
 };

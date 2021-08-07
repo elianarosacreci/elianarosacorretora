@@ -36,11 +36,8 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
-    const [addModalShow, setAddModalShow] = useState(false)
-    const handleAddModalClose = () => setAddModalShow(false)
-
-    const [updateModalShow, setUpdateModalShow] = useState(false)
-    const handleUpdateModalClose = () => setUpdateModalShow(false)
+    const [addAndUpdateModalShow, setAddAndUpdateModalShow] = useState(false)
+    const handleAddAndUpdateModalClose = () => setAddAndUpdateModalShow(false)
 
     const [immobileTitle, setImmobileTitle] = useState('')
     const [immobileFootage, setImmobileFootage] = useState('')
@@ -58,7 +55,6 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
     const [immobileNearbyTrainsAndSubways, setImmobileNearbyTrainsAndSubways] = useState('')
     const [immobileStatus, setImmobileStatus] = useState('')
     const [immobilePrice, setImmobilePrice] = useState('')
-
 
     async function addImmobile() {
         if (immobileTitle == '') {
@@ -143,7 +139,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
             }
 
             await firebaseController.insertImmobile(immobileToSave)
-            setAddModalShow(false)
+            setAddAndUpdateModalShow(false)
             alert('Imóvel salvo!')
             window.location.reload()
         }
@@ -153,6 +149,10 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
         await firebaseController.removeImmobileById(idx)
         window.location.reload()
         alert('Imóvel removido!')
+    }
+
+    async function updateImmobile(idx) {
+        let immobileToUpdate = await firebaseController.getImmobileByIdToUpdate(idx)
     }
 
 
@@ -275,7 +275,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         <div className={styles.listOptions}>
                             <h1>{allImobiles.length} Imóveis Encontrados</h1>
                             <span>
-                                <button onClick={() => setAddModalShow(true)}><MdLibraryAdd size={40} /></button>
+                                <button onClick={() => setAddAndUpdateModalShow(true)}><MdLibraryAdd size={40} /></button>
                             </span>
                         </div>
                         <div>
@@ -297,7 +297,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                                         <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                         <p>{immobile.descriptionTitle}</p>}
                                                     <button onClick={() => setUpdateModalShow(true)}><FaPencilAlt size={25} /></button>
-                                                    <button><FaTrashAlt size={25} onClick={() => removeImmobile(immobile.id)} /></button>
+                                                    <button onClick={() => removeImmobile(immobile.id)}><FaTrashAlt size={25} /></button>
                                                 </div>
                                             </div>
                                         </li>
@@ -313,14 +313,16 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
             <Footer />
 
-            {/* ADD MODAL */}
+            {/* ADD AND UPDATE MODAL */}
             <Modal
-                show={addModalShow}
+                show={addAndUpdateModalShow}
                 backdrop="static"
                 size="lg"
             >
                 <Modal.Header>
+                    { }
                     <Modal.Title>Inserir Novo Imóvel</Modal.Title>
+                    <Modal.Title>Atualizar Imóvel</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -439,30 +441,22 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <br />
+                        <Row>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Observações</Form.Label>
+                                <Form.Control as="textarea" rows={4} type="text" placeholder="Digite as observações do imóvel..." onChange={event => setImmobileFeatures(event.target.value)} />
+                            </Form.Group>
+                        </Row>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleAddModalClose}>Fechar</Button>
+                    <Button variant="danger" onClick={handleAddAndUpdateModalClose}>Fechar</Button>
                     <Button variant="success" onClick={() => addImmobile()}>Salvar</Button>
-                </Modal.Footer>
-            </Modal>
 
-            {/* UPDATE MODAL */}
-            <Modal
-                show={updateModalShow}
-                backdrop="static"
-                size="lg"
-            >
-                <Modal.Header>
-                    <Modal.Title>Atualizar Imóvel</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Incluir formulário com dados do imóvel para atualizar...</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleUpdateModalClose}>Fechar</Button>
                     <Button variant="success" onClick={handleUpdateModalClose}>Atualizar</Button>
                 </Modal.Footer>
             </Modal>
-
         </>
     )
 }
