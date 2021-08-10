@@ -272,6 +272,36 @@ async function updateImmobile(immobile, idx) {
     });
 };
 
+async function getImmobileToStaticPaths() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
+                let result = [];
+                snapshot.forEach(function (childSnapshot) {
+                    result.push({
+                        id: childSnapshot.child('id').val(),
+                        slug: childSnapshot.child('slug').val(),
+                        priceFormatted: childSnapshot.child('price').val().toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+                        footage: childSnapshot.child('footage').val(),
+                        bedrooms: childSnapshot.child('bedrooms').val(),
+                        bathrooms: childSnapshot.child('bathrooms').val(),
+                        vacancies: childSnapshot.child('vacancies').val(),
+                        descriptionTitle: childSnapshot.child('descriptionTitle').val(),
+                        imageCard: childSnapshot.child('images/0').val(),
+                    })
+                });
+                resolve(result[0].id)
+            }, (err) => {
+                console.log('services - firebaseController.js - getImmobileToStaticPaths - Erro: ', err);
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getImmobileToStaticPaths - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
 
 
 export default {
