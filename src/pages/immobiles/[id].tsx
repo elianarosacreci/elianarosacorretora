@@ -87,7 +87,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                 <Carousel prevLabel="" nextLabel="">
                     {immobile.images.map((image) => {
                         return (
-                            <Carousel.Item style={{ height: "400px" }}>
+                            <Carousel.Item key={image} style={{ height: "400px" }}>
                                 <img
                                     style={{ height: "400px", objectFit: "cover" }}
                                     className="d-block w-100"
@@ -236,10 +236,10 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 // ----------------------------------------------------------------------------------------------------
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const idx = await firebaseController.getAllImmobiles()[0].id
+    // let idx = await firebaseController.getImmobileToStaticPaths()
     return {
         paths: [
-            { params: { id: idx } }
+            { params: { id: 'a21ab00f-5c0b-455c-a59d-5f13e5c37ead' } }
         ],
         fallback: 'blocking'
     }
