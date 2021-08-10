@@ -146,26 +146,43 @@ const fc = function () {
         });
     };
 
-    async function removeImmobileById(id) {
+    // async function removeImmobileById(id) {
+    //     return new Promise(async (resolve, reject) => {
+    //         try {
+    //             await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
+    //                 idx = Object.keys(snapshot.val())[0]
+    //                 var adaRef = await app.database().ref(`immobiles/${idx}`);
+    //                 adaRef.remove()
+    //                     .then(function () {
+    //                         console.log("Remove succeeded.")
+    //                     })
+    //                     .catch(function (error) {
+    //                         console.log("Remove failed: " + error.message)
+    //                     });
+    //                 resolve()
+    //             }, (err) => {
+    //                 console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', err);
+    //                 reject({})
+    //             })
+    //         } catch (error) {
+    //             console.log('services - firebaseController.js - removeImmobileById - Erro: ', error);
+    //             reject('')
+    //         }
+    //     });
+    // };
+
+    async function getImmobileToStaticPath() {
         return new Promise(async (resolve, reject) => {
             try {
-                await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
-                    idx = Object.keys(snapshot.val())[0]
-                    var adaRef = await app.database().ref(`immobiles/${idx}`);
-                    adaRef.remove()
-                        .then(function () {
-                            console.log("Remove succeeded.")
-                        })
-                        .catch(function (error) {
-                            console.log("Remove failed: " + error.message)
-                        });
-                    resolve()
+                await app.database().ref("immobiles").on('value', (snapshot) => {
+                    let idx = snapshot.val()[0].id
+                    resolve(idx)
                 }, (err) => {
-                    console.log('services - firebaseController.js - getImmobileBySlug - Erro: ', err);
-                    reject({})
+                    console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', err);
+                    reject('')
                 })
             } catch (error) {
-                console.log('services - firebaseController.js - removeImmobileById - Erro: ', error);
+                console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', error);
                 reject('')
             }
         });
@@ -177,7 +194,8 @@ const fc = function () {
         getMostPopular,
         getImmobileBySlug,
         getImmobilePaths,
-        removeImmobileById
+        // removeImmobileById,
+        getImmobileToStaticPath
     }
 
 }

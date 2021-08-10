@@ -272,21 +272,18 @@ async function updateImmobile(immobile, idx) {
     });
 };
 
-async function getImmobileToStaticPaths() {
+async function getImmobileToStaticPath() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").on('value', (snapshot) => {
-                let idx = ''
-                snapshot.forEach(function (childSnapshot) {
-                    idx = childSnapshot.child('id').val()
-                })
+                let idx = snapshot.val()[0].id
                 resolve(idx)
             }, (err) => {
-                console.log('services - firebaseController.js - getImmobileToStaticPaths - Erro: ', err);
+                console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', err);
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getImmobileToStaticPaths - Erro: ', error);
+            console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', error);
             reject('')
         }
     });
@@ -304,5 +301,5 @@ export default {
     removeImmobileById,
     getImmobileByIdToUpdate,
     updateImmobile,
-    getImmobileToStaticPaths
+    getImmobileToStaticPath
 };

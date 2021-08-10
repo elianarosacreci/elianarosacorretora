@@ -1,7 +1,7 @@
 import styles from './immobile.module.scss';
 import React from 'react';
 import Head from 'next/head';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticProps } from 'next';
 import Image from 'next/image';
 
 import { BiArea } from 'react-icons/bi'
@@ -235,11 +235,11 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    // let idx = await firebaseController.getImmobileToStaticPaths()
+export async function getStaticPaths() {
+    let idx = await firebaseController.getImmobileToStaticPath()
     return {
         paths: [
-            { params: { id: 'a21ab00f-5c0b-455c-a59d-5f13e5c37ead' } }
+            { params: { id: idx } }
         ],
         fallback: 'blocking'
     }
