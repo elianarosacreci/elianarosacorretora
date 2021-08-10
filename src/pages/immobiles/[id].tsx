@@ -236,9 +236,10 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 // ----------------------------------------------------------------------------------------------------
 
 export const getStaticPaths: GetStaticPaths = async () => {
+    const idx = await firebaseController.getAllImmobiles()[0].id
     return {
         paths: [
-            { params: { id: "a21ab00f-5c0b-455c-a59d-5f13e5c37ead" } }
+            { params: { id: idx } }
         ],
         fallback: 'blocking'
     }
