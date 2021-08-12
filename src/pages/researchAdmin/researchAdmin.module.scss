@@ -254,3 +254,28 @@
         }
     }
 }
+
+.modal {
+    ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+
+        li {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            button {
+                color: var(--green-1000);
+                border: none;
+                background: none;
+
+                &:hover {
+                    color: var(--pink-800);
+                }
+            }
+        }
+    }
+}

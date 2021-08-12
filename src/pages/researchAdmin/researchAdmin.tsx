@@ -53,6 +53,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
     const [immobileTitle, setImmobileTitle] = useState('')
+    const [immobileImages, setImmobileImages] = useState([])
     const [immobileFootage, setImmobileFootage] = useState('')
     const [immobileBedrooms, setImmobileBedrooms] = useState('')
     const [immobileBathrooms, setImmobileBathrooms] = useState('')
@@ -72,18 +73,60 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
     const [immobileIdx, setImmobileIdx] = useState('')
 
     const [addOrUpdateModalShow, setAddOrUpdateModalShow] = useState(false)
-    const handleAddOrUpdateModalClose = () => setAddOrUpdateModalShow(false)
+    const handleAddOrUpdateModalClose = () => {
+        setAddOrUpdateModalShow(false)
+        setActionType('')
+        setImmobileTitle('')
+        setImmobileImages([])
+        setImmobileFootage('')
+        setImmobileBedrooms('')
+        setImmobileBathrooms('')
+        setImmobileVacancies('')
+        setImmobileDescriptionTitle('')
+        setImmobileDescription('')
+        setImmobileStreet('')
+        setImmobileNumber('')
+        setImmobileState('')
+        setImmobileDistrict('')
+        setImmobileCity('')
+        setImmobileFeatures('')
+        setImmobileNearbyTrainsAndSubways('')
+        setImmobileStatus('')
+        setImmobilePrice('')
+        setImmobileComments('')
+    }
 
     const [immobileIdToUpdate, setImmobileIdToUpdate] = useState('')
 
-    const [actionType, setActionType] = useState("Create")
-    const toggleActionType = (type) => {
-        setActionType(type)
+    const addImmobileImages = async (target: HTMLInputElement) => {
+        let imagesList = []
+        for (let i = 0; i < target.files.length; i++) {
+            const file = target.files[i];
+            let arrayBuffer
+            await file.arrayBuffer().then(buffer => arrayBuffer = buffer)
+            var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)))
+            imagesList.push("data:image/jpeg;base64," + base64String)
+        }
+        if (immobileImages.length != 0) {
+            let newImagesList = immobileImages
+            newImagesList.push(...imagesList)
+            imagesList = newImagesList
+        }
+        setImmobileImages(imagesList)
     }
+
+    const handleRemoveImmobileImage = idx => {
+        const temp = [...immobileImages];
+        temp.splice(idx, 1);
+        setImmobileImages(temp);
+    }
+
+    const [actionType, setActionType] = useState('')
     useEffect(() => {
         async function actionTypeEffect() {
             if (actionType === "Create") {
                 setImmobileTitle('')
+                setImmobileImages([])
                 setImmobileFootage('')
                 setImmobileBedrooms('')
                 setImmobileBathrooms('')
@@ -104,6 +147,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
             if (actionType === "Update") {
                 let immobileToUpdate: any = await firebaseController.getImmobileByIdToUpdate(immobileIdToUpdate)
                 setImmobileTitle(immobileToUpdate.title)
+                setImmobileImages(immobileToUpdate.images)
                 setImmobileFootage(immobileToUpdate.footage)
                 setImmobileBedrooms(immobileToUpdate.bedrooms)
                 setImmobileBathrooms(immobileToUpdate.bathrooms)
@@ -118,7 +162,6 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                 setImmobileStatus(immobileToUpdate.status)
                 setImmobilePrice(immobileToUpdate.price)
                 setImmobileComments(immobileToUpdate.comments)
-
                 let features = ''
                 immobileToUpdate.features.forEach(function (feature, idx, array) {
                     if (idx === array.length - 1) {
@@ -128,7 +171,6 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                     }
                 });
                 setImmobileFeatures(features)
-
                 let nearbyTrainsAndSubways = ''
                 immobileToUpdate.nearbyTrainsAndSubways.forEach(function (nearbyTrainAndSubway, idx, array) {
                     if (idx === array.length - 1) {
@@ -138,19 +180,18 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                     }
                 });
                 setImmobileNearbyTrainsAndSubways(nearbyTrainsAndSubways)
-
                 setImmobileIdx(immobileToUpdate.idx)
             }
         }
         actionTypeEffect()
     }, [actionType])
 
-
     async function addOrUpdateImmobile() {
-        if (immobileTitle == '' || immobileFootage == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
+        if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
             immobileStreet == '' || immobileNumber == '' || immobileState == '' || immobileDistrict == '' || immobileCity == '' || immobileFeatures == '' || immobileNearbyTrainsAndSubways == '' ||
             immobileStatus == '' || immobilePrice == '' || immobileComments == '') {
             alert('Preencha todos os campos para salvar!')
+            return
         }
 
         let immobileUUID = await utilities.getUUID()
@@ -175,9 +216,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
             "slug": immobileSlug,
             "title": immobileTitle,
             "code": immobileCode,
-            "images": [
-                "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0e40dac3aa7278f0dad85ff7838f345d.jpg"
-            ],
+            "images": immobileImages,
             "footage": immobileFootage,
             "bedrooms": immobileBedrooms,
             "bathrooms": immobileBathrooms,
@@ -210,6 +249,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
         }
         setAddOrUpdateModalShow(false)
         window.location.reload()
+        return
     }
 
     async function removeImmobile(idx) {
@@ -338,7 +378,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                         <div className={styles.listOptions}>
                             <h1>{allImobiles.length} Imóveis Encontrados</h1>
                             <span>
-                                <button onClick={() => { toggleActionType("Create"); setAddOrUpdateModalShow(true) }}><MdLibraryAdd size={40} /></button>
+                                <button onClick={() => { setActionType("Create"); setAddOrUpdateModalShow(true) }}><MdLibraryAdd size={40} /></button>
                             </span>
                         </div>
                         <div>
@@ -359,7 +399,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                                     {immobile.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
                                                         <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                         <p>{immobile.descriptionTitle}</p>}
-                                                    <button onClick={() => { toggleActionType("Update"); setImmobileIdToUpdate(immobile.id); setAddOrUpdateModalShow(true) }}><FaPencilAlt size={25} /></button>
+                                                    <button onClick={() => { setActionType("Update"); setImmobileIdToUpdate(immobile.id); setAddOrUpdateModalShow(true) }}><FaPencilAlt size={25} /></button>
                                                     <button onClick={() => removeImmobile(immobile.id)}><FaTrashAlt size={25} /></button>
                                                 </div>
                                             </div>
@@ -381,6 +421,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                 show={addOrUpdateModalShow}
                 backdrop="static"
                 size="lg"
+                className={styles.modal}
             >
                 <Modal.Header>
                     {actionType === "Create" ? <Modal.Title>Inserir Novo Imóvel</Modal.Title> : <Modal.Title>Atualizar Imóvel</Modal.Title>}
@@ -392,6 +433,31 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                 <Form.Label>Título</Form.Label>
                                 <Form.Control value={immobileTitle} type="text" placeholder="Digite o título do imóvel..." onChange={event => setImmobileTitle(event.target.value)} />
                             </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Imagens</Form.Label>
+                                <br />
+                                <Form.Control type="file" multiple onChange={event => addImmobileImages(event.target as HTMLInputElement)} />
+                            </Form.Group>
+                        </Row>
+                        <Row>
+                            <ul>
+                                {immobileImages.map((image, index) => {
+                                    return (
+                                        <li key={index}>
+                                            <Image
+                                                width={100}
+                                                height={100}
+                                                src={image}
+                                                objectFit="cover"
+                                            />
+                                            <button onClick={() => handleRemoveImmobileImage(index)}><FaTrashAlt size={20} /></button>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
                         </Row>
                         <br />
                         <Row>
