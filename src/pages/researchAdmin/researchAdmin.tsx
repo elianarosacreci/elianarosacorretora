@@ -98,24 +98,24 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
     const [immobileIdToUpdate, setImmobileIdToUpdate] = useState('')
 
-    const addImmobileImages = async (target: HTMLInputElement) => {
-        let imagesList = []
+    const addImmobileImagesPreview = async (target: HTMLInputElement) => {
+        let imagesListPreview = []
         for (let i = 0; i < target.files.length; i++) {
             const file = target.files[i];
             let arrayBuffer
             await file.arrayBuffer().then(buffer => arrayBuffer = buffer)
             var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)))
-            imagesList.push("data:image/jpeg;base64," + base64String)
+            imagesListPreview.push("data:image/jpeg;base64," + base64String)
         }
         if (immobileImages.length != 0) {
-            let newImagesList = immobileImages
-            newImagesList.push(...imagesList)
-            imagesList = newImagesList
+            let newImagesListPreview = immobileImages
+            newImagesListPreview.push(...imagesListPreview)
+            imagesListPreview = newImagesListPreview
         }
-        setImmobileImages(imagesList)
+        setImmobileImages(imagesListPreview)
     }
 
-    const handleRemoveImmobileImage = idx => {
+    const removeImmobileImagesPreview = idx => {
         const temp = [...immobileImages];
         temp.splice(idx, 1);
         setImmobileImages(temp);
@@ -439,7 +439,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                             <Form.Group className="mb-3">
                                 <Form.Label>Imagens</Form.Label>
                                 <br />
-                                <Form.Control type="file" multiple onChange={event => addImmobileImages(event.target as HTMLInputElement)} />
+                                <Form.Control type="file" multiple onChange={event => addImmobileImagesPreview(event.target as HTMLInputElement)} />
                             </Form.Group>
                         </Row>
                         <Row>
@@ -453,7 +453,7 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
                                                 src={image}
                                                 objectFit="cover"
                                             />
-                                            <button onClick={() => handleRemoveImmobileImage(index)}><FaTrashAlt size={20} /></button>
+                                            <button onClick={() => removeImmobileImagesPreview(index)}><FaTrashAlt size={20} /></button>
                                         </li>
                                     )
                                 })}
