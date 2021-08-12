@@ -1,5 +1,5 @@
-// TODO -> Deletar imagens sem recarregar a página
-// TODO -> Função do Login
-// TODO -> WhatsApp
-// TODO -> Função do Filtro
-// TODO -> Estilo Final
+// TODO -> DELETAR IMAGENS SEM RECARREGAR PAGINA
+// TODO -> FUNCAO LOGIN
+// TODO -> FUNCAO DO FILTRO
+// TODO -> LAYOUT FINAL RESPONSIVO
+// TODO -> DEPLOY VERCEL

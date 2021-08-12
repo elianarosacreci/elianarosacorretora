@@ -13,6 +13,7 @@ import { RiArrowRightSFill } from 'react-icons/ri'
 import { GoChecklist } from 'react-icons/go'
 import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
 import { MdContentCopy } from 'react-icons/md'
+import { ImWhatsapp } from 'react-icons/im'
 import { SiGooglemaps } from 'react-icons/si'
 
 import firebaseController from '../../services/firebaseController'
@@ -187,7 +188,9 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                             </a>
                         </div>
                         <div className={styles.buttons}>
-                            <span className={styles.goToWhatsApp} onClick={() => { navigator.clipboard.writeText("(11) 97990-2343") }}>Copiar Telefone <MdContentCopy size={25} /></span>
+                            <a href="https://api.whatsapp.com/send?phone=5511979902343" target="_blank">
+                                <span className={styles.goToWhatsApp} >WhatsApp <ImWhatsapp size={25} /></span>
+                            </a>
                         </div>
                         <div className={styles.buttons}>
                             <span className={styles.goToEmail} onClick={() => { navigator.clipboard.writeText("e-mail pendente") }}>Copiar Email <MdContentCopy size={25} /></span>
