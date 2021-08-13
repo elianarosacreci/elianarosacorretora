@@ -242,7 +242,7 @@ export async function getStaticPaths() {
     let idx = await firebaseController.getImmobileToStaticPath()
     return {
         paths: [
-            { params: { id: idx } }
+            { params: { id: `a----${idx}` } }
         ],
         fallback: 'blocking'
     }
