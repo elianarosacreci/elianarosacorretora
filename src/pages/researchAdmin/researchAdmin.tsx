@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import { Footer } from '../../components/Footer'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
 
@@ -44,11 +44,11 @@ type Immobile = {
 }
 
 type ImmobileProps = {
-    allImobiles: Immobile[]
+    allImmobiles: Immobile[]
 }
 
 
-export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
+export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
@@ -376,14 +376,14 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
                     <div className={styles.immobileList}>
                         <div className={styles.listOptions}>
-                            <h1>{allImobiles.length} Imóveis Encontrados</h1>
+                            <h1>{allImmobiles.length} Imóveis Encontrados</h1>
                             <span>
                                 <button onClick={() => { setActionType("Create"); setAddOrUpdateModalShow(true) }}><MdLibraryAdd size={40} /></button>
                             </span>
                         </div>
                         <div>
                             <ul>
-                                {allImobiles.map((immobile) => {
+                                {allImmobiles.map((immobile) => {
                                     return (
                                         <li key={immobile.id}>
                                             <div className={styles.immobileCards}>
@@ -588,13 +588,12 @@ export default function ResearchAdmin({ allImobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getStaticProps: GetStaticProps = async () => {
-    const allImobiles = await firebaseController.getAllImmobiles()
+export const getServerSideProps: GetServerSideProps = async () => {
+    const allImmobiles = await firebaseController.getAllImmobiles()
 
     return {
         props: {
-            allImobiles,
-        },
-        revalidate: 60 * 60 * 24
+            allImmobiles,
+        }
     }
 }
