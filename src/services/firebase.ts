@@ -4,9 +4,9 @@ let app;
 
 if (!firebase.apps.length) {
     app = firebase.initializeApp({
-        apiKey: process.env.FIREBASE_API_KEY,
-        authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-        databaseURL: process.env.FIREBASE_DATABASE_URL,
+        apiKey: "AIzaSyB2ZdSarj7pzn0Qq1BL4naSCESqqAOMbtM",
+        authDomain: "site-eliana-corretora.firebaseapp.com",
+        databaseURL: "https://site-eliana-corretora-default-rtdb.firebaseio.com/",
     });
 } else {
     app = firebase.app();

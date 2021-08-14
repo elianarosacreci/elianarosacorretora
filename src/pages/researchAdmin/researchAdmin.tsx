@@ -453,7 +453,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                                 src={image}
                                                 objectFit="cover"
                                             />
-                                            <button onClick={() => removeImmobileImagesPreview(index)}><FaTrashAlt size={20} /></button>
+                                            <button onClick={event => { removeImmobileImagesPreview(index); event.preventDefault() }}><FaTrashAlt size={20} /></button>
                                         </li>
                                     )
                                 })}
