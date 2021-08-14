@@ -6,7 +6,7 @@ import Image from 'next/image'
 import firebaseController from '../../services/firebaseController'
 
 import { Footer } from '../../components/Footer'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 
 
 type Immobile = {
@@ -189,13 +189,13 @@ export default function Research({ allImobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const allImobiles = await firebaseController.getAllImmobiles()
 
     return {
         props: {
             allImobiles,
         },
-        revalidate: 28800
+        // revalidate: 28800
     }
 }
