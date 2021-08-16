@@ -469,33 +469,33 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Área</Form.Label>
-                                    <Form.Control value={immobileFootage} type="text" placeholder="Digite a área(M²)" onChange={event => setImmobileFootage(event.target.value)} />
+                                    <Form.Control value={immobileFootage} type="text" placeholder="..." onChange={event => setImmobileFootage(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Área Construída</Form.Label>
-                                    <Form.Control value={immobileFootageUseful} type="text" placeholder="Digite a área(M²) construída" onChange={event => setImmobileFootageUseful(event.target.value)} />
+                                    <Form.Control value={immobileFootageUseful} type="text" placeholder="..." onChange={event => setImmobileFootageUseful(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Quartos</Form.Label>
-                                    <Form.Control value={immobileBedrooms} type="text" placeholder="Digite o número de quartos" onChange={event => setImmobileBedrooms(event.target.value)} />
+                                    <Form.Control value={immobileBedrooms} type="text" placeholder="..." onChange={event => setImmobileBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                        </Row>
-                        <Row>
+                            {/* </Row> */}
+                            {/* <Row> */}
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Banheiros</Form.Label>
-                                    <Form.Control value={immobileBathrooms} type="text" placeholder="Digite o número de banheiros" onChange={event => setImmobileBathrooms(event.target.value)} />
+                                    <Form.Control value={immobileBathrooms} type="text" placeholder="..." onChange={event => setImmobileBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Vagas</Form.Label>
-                                    <Form.Control value={immobileVacancies} type="text" placeholder="Digite o número de vagas" onChange={event => setImmobileVacancies(event.target.value)} />
+                                    <Form.Control value={immobileVacancies} type="text" placeholder="..." onChange={event => setImmobileVacancies(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
