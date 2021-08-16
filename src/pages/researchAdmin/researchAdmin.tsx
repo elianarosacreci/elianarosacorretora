@@ -52,6 +52,10 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
+    const [immobileStatusNaPlantaCheck, setImmobileStatusNaPlantaCheck] = useState(false)
+    const [immobileStatusEmConstrucaoCheck, setImmobileStatusEmConstrucaoCheck] = useState(false)
+    const [immobileStatusProntoPraMorarCheck, setImmobileStatusProntoPraMorarCheck] = useState(false)
+
     const [immobileTitle, setImmobileTitle] = useState('')
     const [immobileImages, setImmobileImages] = useState([])
     const [immobileFootage, setImmobileFootage] = useState('')
@@ -76,6 +80,9 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [addOrUpdateModalShow, setAddOrUpdateModalShow] = useState(false)
     const handleAddOrUpdateModalClose = () => {
         setAddOrUpdateModalShow(false)
+        setImmobileStatusNaPlantaCheck(false)
+        setImmobileStatusEmConstrucaoCheck(false)
+        setImmobileStatusProntoPraMorarCheck(false)
         setActionType('')
         setImmobileTitle('')
         setImmobileImages([])
@@ -127,6 +134,9 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     useEffect(() => {
         async function actionTypeEffect() {
             if (actionType === "Create") {
+                setImmobileStatusNaPlantaCheck(false)
+                setImmobileStatusEmConstrucaoCheck(false)
+                setImmobileStatusProntoPraMorarCheck(false)
                 setImmobileTitle('')
                 setImmobileImages([])
                 setImmobileFootage('')
@@ -149,6 +159,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             }
             if (actionType === "Update") {
                 let immobileToUpdate: any = await firebaseController.getImmobileByIdToUpdate(immobileIdToUpdate)
+                if (immobileToUpdate.status == 'Na Planta') {
+                    setImmobileStatusNaPlantaCheck(true)
+                } if (immobileToUpdate.status == 'Em Construção') {
+                    setImmobileStatusEmConstrucaoCheck(true)
+                } if (immobileToUpdate.status == 'Pronto pra Morar') {
+                    setImmobileStatusProntoPraMorarCheck(true)
+                }
                 setImmobileTitle(immobileToUpdate.title)
                 setImmobileImages(immobileToUpdate.images)
                 setImmobileFootage(immobileToUpdate.footage)
@@ -484,8 +501,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                     <Form.Control value={immobileBedrooms} type="text" placeholder="..." onChange={event => setImmobileBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            {/* </Row> */}
-                            {/* <Row> */}
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Banheiros</Form.Label>
@@ -565,9 +580,24 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         <Row>
                             <Form.Label className="mb-3">Status do Imóvel</Form.Label>
                             <Form.Group className="mb-3">
-                                <Form.Check inline name="status" type="radio" label="Na Planta" onChange={() => setImmobileStatus("Na Planta")} />
-                                <Form.Check inline name="status" type="radio" label="Em Construção" onChange={() => setImmobileStatus("Em Construção")} />
-                                <Form.Check inline name="status" type="radio" label="Pronto pra Morar" onChange={() => setImmobileStatus("Pronto pra Morar")} />
+                                <Form.Check inline name="status" type="radio" label="Na Planta" onChange={() => {
+                                    setImmobileStatus("Na Planta")
+                                    setImmobileStatusNaPlantaCheck(true)
+                                    setImmobileStatusEmConstrucaoCheck(false)
+                                    setImmobileStatusProntoPraMorarCheck(false)
+                                }} checked={immobileStatusNaPlantaCheck} />
+                                <Form.Check inline name="status" type="radio" label="Em Construção" onChange={() => {
+                                    setImmobileStatus("Em Construção")
+                                    setImmobileStatusNaPlantaCheck(false)
+                                    setImmobileStatusEmConstrucaoCheck(true)
+                                    setImmobileStatusProntoPraMorarCheck(false)
+                                }} checked={immobileStatusEmConstrucaoCheck} />
+                                <Form.Check inline name="status" type="radio" label="Pronto pra Morar" onChange={() => {
+                                    setImmobileStatus("Pronto pra Morar")
+                                    setImmobileStatusNaPlantaCheck(false)
+                                    setImmobileStatusEmConstrucaoCheck(false)
+                                    setImmobileStatusProntoPraMorarCheck(true)
+                                }} checked={immobileStatusProntoPraMorarCheck} />
                             </Form.Group>
                         </Row>
                         <br />
