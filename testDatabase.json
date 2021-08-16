@@ -13,7 +13,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/64b5727c8ee31a822fe332b83239cbe6.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/0a8a600887de0e4ff668e11fd88d91f5.jpg"
             ],
+            "kind": "AP",
             "footage": "55",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "2",
             "vacancies": "1",
@@ -61,7 +63,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/8c0ebacdf4f58af0144086d2b571de5b.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/2fbd41d512c99302cfba62af24b7f5c6.jpg"
             ],
+            "kind": "AP",
             "footage": "61",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "2",
             "vacancies": "1",
@@ -126,7 +130,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ad27387748c3003bc6f2b8694b389750.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ed8cd4b2ba423cfde57b05ae14b70833.jpg"
             ],
+            "kind": "AP",
             "footage": "72",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "3",
             "vacancies": "2",
@@ -191,7 +197,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/9bdc84483d1326235933e58741b78c5b.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/67eba4d9625fcb2535a9ee1fee10311d.jpg"
             ],
+            "kind": "AP",
             "footage": "67",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "2",
             "vacancies": "1",
@@ -256,7 +264,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/b8c88f788f6875d47759ffbeac57784b.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/29a81c2df05220554b1a5297f6e26c74.jpg"
             ],
+            "kind": "AP",
             "footage": "67",
+            "footageUseful": "55",
             "bedrooms": "3",
             "bathrooms": "1",
             "vacancies": "1",
@@ -321,7 +331,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/3743f71283e258a4c6e2967578f54874.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/d4d3875dbf85992c575addaf07f5b9d7.jpg"
             ],
+            "kind": "AP",
             "footage": "60",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "2",
             "vacancies": "1",
@@ -386,7 +398,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/e509f3898bb08d6b9f8ffd94efe5ada6.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/e366f3e4842972c4f766be7fd6907d43.jpg"
             ],
+            "kind": "AP",
             "footage": "39",
+            "footageUseful": "55",
             "bedrooms": "1",
             "bathrooms": "1",
             "vacancies": "1",
@@ -451,7 +465,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/d51f759d031a9ca4f5b05b97e7b64ad1.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/1e91c2bab77623389fdd4712ad2ed1d1.jpg"
             ],
+            "kind": "AP",
             "footage": "67",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "2",
             "vacancies": "1",

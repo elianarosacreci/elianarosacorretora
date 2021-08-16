@@ -55,6 +55,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobileTitle, setImmobileTitle] = useState('')
     const [immobileImages, setImmobileImages] = useState([])
     const [immobileFootage, setImmobileFootage] = useState('')
+    const [immobileFootageUseful, setImmobileFootageUseful] = useState('')
     const [immobileBedrooms, setImmobileBedrooms] = useState('')
     const [immobileBathrooms, setImmobileBathrooms] = useState('')
     const [immobileVacancies, setImmobileVacancies] = useState('')
@@ -79,6 +80,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileTitle('')
         setImmobileImages([])
         setImmobileFootage('')
+        setImmobileFootageUseful('')
         setImmobileBedrooms('')
         setImmobileBathrooms('')
         setImmobileVacancies('')
@@ -128,6 +130,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileTitle('')
                 setImmobileImages([])
                 setImmobileFootage('')
+                setImmobileFootageUseful('')
                 setImmobileBedrooms('')
                 setImmobileBathrooms('')
                 setImmobileVacancies('')
@@ -149,6 +152,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileTitle(immobileToUpdate.title)
                 setImmobileImages(immobileToUpdate.images)
                 setImmobileFootage(immobileToUpdate.footage)
+                setImmobileFootageUseful(immobileToUpdate.footageUseful)
                 setImmobileBedrooms(immobileToUpdate.bedrooms)
                 setImmobileBathrooms(immobileToUpdate.bathrooms)
                 setImmobileVacancies(immobileToUpdate.vacancies)
@@ -187,7 +191,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     }, [actionType])
 
     async function addOrUpdateImmobile() {
-        if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
+        if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileFootageUseful == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
             immobileStreet == '' || immobileNumber == '' || immobileState == '' || immobileDistrict == '' || immobileCity == '' || immobileFeatures == '' || immobileNearbyTrainsAndSubways == '' ||
             immobileStatus == '' || immobilePrice == '' || immobileComments == '') {
             alert('Preencha todos os campos para salvar!')
@@ -218,6 +222,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             "code": immobileCode,
             "images": immobileImages,
             "footage": immobileFootage,
+            "footageUseful": immobileFootageUseful,
             "bedrooms": immobileBedrooms,
             "bathrooms": immobileBathrooms,
             "vacancies": immobileVacancies,
@@ -431,7 +436,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         <Row>
                             <Form.Group className="mb-3">
                                 <Form.Label>Título</Form.Label>
-                                <Form.Control value={immobileTitle} type="text" placeholder="Digite o título do imóvel..." onChange={event => setImmobileTitle(event.target.value)} />
+                                <Form.Control value={immobileTitle} type="text" placeholder="Digite o título" onChange={event => setImmobileTitle(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <br />
@@ -464,13 +469,19 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Área</Form.Label>
-                                    <Form.Control value={immobileFootage} type="text" placeholder="Digite a área (M²) do imóvel..." onChange={event => setImmobileFootage(event.target.value)} />
+                                    <Form.Control value={immobileFootage} type="text" placeholder="Digite a área(M²)" onChange={event => setImmobileFootage(event.target.value)} />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Área Construída</Form.Label>
+                                    <Form.Control value={immobileFootageUseful} type="text" placeholder="Digite a área(M²) construída" onChange={event => setImmobileFootageUseful(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Quartos</Form.Label>
-                                    <Form.Control value={immobileBedrooms} type="text" placeholder="Digite o número de quartos do imóvel..." onChange={event => setImmobileBedrooms(event.target.value)} />
+                                    <Form.Control value={immobileBedrooms} type="text" placeholder="Digite o número de quartos" onChange={event => setImmobileBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -478,13 +489,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Banheiros</Form.Label>
-                                    <Form.Control value={immobileBathrooms} type="text" placeholder="Digite o número de banheiros do imóvel..." onChange={event => setImmobileBathrooms(event.target.value)} />
+                                    <Form.Control value={immobileBathrooms} type="text" placeholder="Digite o número de banheiros" onChange={event => setImmobileBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Vagas</Form.Label>
-                                    <Form.Control value={immobileVacancies} type="text" placeholder="Digite o número de vagas do imóvel..." onChange={event => setImmobileVacancies(event.target.value)} />
+                                    <Form.Control value={immobileVacancies} type="text" placeholder="Digite o número de vagas" onChange={event => setImmobileVacancies(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -492,13 +503,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         <Row>
                             <Form.Group className="mb-3">
                                 <Form.Label>Título da Descrição</Form.Label>
-                                <Form.Control value={immobileDescriptionTitle} type="text" placeholder="Digite o título da descrição do imóvel..." onChange={event => setImmobileDescriptionTitle(event.target.value)} />
+                                <Form.Control value={immobileDescriptionTitle} type="text" placeholder="Digite o título da descrição" onChange={event => setImmobileDescriptionTitle(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Group className="mb-3">
                                 <Form.Label>Descrição</Form.Label>
-                                <Form.Control as="textarea" rows={3} value={immobileDescription} type="text" placeholder="Digite a descrição do imóvel..." onChange={event => setImmobileDescription(event.target.value)} />
+                                <Form.Control as="textarea" rows={3} value={immobileDescription} type="text" placeholder="Digite a descrição" onChange={event => setImmobileDescription(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <br />
@@ -506,7 +517,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Col xs={8}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Rua</Form.Label>
-                                    <Form.Control value={immobileStreet} type="text" placeholder="Digite a rua do imóvel..." onChange={event => setImmobileStreet(event.target.value)} />
+                                    <Form.Control value={immobileStreet} type="text" placeholder="Digite a rua" onChange={event => setImmobileStreet(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -526,13 +537,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Col xs={7}>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Bairro</Form.Label>
-                                    <Form.Control value={immobileDistrict} type="text" placeholder="Digite o bairro do imóvel..." onChange={event => setImmobileDistrict(event.target.value)} />
+                                    <Form.Control value={immobileDistrict} type="text" placeholder="Digite o bairro" onChange={event => setImmobileDistrict(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Cidade</Form.Label>
-                                    <Form.Control value={immobileCity} type="text" placeholder="Digite a cidade do imóvel..." onChange={event => setImmobileCity(event.target.value)} />
+                                    <Form.Control value={immobileCity} type="text" placeholder="Digite a cidade" onChange={event => setImmobileCity(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -572,7 +583,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         <Row>
                             <Form.Group className="mb-3">
                                 <Form.Label>Observações</Form.Label>
-                                <Form.Control as="textarea" rows={4} value={immobileComments} type="text" placeholder="Digite as observações do imóvel..." onChange={event => setImmobileComments(event.target.value)} />
+                                <Form.Control as="textarea" rows={4} value={immobileComments} type="text" placeholder="Digite as observações" onChange={event => setImmobileComments(event.target.value)} />
                             </Form.Group>
                         </Row>
                     </Form>

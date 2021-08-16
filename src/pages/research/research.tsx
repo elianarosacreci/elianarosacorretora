@@ -195,7 +195,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return {
         props: {
             allImobiles,
-        },
-        // revalidate: 28800
+        }
     }
 }

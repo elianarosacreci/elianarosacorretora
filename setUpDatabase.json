@@ -10,7 +10,9 @@
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/20d35d6636d02b4cc92e189cfeca538b.jpg",
                 "https://resizedimgs.vivareal.com/fit-in/870x653/vr.images.sp/ca5e6992762afb4337f8fabcee6381a8.jpg"
             ],
+            "kind": "AP",
             "footage": "55",
+            "footageUseful": "55",
             "bedrooms": "2",
             "bathrooms": "2",
             "vacancies": "1",

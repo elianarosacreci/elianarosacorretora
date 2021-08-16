@@ -5,6 +5,7 @@ import { GetStaticProps } from 'next';
 import Image from 'next/image';
 
 import { BiArea } from 'react-icons/bi'
+import { GiResize } from 'react-icons/gi'
 import { IoIosBed } from 'react-icons/io'
 import { FaCar } from 'react-icons/fa'
 import { BiBath } from 'react-icons/bi'
@@ -28,6 +29,7 @@ type Immobile = {
     code: string,
     images: Array<string>,
     footage: string,
+    footageUseful: string,
     bedrooms: string,
     bathrooms: string,
     suites: string,
@@ -119,6 +121,10 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                             <li>
                                 <span><BiArea size={30} /></span>
                                 <span> {immobile.footage}m²</span>
+                            </li>
+                            <li>
+                                <span><GiResize size={30} /></span>
+                                <span> {immobile.footageUseful}m²</span>
                             </li>
                             <li>
                                 <span><IoIosBed size={30} /></span>

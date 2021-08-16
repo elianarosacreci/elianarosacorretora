@@ -2,7 +2,7 @@ import styles from './home.module.scss'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 import firebaseController from '../services/firebaseController'
 
@@ -203,18 +203,16 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-export const getStaticProps: GetStaticProps = async () => {
-  // TODO - Fazer validação para tratar retornos com erros ou vazios do Firebase
-
+export const getServerSideProps: GetServerSideProps = async () => {
   const attractivePricesList = await firebaseController.getAttractivePrices()
   const justArrivedList = await firebaseController.getJustArrived()
   const mostPopularsList = await firebaseController.getMostPopular()
+
   return {
     props: {
       attractivePricesList,
       justArrivedList,
       mostPopularsList
-    },
-    revalidate: 60 * 60 * 24
+    }
   }
 }
