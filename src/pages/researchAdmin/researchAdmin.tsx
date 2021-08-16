@@ -404,8 +404,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                                     {immobile.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
                                                         <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                         <p>{immobile.descriptionTitle}</p>}
-                                                    <button onClick={() => { setActionType("Update"); setImmobileIdToUpdate(immobile.id); setAddOrUpdateModalShow(true) }}><FaPencilAlt size={25} /></button>
-                                                    <button onClick={() => removeImmobile(immobile.id)}><FaTrashAlt size={25} /></button>
+                                                    <button onClick={() => { setActionType("Update"); setImmobileIdToUpdate(immobile.id); setAddOrUpdateModalShow(true) }}><FaPencilAlt size={30} /></button>
+                                                    <button onClick={() => removeImmobile(immobile.id)}><FaTrashAlt size={30} /></button>
                                                 </div>
                                             </div>
                                         </li>
