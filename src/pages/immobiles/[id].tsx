@@ -123,10 +123,6 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                                 <span> {immobile.footage}m²</span>
                             </li>
                             <li>
-                                <span><GiResize size={30} /></span>
-                                <span> {immobile.footageUseful}m²</span>
-                            </li>
-                            <li>
                                 <span><IoIosBed size={30} /></span>
                                 <span> {immobile.bedrooms} {parseInt(immobile.bedrooms) > 1 ? "quartos" : "quarto"}</span>
                             </li>
@@ -137,6 +133,10 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                             <li>
                                 <span><FaCar size={30} /></span>
                                 <span> {immobile.vacancies} {parseInt(immobile.vacancies) > 1 ? "vagas" : "vaga"}</span>
+                            </li>
+                            <li>
+                                <span><GiResize size={30} /></span>
+                                <span> {immobile.footageUseful}m² construídos</span>
                             </li>
                         </ul>
                     </div>
