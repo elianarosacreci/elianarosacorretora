@@ -36,6 +36,7 @@ type Immobile = {
     price: string
     nearbyTrainsAndSubways: string
     status: string
+    kind: string
     comments: string
 
     imageCard: string
@@ -52,9 +53,23 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
-    const [immobileStatusNaPlantaCheck, setImmobileStatusNaPlantaCheck] = useState(false)
-    const [immobileStatusEmConstrucaoCheck, setImmobileStatusEmConstrucaoCheck] = useState(false)
-    const [immobileStatusProntoPraMorarCheck, setImmobileStatusProntoPraMorarCheck] = useState(false)
+    const [immobileStatus, setImmobileStatus] = useState('')
+    const [immobileStatusNaPlanta, setImmobileStatusNaPlanta] = useState(false)
+    const [immobileStatusEmConstrucao, setImmobileStatusEmConstrucao] = useState(false)
+    const [immobileStatusProntoPraMorar, setImmobileStatusProntoPraMorar] = useState(false)
+
+    const [immobileKind, setImmobileKind] = useState('')
+    const [immobileKindApartamento, setImmobileKindApartamento] = useState(false)
+    const [immobileKindCobertura, setImmobileKindCobertura] = useState(false)
+    const [immobileKindCasa, setImmobileKindCasa] = useState(false)
+    const [immobileKindCasaCondominio, setImmobileKindCasaCondominio] = useState(false)
+    const [immobileKindTerreno, setImmobileKindTerreno] = useState(false)
+    const [immobileKindConjuntoComercial, setImmobileKindConjuntoComercial] = useState(false)
+    const [immobileKindGalpao, setImmobileKindGalpao] = useState(false)
+    const [immobileKindSitioFazenda, setImmobileKindSitioFazenda] = useState(false)
+    const [immobileKindPredioInteiro, setImmobileKindPredioInteiro] = useState(false)
+    const [immobileKindLoja, setImmobileKindLoja] = useState(false)
+    const [immobileKindImovelComercial, setImmobileKindImovelComercial] = useState(false)
 
     const [immobileTitle, setImmobileTitle] = useState('')
     const [immobileImages, setImmobileImages] = useState([])
@@ -72,7 +87,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobileCity, setImmobileCity] = useState('')
     const [immobileFeatures, setImmobileFeatures] = useState('')
     const [immobileNearbyTrainsAndSubways, setImmobileNearbyTrainsAndSubways] = useState('')
-    const [immobileStatus, setImmobileStatus] = useState('')
     const [immobilePrice, setImmobilePrice] = useState('')
     const [immobileComments, setImmobileComments] = useState('')
     const [immobileIdx, setImmobileIdx] = useState('')
@@ -80,9 +94,25 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [addOrUpdateModalShow, setAddOrUpdateModalShow] = useState(false)
     const handleAddOrUpdateModalClose = () => {
         setAddOrUpdateModalShow(false)
-        setImmobileStatusNaPlantaCheck(false)
-        setImmobileStatusEmConstrucaoCheck(false)
-        setImmobileStatusProntoPraMorarCheck(false)
+
+        setImmobileStatus('')
+        setImmobileStatusNaPlanta(false)
+        setImmobileStatusEmConstrucao(false)
+        setImmobileStatusProntoPraMorar(false)
+
+        setImmobileKind('')
+        setImmobileKindApartamento(false)
+        setImmobileKindCobertura(false)
+        setImmobileKindCasa(false)
+        setImmobileKindCasaCondominio(false)
+        setImmobileKindTerreno(false)
+        setImmobileKindConjuntoComercial(false)
+        setImmobileKindGalpao(false)
+        setImmobileKindSitioFazenda(false)
+        setImmobileKindPredioInteiro(false)
+        setImmobileKindLoja(false)
+        setImmobileKindImovelComercial(false)
+
         setActionType('')
         setImmobileTitle('')
         setImmobileImages([])
@@ -100,7 +130,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileCity('')
         setImmobileFeatures('')
         setImmobileNearbyTrainsAndSubways('')
-        setImmobileStatus('')
         setImmobilePrice('')
         setImmobileComments('')
     }
@@ -135,9 +164,25 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     useEffect(() => {
         async function actionTypeEffect() {
             if (actionType === "Create") {
-                setImmobileStatusNaPlantaCheck(false)
-                setImmobileStatusEmConstrucaoCheck(false)
-                setImmobileStatusProntoPraMorarCheck(false)
+                setImmobileStatusNaPlanta(false)
+
+                setImmobileStatus('')
+                setImmobileStatusEmConstrucao(false)
+                setImmobileStatusProntoPraMorar(false)
+
+                setImmobileKind('')
+                setImmobileKindApartamento(false)
+                setImmobileKindCobertura(false)
+                setImmobileKindCasa(false)
+                setImmobileKindCasaCondominio(false)
+                setImmobileKindTerreno(false)
+                setImmobileKindConjuntoComercial(false)
+                setImmobileKindGalpao(false)
+                setImmobileKindSitioFazenda(false)
+                setImmobileKindPredioInteiro(false)
+                setImmobileKindLoja(false)
+                setImmobileKindImovelComercial(false)
+
                 setImmobileTitle('')
                 setImmobileImages([])
                 setImmobileFootage('')
@@ -154,19 +199,56 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileCity('')
                 setImmobileFeatures('')
                 setImmobileNearbyTrainsAndSubways('')
-                setImmobileStatus('')
                 setImmobilePrice('')
                 setImmobileComments('')
             }
             if (actionType === "Update") {
                 let immobileToUpdate: any = await firebaseController.getImmobileByIdToUpdate(immobileIdToUpdate)
+
+                setImmobileStatus(immobileToUpdate.status)
                 if (immobileToUpdate.status == 'Na Planta') {
-                    setImmobileStatusNaPlantaCheck(true)
+                    setImmobileStatusNaPlanta(true)
                 } if (immobileToUpdate.status == 'Em Construção') {
-                    setImmobileStatusEmConstrucaoCheck(true)
+                    setImmobileStatusEmConstrucao(true)
                 } if (immobileToUpdate.status == 'Pronto pra Morar') {
-                    setImmobileStatusProntoPraMorarCheck(true)
+                    setImmobileStatusProntoPraMorar(true)
                 }
+
+                setImmobileKind(immobileToUpdate.kind)
+                if (immobileToUpdate.kind == 'Apartamento') {
+                    setImmobileKindApartamento(true)
+                }
+                if (immobileToUpdate.kind == 'Cobertura') {
+                    setImmobileKindCobertura(true)
+                }
+                if (immobileToUpdate.kind == 'Casa') {
+                    setImmobileKindCasa(true)
+                }
+                if (immobileToUpdate.kind == 'Casa de Condominio') {
+                    setImmobileKindCasaCondominio(true)
+                }
+                if (immobileToUpdate.kind == 'Terreno') {
+                    setImmobileKindTerreno(true)
+                }
+                if (immobileToUpdate.kind == 'Conjunto Comercial') {
+                    setImmobileKindConjuntoComercial(true)
+                }
+                if (immobileToUpdate.kind == 'Galpão') {
+                    setImmobileKindGalpao(true)
+                }
+                if (immobileToUpdate.kind == 'Sitio/Fazenda') {
+                    setImmobileKindSitioFazenda(true)
+                }
+                if (immobileToUpdate.kind == 'Prédio Inteiro') {
+                    setImmobileKindPredioInteiro(true)
+                }
+                if (immobileToUpdate.kind == 'Loja') {
+                    setImmobileKindLoja(true)
+                }
+                if (immobileToUpdate.kind == 'Imóvel Comercial') {
+                    setImmobileKindImovelComercial(true)
+                }
+
                 setImmobileTitle(immobileToUpdate.title)
                 setImmobileImages(immobileToUpdate.images)
                 setImmobileFootage(immobileToUpdate.footage)
@@ -181,7 +263,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileState(immobileToUpdate.state)
                 setImmobileDistrict(immobileToUpdate.district)
                 setImmobileCity(immobileToUpdate.city)
-                setImmobileStatus(immobileToUpdate.status)
                 setImmobilePrice(immobileToUpdate.price)
                 setImmobileComments(immobileToUpdate.comments)
                 let features = ''
@@ -211,13 +292,12 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     async function addOrUpdateImmobile() {
         if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileFootageUseful == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
             immobileStreet == '' || immobileNumber == '' || immobileState == '' || immobileDistrict == '' || immobileCity == '' || immobileFeatures == '' || immobileNearbyTrainsAndSubways == '' ||
-            immobileStatus == '' || immobilePrice == '' || immobileComments == '') {
+            immobileStatus == '' || immobileKind == '' || immobilePrice == '' || immobileComments == '') {
             alert('Preencha todos os campos para salvar!')
             return
         }
-
         let immobileUUID = await utilities.getUUID()
-        let immobileCode = await utilities.getCode()
+        let immobileCode = await utilities.getCode(immobileKind)
         let immobileSlug = await utilities.getSlug(immobileTitle)
         let immobileFullAddress = `${immobileStreet}, ${immobileNumber} - ${immobileDistrict} - ${immobileCity} - ${immobileState}`
         let date: Date = new Date()
@@ -258,6 +338,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             "price": price,
             "nearbyTrainsAndSubways": nearbyTrainsAndSubways,
             "status": immobileStatus,
+            "kind": immobileKind,
             "comments": immobileComments,
             "createdAt": immobileCreatedAt
         }
@@ -581,24 +662,184 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         <Row>
                             <Form.Label className="mb-3">Status do Imóvel</Form.Label>
                             <Form.Group className="mb-3">
+                                <Form.Check inline name="tipo" type="radio" label="Apartamento" onChange={() => {
+                                    setImmobileKind("Apartamento")
+                                    setImmobileKindApartamento(true)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindApartamento} />
+                                <Form.Check inline name="tipo" type="radio" label="Cobertura" onChange={() => {
+                                    setImmobileKind("Cobertura")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(true)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindCobertura} />
+                                <Form.Check inline name="tipo" type="radio" label="Casa" onChange={() => {
+                                    setImmobileKind("Casa")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(true)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindCasa} />
+                                <Form.Check inline name="tipo" type="radio" label="Casa de Condominio" onChange={() => {
+                                    setImmobileKind("Casa de Condominio")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(true)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindCasaCondominio} />
+                                <Form.Check inline name="tipo" type="radio" label="Terreno" onChange={() => {
+                                    setImmobileKind("Terreno")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(true)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindTerreno} />
+                                <Form.Check inline name="tipo" type="radio" label="Conjunto Comercial" onChange={() => {
+                                    setImmobileKind("Conjunto Comercial")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(true)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindConjuntoComercial} />
+                                <Form.Check inline name="tipo" type="radio" label="Galpão" onChange={() => {
+                                    setImmobileKind("Galpão")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(true)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindGalpao} />
+                                <Form.Check inline name="tipo" type="radio" label="Sitio/Fazenda" onChange={() => {
+                                    setImmobileKind("Sitio/Fazenda")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(true)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindSitioFazenda} />
+                                <Form.Check inline name="tipo" type="radio" label="Prédio Inteiro" onChange={() => {
+                                    setImmobileKind("Prédio Inteiro")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(true)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindPredioInteiro} />
+                                <Form.Check inline name="tipo" type="radio" label="Loja" onChange={() => {
+                                    setImmobileKind("Loja")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(true)
+                                    setImmobileKindImovelComercial(false)
+                                }} checked={immobileKindLoja} />
+                                <Form.Check inline name="tipo" type="radio" label="Imóvel Comercial" onChange={() => {
+                                    setImmobileKind("Imóvel Comercial")
+                                    setImmobileKindApartamento(false)
+                                    setImmobileKindCobertura(false)
+                                    setImmobileKindCasa(false)
+                                    setImmobileKindCasaCondominio(false)
+                                    setImmobileKindTerreno(false)
+                                    setImmobileKindConjuntoComercial(false)
+                                    setImmobileKindGalpao(false)
+                                    setImmobileKindSitioFazenda(false)
+                                    setImmobileKindPredioInteiro(false)
+                                    setImmobileKindLoja(false)
+                                    setImmobileKindImovelComercial(true)
+                                }} checked={immobileKindImovelComercial} />
+                            </Form.Group>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Form.Label className="mb-3">Status do Imóvel</Form.Label>
+                            <Form.Group className="mb-3">
                                 <Form.Check inline name="status" type="radio" label="Na Planta" onChange={() => {
                                     setImmobileStatus("Na Planta")
-                                    setImmobileStatusNaPlantaCheck(true)
-                                    setImmobileStatusEmConstrucaoCheck(false)
-                                    setImmobileStatusProntoPraMorarCheck(false)
-                                }} checked={immobileStatusNaPlantaCheck} />
+                                    setImmobileStatusNaPlanta(true)
+                                    setImmobileStatusEmConstrucao(false)
+                                    setImmobileStatusProntoPraMorar(false)
+                                }} checked={immobileStatusNaPlanta} />
                                 <Form.Check inline name="status" type="radio" label="Em Construção" onChange={() => {
                                     setImmobileStatus("Em Construção")
-                                    setImmobileStatusNaPlantaCheck(false)
-                                    setImmobileStatusEmConstrucaoCheck(true)
-                                    setImmobileStatusProntoPraMorarCheck(false)
-                                }} checked={immobileStatusEmConstrucaoCheck} />
+                                    setImmobileStatusNaPlanta(false)
+                                    setImmobileStatusEmConstrucao(true)
+                                    setImmobileStatusProntoPraMorar(false)
+                                }} checked={immobileStatusEmConstrucao} />
                                 <Form.Check inline name="status" type="radio" label="Pronto pra Morar" onChange={() => {
                                     setImmobileStatus("Pronto pra Morar")
-                                    setImmobileStatusNaPlantaCheck(false)
-                                    setImmobileStatusEmConstrucaoCheck(false)
-                                    setImmobileStatusProntoPraMorarCheck(true)
-                                }} checked={immobileStatusProntoPraMorarCheck} />
+                                    setImmobileStatusNaPlanta(false)
+                                    setImmobileStatusEmConstrucao(false)
+                                    setImmobileStatusProntoPraMorar(true)
+                                }} checked={immobileStatusProntoPraMorar} />
                             </Form.Group>
                         </Row>
                         <br />

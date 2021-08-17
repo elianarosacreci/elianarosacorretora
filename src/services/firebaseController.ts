@@ -112,6 +112,7 @@ async function getImmobileById(id) {
                     price: snapshot.val()[idx].price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
                     nearbyTrainsAndSubways: snapshot.val()[idx].nearbyTrainsAndSubways,
                     status: snapshot.val()[idx].status,
+                    kind: snapshot.val()[idx].kind
                 })
             }, (err) => {
                 console.log('services - firebaseController.js - getImmobileById - Erro: ', err);
@@ -248,6 +249,7 @@ async function getImmobileByIdToUpdate(id) {
                     price: snapshot.val()[idx].price.toString(),
                     nearbyTrainsAndSubways: snapshot.val()[idx].nearbyTrainsAndSubways,
                     status: snapshot.val()[idx].status,
+                    kind: snapshot.val()[idx].kind,
                     comments: snapshot.val()[idx].comments,
                     idx
                 })

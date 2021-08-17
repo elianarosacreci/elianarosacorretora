@@ -1,6 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
 import slug from 'slug';
 
+const mapKind = new Map()
+mapKind.set('Apartamento', 'AP')
+mapKind.set('Cobertura', 'CO')
+mapKind.set('Casa', 'CA')
+mapKind.set('Casa de Condominio', 'CACO')
+mapKind.set('Terreno', 'TE')
+mapKind.set('Conjunto Comercial', 'COCO')
+mapKind.set('Galpão', 'GA')
+mapKind.set('Sitio/Fazenda', 'SIFA')
+mapKind.set('Prédio Inteiro', 'PRIN')
+mapKind.set('Loja', 'LO')
+mapKind.set('Imóvel Comercial', 'IMCO')
+
 async function getUUID() {
     return new Promise(async (resolve, reject) => {
         try {
@@ -12,11 +25,12 @@ async function getUUID() {
     });
 };
 
-async function getCode() {
+async function getCode(immobileKind) {
     return new Promise(async (resolve, reject) => {
         try {
             let uuid = uuidv4();
-            let code = uuid.replace(/-.*/, '')
+            let newUuid = uuid.replace(/-.*/, '')
+            let code = `${mapKind.get(immobileKind)}-${newUuid}`
             resolve(code);
         } catch (error) {
             console.log('services - utilities.js - getCode - Erro: ', error);

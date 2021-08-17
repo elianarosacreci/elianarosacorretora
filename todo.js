@@ -3,6 +3,3 @@
 // TODO -> FUNCAO LOGIN
 // TODO -> FUNCAO DO FILTRO
 // TODO -> LAYOUT FINAL RESPONSIVO
-
-// TODO -> ADICIONAR CAMPO TIPO DE IMÓVEL
-// TODO -> ADICIONAR TAG NO CÓDIGO DO IMÓVEL DE ACORDO COM O TIPO DO IMÓVEL (fazer um map com cada tipo de imóvel para pegar através de chave e valor)

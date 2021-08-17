@@ -1,7 +1,7 @@
 import styles from './immobile.module.scss';
 import React from 'react';
 import Head from 'next/head';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import Image from 'next/image';
 
 import { BiArea } from 'react-icons/bi'
@@ -12,7 +12,7 @@ import { BiBath } from 'react-icons/bi'
 import { IoSubway } from 'react-icons/io5'
 import { RiArrowRightSFill } from 'react-icons/ri'
 import { GoChecklist } from 'react-icons/go'
-import { GrStatusDisabled, GrStatusInfo, GrStatusGood } from 'react-icons/gr'
+import { GrStatusDisabled, GrStatusInfo, GrStatusGood, GrMultiple } from 'react-icons/gr'
 import { MdContentCopy } from 'react-icons/md'
 import { ImWhatsapp } from 'react-icons/im'
 import { SiGooglemaps } from 'react-icons/si'
@@ -41,6 +41,7 @@ type Immobile = {
     price: string,
     nearbyTrainsAndSubways: NearbyTrainsAndSubways[],
     status: string,
+    kind: string,
     imageCard: string,
     slug: string
 }
@@ -52,11 +53,11 @@ type NearbyTrainsAndSubways = {
 
 type ImmobileProps = {
     immobile: Immobile
-    attractivePricesList: Immobile[]
+    // attractivePricesList: Immobile[]
 }
 
 
-export default function Immobile({ immobile, attractivePricesList }: ImmobileProps) {
+export default function Immobile({ immobile }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
@@ -187,6 +188,11 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         {getImmobileStatus()}
                     </div>
 
+                    <div className={styles.status}>
+                        <GrMultiple size={25} />
+                        <p>{immobile.kind}</p>
+                    </div>
+
                     <div className={styles.managerContacts}>
                         <div className={styles.buttons}>
                             <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
@@ -205,7 +211,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                 </div>
             </div>
 
-            <div className={styles.immobileList}>
+            {/* <div className={styles.immobileList}>
                 <h1>Você Vai Gostar Também</h1>
                 <div>
                     <ul>
@@ -235,7 +241,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         })}
                     </ul>
                 </div>
-            </div>
+            </div> */}
 
             <Footer />
         </div>
@@ -244,27 +250,27 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
 
 // ----------------------------------------------------------------------------------------------------
 
-export async function getStaticPaths() {
-    let idx = await firebaseController.getImmobileToStaticPath()
-    return {
-        paths: [
-            { params: { id: `a----${idx}` } }
-        ],
-        fallback: 'blocking'
-    }
-};
+// export async function getStaticPaths() {
+//     let idx = await firebaseController.getImmobileToStaticPath()
+//     return {
+//         paths: [
+//             { params: { id: `a----${idx}` } }
+//         ],
+//         fallback: 'blocking'
+//     }
+// };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.params
     let idx = id.toString()
     idx = idx.split('----')[1]
     const immobile = await firebaseController.getImmobileById(idx)
-    const attractivePricesList = await firebaseController.getAttractivePrices()
+    // const attractivePricesList = await firebaseController.getAttractivePrices()
     return {
         props: {
             immobile,
-            attractivePricesList
+            // attractivePricesList
         },
-        revalidate: 60 * 60 * 24
+        // revalidate: 60 * 60 * 24
     }
 }
