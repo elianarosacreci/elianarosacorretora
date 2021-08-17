@@ -16,7 +16,7 @@ export function Footer() {
             <div className={styles.infos}>
                 <div className={styles.contacts}>
                     <h1>Eliana Rosa</h1>
-                    <h4>Corretora de imóveis</h4>
+                    <h4>Corretora de imóveis - CRECI 212053F</h4>
                 </div>
                 <div>
                     <h1>Encontre o seu próximo imóvel!</h1>
