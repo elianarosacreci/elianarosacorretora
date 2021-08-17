@@ -145,7 +145,7 @@ export default function Immobile({ immobile }: ImmobileProps) {
                     <div className={styles.features}>
                         <div className={styles.title}>
                             <GoChecklist size={35} />
-                            <h3>Itens & Características</h3>
+                            <h3>Lazer & Características</h3>
                         </div>
                         <div className={styles.itens}>
                             <ul>

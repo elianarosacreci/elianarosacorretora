@@ -647,7 +647,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         <br />
                         <Row>
                             <Form.Group className="mb-3">
-                                <Form.Label>Características</Form.Label>
+                                <Form.Label>Lazer & Características</Form.Label>
                                 <Form.Control as="textarea" rows={4} value={immobileFeatures} type="text" placeholder="Digite as características do imóvel separando por vírgulas. Ex: Piscina, Acadêmia, Playground, Churrasqueira..." onChange={event => setImmobileFeatures(event.target.value)} />
                             </Form.Group>
                         </Row>
