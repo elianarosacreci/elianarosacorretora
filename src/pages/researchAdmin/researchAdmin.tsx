@@ -117,11 +117,12 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             imagesListPreview.push("data:image/jpeg;base64," + base64String)
         }
         if (immobileImages.length != 0) {
-            let newImagesListPreview = immobileImages
+            const newImagesListPreview = [...immobileImages]
             newImagesListPreview.push(...imagesListPreview)
-            imagesListPreview = newImagesListPreview
+            setImmobileImages(newImagesListPreview)
+        } else {
+            setImmobileImages(imagesListPreview)
         }
-        setImmobileImages(imagesListPreview)
     }
 
     const removeImmobileImagesPreview = idx => {
@@ -461,7 +462,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Form.Group className="mb-3">
                                 <Form.Label>Imagens</Form.Label>
                                 <br />
-                                <Form.Control type="file" multiple onChange={event => addImmobileImagesPreview(event.target as HTMLInputElement)} />
+                                <Form.Control type="file" multiple onChange={event => { addImmobileImagesPreview(event.target as HTMLInputElement) }} />
                             </Form.Group>
                         </Row>
                         <Row>
