@@ -1,9 +1,10 @@
 import firebase from 'firebase';
 
-let app;
+import 'firebase/auth';
+import 'firebase/database';
 
 if (!firebase.apps.length) {
-    app = firebase.initializeApp({
+    firebase.initializeApp({
         apiKey: process.env.REACT_APP_API_KEY,
         authDomain: process.env.REACT_APP_AUTH_DOMAIN,
         databaseURL: process.env.REACT_APP_DATABASE_URL,
@@ -14,7 +15,10 @@ if (!firebase.apps.length) {
         measurementId: process.env.REACT_APP_MEASUREMENT_ID
     });
 } else {
-    app = firebase.app();
+    firebase.app();
 }
 
-export default app;
+const auth = firebase.auth()
+const database = firebase.database()
+
+export { firebase, auth, database };
