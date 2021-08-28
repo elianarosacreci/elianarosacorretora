@@ -1,5 +1,6 @@
-import { database } from './firebase'
+import {firebase} from './firebase'
 
+const database = firebase.database() 
 async function getAttractivePrices() {
     return new Promise(async (resolve, reject) => {
         try {

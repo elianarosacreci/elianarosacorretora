@@ -1,66 +1,46 @@
-import styles from './login.module.scss'
+import styles from "./login.module.scss";
 
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import { FaGooglePlusSquare } from 'react-icons/fa'
+import { FaGooglePlusSquare } from "react-icons/fa";
 
-import Link from 'next/link'
-import { useHistory } from 'react-router-dom';
-import { auth, firebase } from '../../services/firebase';
-
-
+import Link from "next/link";
+import { useAuth } from "../../hooks/useAuth";
+import { useRouter } from "next/router";
 export default function Login() {
+  const router = useRouter();
 
-    const history = useHistory()
-    const [user, setUser] = useState({})
+  const { user, signInWithGoogle } = useAuth();
 
-    async function handleCreateRoom() {
+  async function handleCreateRoom(e: React.FormEvent) {
+    e.preventDefault();
 
-        try {
-            const provider = new firebase.auth.GoogleAuthProvider()
+    await signInWithGoogle();
+    router.push("/researchAdmin/researchAdmin");
+  }
 
-            const result = await auth.signInWithPopup(provider)
+  return (
+    <div>
+      <div className={styles.loginTitle}>
+        <h1>LOGIN</h1>
+      </div>
 
-            if (result.user) {
-                console.log('USER: ', result.user);
-                const { displayName, uid } = result.user
-
-                if (!displayName) {
-                    console.log('Missing information from Google Account.')
-                    return
-                }
-
-                setUser({
-                    id: uid,
-                    name: displayName
-                })
-            }
-
-            history.push('/researchAdmin/researchAdmin')
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-
-    return (
-        <div>
-            <div className={styles.loginTitle}>
-                <h1>LOGIN</h1>
-            </div>
-
-            <div className={styles.loginContainer}>
-                <div className={styles.form}>
-                    <form className={styles.loginForm}>
-                        {/* <Link href="/researchAdmin/researchAdmin"> */}
-                        <button onClick={handleCreateRoom} className={styles.login}>entrar com <FaGooglePlusSquare size={30} /></button>
-                        {/* </Link> */}
-                        <a href="/" className={styles.returnToBrowse}>voltar a navegar</a>
-                    </form>
-                </div>
-            </div>
-        </div >
-    )
+      <div className={styles.loginContainer}>
+        <div className={styles.form}>
+          <form className={styles.loginForm}>
+            {/* <Link href="/researchAdmin/researchAdmin"> */}
+            <button onClick={handleCreateRoom} className={styles.login}>
+              entrar com <FaGooglePlusSquare size={30} />
+            </button>
+            {/* </Link> */}
+            <a href="/" className={styles.returnToBrowse}>
+              voltar a navegar
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 // ----------------------------------------------------------------------------------------------------
