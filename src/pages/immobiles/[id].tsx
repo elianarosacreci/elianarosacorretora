@@ -17,7 +17,7 @@ import { MdContentCopy } from 'react-icons/md'
 import { ImWhatsapp } from 'react-icons/im'
 import { SiGooglemaps } from 'react-icons/si'
 
-import firebaseController from '../../services/firebaseController'
+// import firebaseController from '../../services/firebaseController'
 
 import { Carousel } from 'react-bootstrap'
 import { Footer } from '../../components/Footer'
@@ -264,7 +264,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.params
     let idx = id.toString()
     idx = idx.split('----')[1]
-    const immobile = await firebaseController.getImmobileById(idx)
+    // const immobile = await firebaseController.getImmobileById(idx)
+    const immobile = {
+        id: "",
+        title: "",
+        code: "",
+        images: [],
+        footage: "",
+        footageUseful: "",
+        bedrooms: "",
+        bathrooms: "",
+        suites: "",
+        vacancies: "",
+        features: [],
+        descriptionTitle: "",
+        description: "",
+        address: "",
+        price: "",
+        nearbyTrainsAndSubways: [],
+        status: "",
+        kind: "",
+        imageCard: "",
+        slug: ""
+    }
     // const attractivePricesList = await firebaseController.getAttractivePrices()
     return {
         props: {

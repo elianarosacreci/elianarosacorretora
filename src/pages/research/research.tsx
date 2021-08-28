@@ -3,7 +3,7 @@ import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import firebaseController from '../../services/firebaseController'
+// import firebaseController from '../../services/firebaseController'
 
 import { Footer } from '../../components/Footer'
 import { GetServerSideProps, GetStaticProps } from 'next'
@@ -190,7 +190,8 @@ export default function Research({ allImobiles }: ImmobileProps) {
 // ----------------------------------------------------------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const allImobiles = await firebaseController.getAllImmobiles()
+    // const allImobiles = await firebaseController.getAllImmobiles()
+    const allImobiles = []
 
     return {
         props: {

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { GetServerSideProps } from 'next'
 
-import firebaseController from '../services/firebaseController'
+// import firebaseController from '../services/firebaseController'
 
 import { Footer } from '../components/Footer'
 
@@ -204,15 +204,15 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const attractivePricesList = await firebaseController.getAttractivePrices()
-  const justArrivedList = await firebaseController.getJustArrived()
-  const mostPopularsList = await firebaseController.getMostPopular()
+  // const attractivePricesList = await firebaseController.getAttractivePrices()
+  // const justArrivedList = await firebaseController.getJustArrived()
+  // const mostPopularsList = await firebaseController.getMostPopular()
 
   return {
     props: {
-      attractivePricesList,
-      justArrivedList,
-      mostPopularsList
+      attractivePricesList: [],
+      justArrivedList: [],
+      mostPopularsList: []
     }
   }
 }
