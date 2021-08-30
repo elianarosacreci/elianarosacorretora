@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, ReactNode, useRef } from "react";
 import firebase from "firebase";
 import "firebase/auth";
-// import "firebase/database";
+import "firebase/database";
 
 type User = {
   id: string;
@@ -12,7 +12,7 @@ type AuthContextType = {
   user: User | undefined;
   signInWithGoogle: () => Promise<void>;
   auth: firebase.auth.Auth;
-  // database: any;
+  database: firebase.database.Database;
   firebase: typeof firebase;
 };
 
@@ -25,7 +25,7 @@ export const AuthContext = createContext({} as AuthContextType);
 export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
   const auth = useRef<firebase.auth.Auth>(null);
-  // const database = useRef<firebase.database.Database>(null);
+  const database = useRef<firebase.database.Database>(null);
 
   useEffect(() => {
     const firebaseConfig = {
@@ -72,7 +72,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     auth.current = firebase.auth();
-    // database.current = firebase.database();
+    database.current = firebase.database();
 
     const result = await firebase.auth().signInWithPopup(provider);
 
@@ -95,7 +95,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       value={{
         user,
         signInWithGoogle,
-        // database: database.current,
+        database: database.current,
         auth: auth.current,
         firebase,
       }}
