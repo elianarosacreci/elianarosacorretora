@@ -1,12 +1,12 @@
-import styles from './home.module.scss'
-import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 
-// import firebaseController from '../services/firebaseController'
-
+import styles from './home.module.scss'
+import Image from 'next/image'
 import { Footer } from '../components/Footer'
+
+import firebaseController from '../services/firebaseController'
 
 
 type Immobiles = {
@@ -37,15 +37,6 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
   const [districtAndCity, setDistrictAndCity] = useState('')
   const [codeImmobile, setCodeImmobile] = useState('')
 
-  const [researchFields, setResearchFields] = useState(true)
-  function onResearchFieldsOrResearchCode() {
-    if (researchFields == true) {
-      setResearchFields(false)
-    } else {
-      setResearchFields(true)
-    }
-  }
-
   const router = useRouter()
   const preventDefault = f => e => {
     e.preventDefault()
@@ -65,42 +56,26 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
       <section className={styles.imageHome}>
         <h1>Encontre o seu próximo imóvel!</h1>
 
-        {researchFields == true ?
-          <div className={styles.researchFields}>
-            <select
-              style={{ width: 200 }}
-              defaultValue="prontoParaMorar"
-              onChange={event => setAcquisitionKindSelect(event.target.value)}
-            >
-              <option value="prontoParaMorar">Pronto para Morar</option>
-              <option value="naPlanta">Na Planta</option>
-              <option value="emConstrucao">Em Construção</option>
-            </select>
+        <div className={styles.researchFields}>
+          <select
+            style={{ width: 200 }}
+            defaultValue="prontoParaMorar"
+            onChange={event => setAcquisitionKindSelect(event.target.value)}
+          >
+            <option value="prontoParaMorar">Pronto para Morar</option>
+            <option value="naPlanta">Na Planta</option>
+            <option value="emConstrucao">Em Construção</option>
+          </select>
 
-            <input
-              style={{ width: 380 }}
-              type="text"
-              placeholder="Digite o nome de um bairro ou cidade..."
-              onChange={event => setDistrictAndCity(event.target.value)}
-            />
+          <input
+            style={{ width: 380 }}
+            type="text"
+            placeholder="Digite o nome de um bairro ou cidade..."
+            onChange={event => setDistrictAndCity(event.target.value)}
+          />
 
-            <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
-          </div>
-          :
-          <div className={styles.researchCode}>
-            <input
-              style={{ width: 380 }}
-              type="text"
-              placeholder="Digite o código do imóvel..."
-              onChange={event => setCodeImmobile(event.target.value)}
-            />
-
-            <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
-          </div>}
-
-        {/* <button className={styles.researchFieldsOrResearchCode} type="button" onClick={onResearchFieldsOrResearchCode}>
-          {researchFields == true ? <span>Buscar por código do imóvel →</span> : <span>← Buscar por localização</span>}
-        </button> */}
+          <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
+        </div>
       </section>
 
       <section className={styles.immobileList}>
@@ -204,15 +179,15 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  // const attractivePricesList = await firebaseController.getAttractivePrices()
-  // const justArrivedList = await firebaseController.getJustArrived()
-  // const mostPopularsList = await firebaseController.getMostPopular()
+  const attractivePricesList = await firebaseController.getAttractivePrices()
+  const justArrivedList = await firebaseController.getJustArrived()
+  const mostPopularsList = await firebaseController.getMostPopular()
 
   return {
     props: {
-      attractivePricesList: [],
-      justArrivedList: [],
-      mostPopularsList: []
+      attractivePricesList,
+      justArrivedList,
+      mostPopularsList
     }
   }
 }

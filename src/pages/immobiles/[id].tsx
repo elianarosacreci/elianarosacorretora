@@ -1,8 +1,10 @@
-import styles from './immobile.module.scss';
 import React from 'react';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { GetServerSideProps, GetStaticProps } from 'next';
-import Image from 'next/image';
+
+import styles from './immobile.module.scss';
+import { Carousel } from 'react-bootstrap'
+import { Footer } from '../../components/Footer'
 
 import { BiArea } from 'react-icons/bi'
 import { GiResize } from 'react-icons/gi'
@@ -17,10 +19,7 @@ import { MdContentCopy } from 'react-icons/md'
 import { ImWhatsapp } from 'react-icons/im'
 import { SiGooglemaps } from 'react-icons/si'
 
-// import firebaseController from '../../services/firebaseController'
-
-import { Carousel } from 'react-bootstrap'
-import { Footer } from '../../components/Footer'
+import firebaseController from '../../services/firebaseController'
 
 
 type Immobile = {
@@ -53,13 +52,11 @@ type NearbyTrainsAndSubways = {
 
 type ImmobileProps = {
     immobile: Immobile
-    // attractivePricesList: Immobile[]
+    attractivePricesList: Immobile[]
 }
 
 
 export default function Immobile({ immobile }: ImmobileProps) {
-
-    const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
     function getImmobileStatus() {
         if (immobile.status == 'Pronto pra Morar') {
@@ -79,7 +76,6 @@ export default function Immobile({ immobile }: ImmobileProps) {
             </>)
         }
     }
-
 
     return (
         <div>
@@ -211,38 +207,6 @@ export default function Immobile({ immobile }: ImmobileProps) {
                 </div>
             </div>
 
-            {/* <div className={styles.immobileList}>
-                <h1>Você Vai Gostar Também</h1>
-                <div>
-                    <ul>
-                        {attractivePricesList.map((attractivePrices) => {
-                            return (
-                                <li key={attractivePrices.id}>
-                                    <a href={`/immobiles/${attractivePrices.slug}----${attractivePrices.id}`} target="_blank">
-                                        <div className={styles.immobileCards}>
-                                            <Image
-                                                width={500}
-                                                height={500}
-                                                src={attractivePrices.imageCard}
-                                                objectFit="cover"
-                                            />
-                                            <div className={styles.container}>
-                                                <h2>{attractivePrices.price}</h2>
-                                                <p><b>{attractivePrices.footage}</b>m² <b>{attractivePrices.bedrooms}</b> Quartos <b>{attractivePrices.bathrooms}</b> Banheiros <b>{attractivePrices.vacancies}</b> Vaga</p>
-                                                {attractivePrices.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
-                                                    <p>{`${attractivePrices.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
-                                                    <p>{attractivePrices.descriptionTitle}</p>}
-                                                <span>VER OS DETALHES →</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </div>
-            </div> */}
-
             <Footer />
         </div>
     )
@@ -250,49 +214,16 @@ export default function Immobile({ immobile }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-// export async function getStaticPaths() {
-//     let idx = await firebaseController.getImmobileToStaticPath()
-//     return {
-//         paths: [
-//             { params: { id: `a----${idx}` } }
-//         ],
-//         fallback: 'blocking'
-//     }
-// };
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.params
     let idx = id.toString()
     idx = idx.split('----')[1]
-    // const immobile = await firebaseController.getImmobileById(idx)
-    const immobile = {
-        id: "",
-        title: "",
-        code: "",
-        images: [],
-        footage: "",
-        footageUseful: "",
-        bedrooms: "",
-        bathrooms: "",
-        suites: "",
-        vacancies: "",
-        features: [],
-        descriptionTitle: "",
-        description: "",
-        address: "",
-        price: "",
-        nearbyTrainsAndSubways: [],
-        status: "",
-        kind: "",
-        imageCard: "",
-        slug: ""
-    }
-    // const attractivePricesList = await firebaseController.getAttractivePrices()
+    const immobile = await firebaseController.getImmobileById(idx)
+    const attractivePricesList = await firebaseController.getAttractivePrices()
     return {
         props: {
             immobile,
-            // attractivePricesList
+            attractivePricesList
         },
-        // revalidate: 60 * 60 * 24
     }
 }

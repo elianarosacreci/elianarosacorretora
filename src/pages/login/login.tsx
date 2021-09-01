@@ -1,6 +1,6 @@
-import styles from "./login.module.scss";
-
 import React from "react";
+
+import styles from "./login.module.scss";
 
 import { FaGooglePlusSquare } from "react-icons/fa";
 
@@ -15,7 +15,13 @@ export default function Login() {
     async function handleCreateRoom(e: React.FormEvent) {
         e.preventDefault();
         await signInWithGoogle();
-        router.push("/researchAdmin/researchAdmin");
+        console.log('LOGIN/USER: ', user);
+
+        if (user) {
+            router.push("/researchAdmin/researchAdmin");
+        } else {
+            router.push("/");
+        }
     }
 
     return (

@@ -1,12 +1,12 @@
-import styles from './research.module.scss'
 import React from 'react'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+
+import styles from './research.module.scss'
 import Image from 'next/image'
-
-// import firebaseController from '../../services/firebaseController'
-
 import { Footer } from '../../components/Footer'
-import { GetServerSideProps, GetStaticProps } from 'next'
+
+import firebaseController from '../../services/firebaseController'
 
 
 type Immobile = {
@@ -29,7 +29,6 @@ type ImmobileProps = {
 export default function Research({ allImobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
-
 
     return (
         <div>
@@ -190,8 +189,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
 // ----------------------------------------------------------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    // const allImobiles = await firebaseController.getAllImmobiles()
-    const allImobiles = []
+    const allImobiles = await firebaseController.getAllImmobiles()
 
     return {
         props: {

@@ -1,12 +1,11 @@
-import styles from './researchAdmin.module.scss'
 import React, { useEffect, useState } from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-
-import { Footer } from '../../components/Footer'
 import { GetServerSideProps } from 'next'
 
+import styles from './researchAdmin.module.scss'
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
+import Image from 'next/image'
+import Head from 'next/head'
+import { Footer } from '../../components/Footer'
 
 import { MdLibraryAdd } from 'react-icons/md'
 import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
@@ -92,6 +91,9 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobileIdx, setImmobileIdx] = useState('')
 
     const [addOrUpdateModalShow, setAddOrUpdateModalShow] = useState(false)
+    const [immobileIdToUpdate, setImmobileIdToUpdate] = useState('')
+    const [actionType, setActionType] = useState('')
+
     const handleAddOrUpdateModalClose = () => {
         setAddOrUpdateModalShow(false)
 
@@ -134,8 +136,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileComments('')
     }
 
-    const [immobileIdToUpdate, setImmobileIdToUpdate] = useState('')
-
     const addImmobileImagesPreview = async (target: HTMLInputElement) => {
         let imagesListPreview = []
         for (let i = 0; i < target.files.length; i++) {
@@ -160,7 +160,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileImages(temp);
     }
 
-    const [actionType, setActionType] = useState('')
     useEffect(() => {
         async function actionTypeEffect() {
             if (actionType === "Create") {

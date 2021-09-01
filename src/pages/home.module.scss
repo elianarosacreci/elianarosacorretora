@@ -64,23 +64,6 @@
             }
         }
     }
-
-    .researchFieldsOrResearchCode {
-        margin-top: 2rem;
-        padding: 0.5rem 1rem;
-        background-color: var(--pink-500);
-        font-weight: bold;
-        border: none;
-        // border-radius: 0.5rem;
-
-        span {
-            color: var(--white);
-        }
-
-        &:hover {
-            background: var(--pink-400);
-        }
-    }
 }
 
 .immobileList {
