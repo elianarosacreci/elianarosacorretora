@@ -354,6 +354,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             await firebaseController.updateImmobile(immobileToSave, immobileIdx)
             alert('Imóvel atualizado!')
         }
+        
         handleAddOrUpdateModalClose()
         window.location.reload()
         return
