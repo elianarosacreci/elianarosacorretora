@@ -93,7 +93,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     const [addOrUpdateModalShow, setAddOrUpdateModalShow] = useState(false)
     const handleAddOrUpdateModalClose = () => {
-        setAddOrUpdateModalShow(false)
+        setActionType('')
 
         setImmobileStatus('')
         setImmobileStatusNaPlanta(false)
@@ -113,7 +113,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileKindLoja(false)
         setImmobileKindImovelComercial(false)
 
-        setActionType('')
         setImmobileTitle('')
         setImmobileImages([])
         setImmobileFootage('')
@@ -132,6 +131,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileNearbyTrainsAndSubways('')
         setImmobilePrice('')
         setImmobileComments('')
+
+        setAddOrUpdateModalShow(false)
     }
 
     const [immobileIdToUpdate, setImmobileIdToUpdate] = useState('')
@@ -153,7 +154,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             setImmobileImages(imagesListPreview)
         }
     }
-
     const removeImmobileImagesPreview = idx => {
         const temp = [...immobileImages];
         temp.splice(idx, 1);
@@ -163,6 +163,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [actionType, setActionType] = useState('')
     useEffect(() => {
         async function actionTypeEffect() {
+
             if (actionType === "Create") {
                 setImmobileStatusNaPlanta(false)
 
@@ -203,6 +204,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileComments('')
             }
             if (actionType === "Update") {
+
                 let immobileToUpdate: any = await firebaseController.getImmobileByIdToUpdate(immobileIdToUpdate)
 
                 setImmobileStatus(immobileToUpdate.status)
@@ -290,6 +292,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     }, [actionType])
 
     async function addOrUpdateImmobile() {
+
         if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileFootageUseful == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
             immobileStreet == '' || immobileNumber == '' || immobileState == '' || immobileDistrict == '' || immobileCity == '' || immobileFeatures == '' || immobileNearbyTrainsAndSubways == '' ||
             immobileStatus == '' || immobileKind == '' || immobilePrice == '' || immobileComments == '') {
@@ -351,7 +354,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             await firebaseController.updateImmobile(immobileToSave, immobileIdx)
             alert('Imóvel atualizado!')
         }
-        setAddOrUpdateModalShow(false)
+        handleAddOrUpdateModalClose()
         window.location.reload()
         return
     }
