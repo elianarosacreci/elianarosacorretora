@@ -1,17 +1,15 @@
 import firebase from "firebase";
 
-if (firebase.apps.length == 0) {
-  const firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY,
-    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_DATABASE_URL,
-    projectId: process.env.REACT_APP_PROJECT_ID,
-    appId: process.env.REACT_APP_APP_ID,
-  };
+let app;
 
-  firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  app = firebase.initializeApp({
+    apiKey: "AIzaSyB2ZdSarj7pzn0Qq1BL4naSCESqqAOMbtM",
+    authDomain: "site-eliana-corretora.firebaseapp.com",
+    databaseURL: "https://site-eliana-corretora-default-rtdb.firebaseio.com",
+  });
 } else {
-  firebase.app();
+  app = firebase.app();
 }
 
-export { firebase };
+export default app;

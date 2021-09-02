@@ -1,10 +1,9 @@
-import {firebase} from './firebase'
+import app from './firebase'
 
-const database = firebase.database() 
 async function getAttractivePrices() {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
                 let result = [];
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
@@ -34,7 +33,7 @@ async function getAttractivePrices() {
 async function getJustArrived() {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
                 let result = [];
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
@@ -64,7 +63,7 @@ async function getJustArrived() {
 async function getMostPopular() {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
                 let result = [];
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
@@ -94,7 +93,7 @@ async function getMostPopular() {
 async function getImmobileById(id) {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
                 let idx = Object.keys(snapshot.val())[0]
                 resolve({
                     id: snapshot.val()[idx].id,
@@ -129,7 +128,7 @@ async function getImmobileById(id) {
 async function getAllImmobiles() {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").on('value', (snapshot) => {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
                 let result = [];
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
@@ -159,7 +158,7 @@ async function getAllImmobiles() {
 async function getNextImmobileLength() {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").on('value', (snapshot) => {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
                 let keys = Object.keys(snapshot.val())
                 resolve(keys.length)
             }, (err) => {
@@ -177,7 +176,7 @@ async function insertImmobile(immobile) {
     return new Promise(async (resolve, reject) => {
         try {
             let idx = await getNextImmobileLength()
-            await database.ref(`immobiles/${idx}`).set(immobile);
+            await app.database().ref(`immobiles/${idx}`).set(immobile);
             resolve('ok')
         } catch (error) {
             console.log('services - firebaseController.js - insertImmobile - Erro: ', error);
@@ -189,7 +188,7 @@ async function insertImmobile(immobile) {
 async function getImmobileIdx(id) {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").orderByChild('id').equalTo(id).on('value', async (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', async (snapshot) => {
                 let idx = Object.keys(snapshot.val())[0]
                 resolve(idx)
             }, (err) => {
@@ -207,7 +206,7 @@ async function removeImmobileById(id) {
     return new Promise(async (resolve, reject) => {
         try {
             let idx = await getImmobileIdx(id);
-            await database.ref(`immobiles/${idx}`).remove()
+            await app.database().ref(`immobiles/${idx}`).remove()
                 .then(function () {
                     console.log("Remove succeeded.")
                     resolve('ok')
@@ -226,7 +225,7 @@ async function removeImmobileById(id) {
 async function getImmobileByIdToUpdate(id) {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
+            await app.database().ref("immobiles").orderByChild('id').equalTo(id).on('value', (snapshot) => {
                 let idx = Object.keys(snapshot.val())[0]
                 resolve({
                     id: snapshot.val()[idx].id,
@@ -268,7 +267,7 @@ async function getImmobileByIdToUpdate(id) {
 async function updateImmobile(immobile, idx) {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref(`immobiles/${idx}`).set(immobile);
+            await app.database().ref(`immobiles/${idx}`).set(immobile);
             resolve('ok')
         } catch (error) {
             console.log('services - firebaseController.js - updateImmobile - Erro: ', error);
@@ -280,7 +279,7 @@ async function updateImmobile(immobile, idx) {
 async function getImmobileToStaticPath() {
     return new Promise(async (resolve, reject) => {
         try {
-            await database.ref("immobiles").on('value', (snapshot) => {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
                 let idx = snapshot.val()[0].id
                 resolve(idx)
             }, (err) => {
