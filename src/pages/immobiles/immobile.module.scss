@@ -42,7 +42,7 @@
         .immobileOptions {
             padding-top: 4rem;
 
-            ul {
+             ul {
                 list-style: none;
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
@@ -116,7 +116,7 @@
                 ul {
                     list-style: none;
                     display: grid;
-                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-columns: repeat(3, 1fr);
 
                     li {
                         span {
@@ -202,81 +202,6 @@
                     display: block;
                     text-align: center;
                     font-size: larger;
-                }
-            }
-        }
-    }
-}
-
-.immobileList {
-    text-align: center;
-    margin: 0rem 10rem;
-
-    h1 {
-        padding-top: 7rem;
-        padding-bottom: 1rem;
-        margin-bottom: 2rem;
-        font-size: 40px;
-        color: var(--black);
-    }
-
-    ul {
-        list-style: none;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 7rem;
-
-        li {
-            position: relative;
-            display: flex;
-            align-items: center;
-
-            a {
-                color: inherit;
-                text-decoration: none;
-            }
-
-            .immobileCards {
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-                text-align: justify;
-                transition: 0.3s;
-                width: 20rem;
-                border-radius: 5px;
-                padding-bottom: 1rem;
-
-                img {
-                    width: 100%;
-                    border-radius: 5px 5px 0 0;
-                }
-
-                .container {
-                    padding: 1rem 1rem;
-
-                    h2 {
-                        padding-bottom: 1rem;
-                        color: var(--gray-800);
-                    }
-
-                    p {
-                        padding-bottom: 1rem;
-                    }
-
-                    span {
-                        font-weight: bold;
-                        color: var(--green-800);
-                    }
-                }
-
-                &:hover {
-                    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
-
-                    img {
-                        opacity: 70%;
-                    }
-
-                    span {
-                        color: var(--pink-800);
-                    }
                 }
             }
         }
