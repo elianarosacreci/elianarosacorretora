@@ -139,7 +139,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Label className="mb-3">Status do Imóvel</Form.Label>
+                            <Form.Label className="mb-3">Tipos de Imóvel</Form.Label>
                             <Form.Group className="mb-3">
                                 <Form.Check inline name="tipo" type="checkbox" label="Apartamento" onChange={() => {
                                     immobileKindApartamento ? setImmobileKindApartamento(false) : setImmobileKindApartamento(true)
