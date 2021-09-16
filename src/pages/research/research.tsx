@@ -213,7 +213,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
                                                     />
                                                     <div className={styles.container}>
                                                         <h2>{immobile.price}</h2>
-                                                        <p><b>{immobile.footage}</b>m² <b>{immobile.bedrooms}</b> Quartos <b>{immobile.bathrooms}</b> Banheiros <b>{immobile.vacancies}</b> Vaga</p>
+                                                        <p><b>{immobile.footage}</b>m²  <b>{immobile.bedrooms}  </b> {immobile.bedrooms == "1" ? "Quarto" : "Quartos"}  <b>{immobile.bathrooms}</b> {immobile.bathrooms == "1" ? "Banheiro" : "Banheiros"}  <b>{immobile.vacancies}</b> {immobile.vacancies == "1" ? "Vaga" : "Vagas"}</p>
                                                         {immobile.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
                                                             <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
                                                             <p>{immobile.descriptionTitle}</p>}
