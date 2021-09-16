@@ -12,24 +12,6 @@
         color: var(--white);
         display: block;
 
-        .research {
-            display: flex;
-            margin-bottom: 2rem;
-
-            .researchButton {
-                padding: 0.5rem 1rem;
-                background-color: var(--pink-500);
-                color: var(--white);
-                font-weight: bold;
-                border-radius: 0.3rem;
-                border: none;
-
-                &:hover {
-                    background: var(--pink-400);
-                }
-            }
-        }
-
         .address {
             // display: flex;
             margin-bottom: 2rem;
