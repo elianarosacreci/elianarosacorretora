@@ -36,8 +36,6 @@ type ImmobileProps = {
 
 export default function Research({ allImobiles }: ImmobileProps) {
 
-    console.log('ALL IMMOBILES:', JSON.stringify(allImobiles));
-
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
     const [immobileStatusNaPlanta, setImmobileStatusNaPlanta] = useState(false)
@@ -67,17 +65,52 @@ export default function Research({ allImobiles }: ImmobileProps) {
     const [immobileCity, setImmobileCity] = useState('')
     const [immobileFeatures, setImmobileFeatures] = useState('')
 
-
+    // ADVANCED FILTER
     const [immobiles, setImmobiles] = useState(allImobiles)
-
     useEffect(() => {
         // PRICE
-        var newImmobile = _.filter(allImobiles, function (o) {
+        let newImmobile = _.filter(allImobiles, function (o) {
             let min, max;
             immobilePriceMin == '' ? min = 0 : min = parseInt(immobilePriceMin)
             immobilePriceMax == '' ? max = Infinity : max = parseInt(immobilePriceMax)
             return o.price >= min && o.price <= max
-        });
+        })
+
+        // KIND
+        let arrKind = [];
+        [
+            { status: 'Apartamento', value: immobileKindApartamento },
+            { status: 'Cobertura', value: immobileKindCobertura },
+            { status: 'Casa', value: immobileKindCasa },
+            { status: 'Casa de Condominio', value: immobileKindCasaCondominio },
+            { status: 'Terreno', value: immobileKindTerreno },
+            { status: 'Conjunto Comercial', value: immobileKindConjuntoComercial },
+            { status: 'Galpão', value: immobileKindGalpao },
+            { status: 'Sitio/Fazenda', value: immobileKindSitioFazenda },
+            { status: 'Prédio Inteiro', value: immobileKindPredioInteiro },
+            { status: 'Loja', value: immobileKindLoja },
+            { status: 'Imóvel Comercial', value: immobileKindImovelComercial }
+        ].map((element) => { if (element.value) { arrKind.push(element.status) } })
+        if (arrKind.length > 0) {
+            console.log('kind', arrKind);
+            newImmobile = _.filter(newImmobile, function (o) {
+                if (arrKind.includes(o.kind)) return o
+            })
+        }
+
+        // STATUS
+        let arrStatus = [];
+        [
+            { status: 'Na Planta', value: immobileStatusNaPlanta },
+            { status: 'Em Construção', value: immobileStatusEmConstrucao },
+            { status: 'Pronto pra Morar', value: immobileStatusProntoPraMorar }
+        ].map((element) => { if (element.value) { arrStatus.push(element.status) } })
+        if (arrStatus.length > 0) {
+            newImmobile = _.filter(newImmobile, function (o) {
+                if (arrStatus.includes(o.status)) return o
+            })
+        }
+
 
         setImmobiles(newImmobile)
     }, [
