@@ -22,11 +22,15 @@ type Immobile = {
     descriptionTitle: string,
     imageCard: string,
     price: number,
-    uf: string,
+    state: string,
     city: string,
     features: Array<string>,
     status: string,
-    kind: string
+    kind: string,
+    footageInt: number,
+    bedroomsInt: number,
+    bathroomsInt: number,
+    vacanciesInt: number
 }
 
 type ImmobileProps = {
@@ -76,6 +80,55 @@ export default function Research({ allImobiles }: ImmobileProps) {
             return o.price >= min && o.price <= max
         })
 
+        // FOOTAGE
+        newImmobile = _.filter(newImmobile, function (o) {
+            let min, max;
+            immobileFootageMin == '' ? min = 0 : min = parseInt(immobileFootageMin)
+            immobileFootageMax == '' ? max = Infinity : max = parseInt(immobileFootageMax)
+            return o.footageInt >= min && o.footageInt <= max
+        })
+
+        // BEDROOMS
+        if (immobileBedrooms != '') {
+            newImmobile = _.filter(newImmobile, function (o) {
+                let bedrooms
+                immobileBedrooms == '' ? bedrooms = '' : bedrooms = parseInt(immobileBedrooms)
+                return o.bedroomsInt == bedrooms
+            })
+        }
+
+        // BATHROOMS
+        if (immobileBathrooms != '') {
+            newImmobile = _.filter(newImmobile, function (o) {
+                let bathrooms
+                immobileBathrooms == '' ? bathrooms = '' : bathrooms = parseInt(immobileBathrooms)
+                return o.bathroomsInt == bathrooms
+            })
+        }
+
+        // VACANCIES
+        if (immobileVacancies != '') {
+            newImmobile = _.filter(newImmobile, function (o) {
+                let vacancies
+                immobileVacancies == '' ? vacancies = '' : vacancies = parseInt(immobileVacancies)
+                return o.vacanciesInt == vacancies
+            })
+        }
+
+        // STATE
+        if (immobileState != '') {
+            newImmobile = _.filter(newImmobile, function (o) {
+                return o.state.includes(immobileState) == true
+            })
+        }
+
+        // CITY
+        if (immobileCity != '') {
+            newImmobile = _.filter(newImmobile, function (o) {
+                return o.city.includes(immobileCity) == true
+            })
+        }
+
         // KIND
         let arrKind = [];
         [
@@ -110,7 +163,6 @@ export default function Research({ allImobiles }: ImmobileProps) {
                 if (arrStatus.includes(o.status)) return o
             })
         }
-
 
         setImmobiles(newImmobile)
     }, [

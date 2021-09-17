@@ -146,7 +146,11 @@ async function getAllImmobiles() {
                         city: childSnapshot.child('address/city').val(),
                         features: childSnapshot.child('features').val(),
                         status: childSnapshot.child('status').val(),
-                        kind: childSnapshot.child('kind').val()
+                        kind: childSnapshot.child('kind').val(),
+                        footageInt: parseInt(childSnapshot.child('footage').val().replace(/\./, '').replace(/,.*/, '')),
+                        bedroomsInt: parseInt(childSnapshot.child('bedrooms').val()),
+                        bathroomsInt: parseInt(childSnapshot.child('bathrooms').val()),
+                        vacanciesInt: parseInt(childSnapshot.child('vacancies').val()),
                     })
                 });
                 resolve(result)
