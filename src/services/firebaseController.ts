@@ -141,6 +141,11 @@ async function getAllImmobiles() {
                         vacancies: childSnapshot.child('vacancies').val(),
                         descriptionTitle: childSnapshot.child('descriptionTitle').val(),
                         imageCard: childSnapshot.child('images/0').val(),
+                        price: childSnapshot.child('price').val(),
+                        state: childSnapshot.child('address/state').val(),
+                        city: childSnapshot.child('address/city').val(),
+                        features: childSnapshot.child('features').val(),
+                        status: childSnapshot.child('status').val()
                     })
                 });
                 resolve(result)

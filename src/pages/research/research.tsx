@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 
@@ -8,18 +8,24 @@ import { Footer } from '../../components/Footer'
 
 import firebaseController from '../../services/firebaseController'
 import { Col, Form, Row } from 'react-bootstrap'
+var _ = require('lodash');
 
 
 type Immobile = {
     id: string,
     slug: string,
-    price: string,
-    footage: string,
+    priceFormatted: string,
+    footage: number,
     bedrooms: string,
     bathrooms: string,
     vacancies: string,
     descriptionTitle: string,
     imageCard: string,
+    price: number,
+    uf: string,
+    city: string,
+    features: Array<string>,
+    status: string
 }
 
 type ImmobileProps = {
@@ -28,6 +34,8 @@ type ImmobileProps = {
 
 
 export default function Research({ allImobiles }: ImmobileProps) {
+
+    console.log('ALL IMMOBILES:', allImobiles);
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
@@ -59,6 +67,46 @@ export default function Research({ allImobiles }: ImmobileProps) {
     const [immobileFeatures, setImmobileFeatures] = useState('')
 
 
+    const [immobiles, setImmobiles] = useState(allImobiles)
+
+    useEffect(() => {
+        // PRICE
+        var newImmobile = _.filter(allImobiles, function (o) {
+            let min, max;
+            immobilePriceMin == '' ? min = 0 : min = parseInt(immobilePriceMin)
+            immobilePriceMax == '' ? max = Infinity : max = parseInt(immobilePriceMax)
+            return o.price >= min && o.price <= max
+        });
+
+        setImmobiles(newImmobile)
+    }, [
+        immobileStatusNaPlanta,
+        immobileStatusEmConstrucao,
+        immobileStatusProntoPraMorar,
+        immobileKindApartamento,
+        immobileKindCobertura,
+        immobileKindCasa,
+        immobileKindCasaCondominio,
+        immobileKindTerreno,
+        immobileKindConjuntoComercial,
+        immobileKindGalpao,
+        immobileKindSitioFazenda,
+        immobileKindPredioInteiro,
+        immobileKindLoja,
+        immobileKindImovelComercial,
+        immobilePriceMin,
+        immobilePriceMax,
+        immobileFootageMin,
+        immobileFootageMax,
+        immobileBedrooms,
+        immobileBathrooms,
+        immobileVacancies,
+        immobileState,
+        immobileCity,
+        immobileFeatures,
+    ])
+
+
     return (
         <div>
             <Head>
@@ -74,7 +122,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Preço Mínimo</Form.Label>
-                                    <Form.Control value={immobilePriceMin.toString()} type="text" onChange={event => setImmobilePriceMin(event.target.value)} />
+                                    <Form.Control value={immobilePriceMin.toString()} pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" type="text" onChange={event => setImmobilePriceMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -197,10 +245,10 @@ export default function Research({ allImobiles }: ImmobileProps) {
                 <div className={styles.immobilesContent}>
 
                     <div className={styles.immobileList}>
-                        <h1>{allImobiles.length} Imóveis Encontrados</h1>
+                        <h1>{immobiles.length} Imóveis Encontrados</h1>
                         <div>
                             <ul>
-                                {allImobiles.map((immobile) => {
+                                {immobiles.map((immobile) => {
                                     return (
                                         <li key={immobile.id}>
                                             <a href={`/immobiles/${immobile.slug}----${immobile.id}`} target="_blank">
@@ -212,7 +260,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
                                                         objectFit="cover"
                                                     />
                                                     <div className={styles.container}>
-                                                        <h2>{immobile.price}</h2>
+                                                        <h2>{immobile.priceFormatted}</h2>
                                                         <p><b>{immobile.footage}</b>m²  <b>{immobile.bedrooms}  </b> {immobile.bedrooms == "1" ? "Quarto" : "Quartos"}  <b>{immobile.bathrooms}</b> {immobile.bathrooms == "1" ? "Banheiro" : "Banheiros"}  <b>{immobile.vacancies}</b> {immobile.vacancies == "1" ? "Vaga" : "Vagas"}</p>
                                                         {immobile.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
                                                             <p>{`${immobile.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
