@@ -145,7 +145,8 @@ async function getAllImmobiles() {
                         state: childSnapshot.child('address/state').val(),
                         city: childSnapshot.child('address/city').val(),
                         features: childSnapshot.child('features').val(),
-                        status: childSnapshot.child('status').val()
+                        status: childSnapshot.child('status').val(),
+                        kind: childSnapshot.child('kind').val()
                     })
                 });
                 resolve(result)

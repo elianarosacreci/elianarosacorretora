@@ -25,7 +25,8 @@ type Immobile = {
     uf: string,
     city: string,
     features: Array<string>,
-    status: string
+    status: string,
+    kind: string
 }
 
 type ImmobileProps = {
@@ -35,7 +36,7 @@ type ImmobileProps = {
 
 export default function Research({ allImobiles }: ImmobileProps) {
 
-    console.log('ALL IMMOBILES:', allImobiles);
+    console.log('ALL IMMOBILES:', JSON.stringify(allImobiles));
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
