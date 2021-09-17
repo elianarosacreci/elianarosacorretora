@@ -155,13 +155,13 @@ export default function Research({ allImobiles }: ImmobileProps) {
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Preço Mínimo</Form.Label>
+                                    <Form.Label><b><b>Preço Mínimo</b></b></Form.Label>
                                     <Form.Control value={immobilePriceMin.toString()} pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" type="text" onChange={event => setImmobilePriceMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Preço Máximo</Form.Label>
+                                    <Form.Label><b><b>Preço Máximo</b></b></Form.Label>
                                     <Form.Control value={immobilePriceMax.toString()} type="text" onChange={event => setImmobilePriceMax(event.target.value)} />
                                 </Form.Group>
                             </Col>
@@ -169,59 +169,59 @@ export default function Research({ allImobiles }: ImmobileProps) {
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Área Mínima</Form.Label>
-                                    <Form.Control value={immobileFootageMin} type="number" onChange={event => setImmobileFootageMin(event.target.value)} />
+                                    <Form.Label><b><b>Área Mínima</b></b></Form.Label>
+                                    <Form.Control value={immobileFootageMin} type="text" onChange={event => setImmobileFootageMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Área Máxima</Form.Label>
-                                    <Form.Control value={immobileFootageMax} type="number" onChange={event => setImmobileFootageMax(event.target.value)} />
+                                    <Form.Label><b><b>Área Máxima</b></b></Form.Label>
+                                    <Form.Control value={immobileFootageMax} type="text" onChange={event => setImmobileFootageMax(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Quartos</Form.Label>
-                                    <Form.Control value={immobileBedrooms} type="number" onChange={event => setImmobileBedrooms(event.target.value)} />
+                                    <Form.Label><b>Quartos</b></Form.Label>
+                                    <Form.Control value={immobileBedrooms} type="text" onChange={event => setImmobileBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Banheiros</Form.Label>
-                                    <Form.Control value={immobileBathrooms} type="number" onChange={event => setImmobileBathrooms(event.target.value)} />
+                                    <Form.Label><b>Banheiros</b></Form.Label>
+                                    <Form.Control value={immobileBathrooms} type="text" onChange={event => setImmobileBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Vagas</Form.Label>
-                                    <Form.Control value={immobileVacancies} type="number" onChange={event => setImmobileVacancies(event.target.value)} />
+                                    <Form.Label><b>Vagas</b></Form.Label>
+                                    <Form.Control value={immobileVacancies} type="text" onChange={event => setImmobileVacancies(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Col xs={4}>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Estado</Form.Label>
+                                    <Form.Label><b>Estado</b></Form.Label>
                                     <Form.Control value={immobileState} type="text" onChange={event => setImmobileState(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Cidade</Form.Label>
+                                    <Form.Label><b>Cidade</b></Form.Label>
                                     <Form.Control value={immobileCity} type="text" onChange={event => setImmobileCity(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Form.Group className="mb-3">
-                                <Form.Label>Lazer & Características</Form.Label>
+                                <Form.Label><b>Lazer & Características</b></Form.Label>
                                 <Form.Control as="textarea" value={immobileFeatures} type="text" onChange={event => setImmobileFeatures(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Label className="mb-3">Tipos de Imóvel</Form.Label>
+                            <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
                                 <Form.Check inline name="tipo" type="checkbox" label="Apartamento" onChange={() => {
                                     immobileKindApartamento ? setImmobileKindApartamento(false) : setImmobileKindApartamento(true)
@@ -259,7 +259,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Label className="mb-3">Status do Imóvel</Form.Label>
+                            <Form.Label className="mb-3"><b>Status do Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
                                 <Form.Check inline name="status" type="checkbox" label="Na Planta" onChange={() => {
                                     immobileStatusNaPlanta ? setImmobileStatusNaPlanta(false) : setImmobileStatusNaPlanta(true)
