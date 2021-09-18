@@ -19,7 +19,6 @@ type Immobile = {
     id: string
     slug: string
     title: string
-    code: string
     images: string
     footage: string
     bedrooms: string
@@ -46,7 +45,8 @@ type Immobile = {
     footageInt: number,
     bedroomsInt: number,
     bathroomsInt: number,
-    vacanciesInt: number
+    vacanciesInt: number,
+    code: string
 }
 
 type ImmobileProps = {
@@ -82,6 +82,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobileFilterVacancies, setImmobileFilterVacancies] = useState('')
     const [immobileFilterState, setImmobileFilterState] = useState('')
     const [immobileFilterCity, setImmobileFilterCity] = useState('')
+    const [immobileFilterCode, setImmobileFilterCode] = useState('')
     const [immobileFilterFeatures, setImmobileFilterFeatures] = useState('')
 
     // ADVANCED FILTER
@@ -182,6 +183,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             })
         }
 
+        // CODE
+        if (immobileFilterCode != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                return o.code.includes(immobileFilterCode) == true
+            })
+        }
+
         setImmobilesFilter(newImmobileFilter)
     }, [
         immobileFilterStatusNaPlanta,
@@ -207,7 +215,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         immobileFilterVacancies,
         immobileFilterState,
         immobileFilterCity,
-        immobileFilterFeatures,
+        immobileFilterCode,
+        immobileFilterFeatures
     ])
 
     const [immobileStatus, setImmobileStatus] = useState('')
@@ -650,6 +659,14 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                     immobileFilterStatusProntoPraMorar ? setImmobileFilterStatusProntoPraMorar(false) : setImmobileFilterStatusProntoPraMorar(true)
                                 }} checked={immobileFilterStatusProntoPraMorar} />
                             </Form.Group>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label><b>Código</b></Form.Label>
+                                    <Form.Control value={immobileFilterCode} type="text" onChange={event => setImmobileFilterCode(event.target.value)} />
+                                </Form.Group>
+                            </Col>
                         </Row>
                     </Form>
 

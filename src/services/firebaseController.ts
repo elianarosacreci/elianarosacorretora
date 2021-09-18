@@ -151,6 +151,7 @@ async function getAllImmobiles() {
                         bedroomsInt: parseInt(childSnapshot.child('bedrooms').val()),
                         bathroomsInt: parseInt(childSnapshot.child('bathrooms').val()),
                         vacanciesInt: parseInt(childSnapshot.child('vacancies').val()),
+                        code: childSnapshot.child('code').val().toUpperCase()
                     })
                 });
                 resolve(result)
