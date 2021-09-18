@@ -42,111 +42,114 @@ export default function Research({ allImobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
-    const [immobileStatusNaPlanta, setImmobileStatusNaPlanta] = useState(false)
-    const [immobileStatusEmConstrucao, setImmobileStatusEmConstrucao] = useState(false)
-    const [immobileStatusProntoPraMorar, setImmobileStatusProntoPraMorar] = useState(false)
+    const [immobileFilterStatusNaPlanta, setImmobileFilterStatusNaPlanta] = useState(false)
+    const [immobileFilterStatusEmConstrucao, setImmobileFilterStatusEmConstrucao] = useState(false)
+    const [immobileFilterStatusProntoPraMorar, setImmobileFilterStatusProntoPraMorar] = useState(false)
 
-    const [immobileKindApartamento, setImmobileKindApartamento] = useState(false)
-    const [immobileKindCobertura, setImmobileKindCobertura] = useState(false)
-    const [immobileKindCasa, setImmobileKindCasa] = useState(false)
-    const [immobileKindCasaCondominio, setImmobileKindCasaCondominio] = useState(false)
-    const [immobileKindTerreno, setImmobileKindTerreno] = useState(false)
-    const [immobileKindConjuntoComercial, setImmobileKindConjuntoComercial] = useState(false)
-    const [immobileKindGalpao, setImmobileKindGalpao] = useState(false)
-    const [immobileKindSitioFazenda, setImmobileKindSitioFazenda] = useState(false)
-    const [immobileKindPredioInteiro, setImmobileKindPredioInteiro] = useState(false)
-    const [immobileKindLoja, setImmobileKindLoja] = useState(false)
-    const [immobileKindImovelComercial, setImmobileKindImovelComercial] = useState(false)
+    const [immobileFilterKindApartamento, setImmobileFilterKindApartamento] = useState(false)
+    const [immobileFilterKindCobertura, setImmobileFilterKindCobertura] = useState(false)
+    const [immobileFilterKindCasa, setImmobileFilterKindCasa] = useState(false)
+    const [immobileFilterKindCasaCondominio, setImmobileFilterKindCasaCondominio] = useState(false)
+    const [immobileFilterKindTerreno, setImmobileFilterKindTerreno] = useState(false)
+    const [immobileFilterKindConjuntoComercial, setImmobileFilterKindConjuntoComercial] = useState(false)
+    const [immobileFilterKindGalpao, setImmobileFilterKindGalpao] = useState(false)
+    const [immobileFilterKindSitioFazenda, setImmobileFilterKindSitioFazenda] = useState(false)
+    const [immobileFilterKindPredioInteiro, setImmobileFilterKindPredioInteiro] = useState(false)
+    const [immobileFilterKindLoja, setImmobileFilterKindLoja] = useState(false)
+    const [immobileFilterKindImovelComercial, setImmobileFilterKindImovelComercial] = useState(false)
 
-    const [immobilePriceMin, setImmobilePriceMin] = useState('')
-    const [immobilePriceMax, setImmobilePriceMax] = useState('')
-    const [immobileFootageMin, setImmobileFootageMin] = useState('')
-    const [immobileFootageMax, setImmobileFootageMax] = useState('')
-    const [immobileBedrooms, setImmobileBedrooms] = useState('')
-    const [immobileBathrooms, setImmobileBathrooms] = useState('')
-    const [immobileVacancies, setImmobileVacancies] = useState('')
-    const [immobileState, setImmobileState] = useState('')
-    const [immobileCity, setImmobileCity] = useState('')
-    const [immobileFeatures, setImmobileFeatures] = useState('')
+    const [immobileFilterPriceMin, setImmobileFilterPriceMin] = useState('')
+    const [immobileFilterPriceMax, setImmobileFilterPriceMax] = useState('')
+    const [immobileFilterFootageMin, setImmobileFilterFootageMin] = useState('')
+    const [immobileFilterFootageMax, setImmobileFilterFootageMax] = useState('')
+    const [immobileFilterBedrooms, setImmobileFilterBedrooms] = useState('')
+    const [immobileFilterBathrooms, setImmobileFilterBathrooms] = useState('')
+    const [immobileFilterVacancies, setImmobileFilterVacancies] = useState('')
+    const [immobileFilterState, setImmobileFilterState] = useState('')
+    const [immobileFilterCity, setImmobileFilterCity] = useState('')
+    const [immobileFilterFeatures, setImmobileFilterFeatures] = useState('')
 
     // ADVANCED FILTER
-    const [immobiles, setImmobiles] = useState(allImobiles)
+    const [immobilesFilter, setImmobilesFilter] = useState(allImobiles)
     useEffect(() => {
         // PRICE
-        let newImmobile = _.filter(allImobiles, function (o) {
+        let newImmobileFilter = _.filter(allImobiles, function (o) {
             let min, max;
-            immobilePriceMin == '' ? min = 0 : min = parseInt(immobilePriceMin)
-            immobilePriceMax == '' ? max = Infinity : max = parseInt(immobilePriceMax)
+            immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
+            immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
             return o.price >= min && o.price <= max
         })
 
         // FOOTAGE
-        newImmobile = _.filter(newImmobile, function (o) {
+        newImmobileFilter = _.filter(newImmobileFilter, function (o) {
             let min, max;
-            immobileFootageMin == '' ? min = 0 : min = parseInt(immobileFootageMin)
-            immobileFootageMax == '' ? max = Infinity : max = parseInt(immobileFootageMax)
+            immobileFilterFootageMin == '' ? min = 0 : min = parseInt(immobileFilterFootageMin)
+            immobileFilterFootageMax == '' ? max = Infinity : max = parseInt(immobileFilterFootageMax)
             return o.footageInt >= min && o.footageInt <= max
         })
 
         // BEDROOMS
-        if (immobileBedrooms != '') {
-            newImmobile = _.filter(newImmobile, function (o) {
+        if (immobileFilterBedrooms != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
                 let bedrooms
-                immobileBedrooms == '' ? bedrooms = '' : bedrooms = parseInt(immobileBedrooms)
+                immobileFilterBedrooms == '' ? bedrooms = '' : bedrooms = parseInt(immobileFilterBedrooms)
                 return o.bedroomsInt == bedrooms
             })
         }
 
         // BATHROOMS
-        if (immobileBathrooms != '') {
-            newImmobile = _.filter(newImmobile, function (o) {
+        if (immobileFilterBathrooms != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
                 let bathrooms
-                immobileBathrooms == '' ? bathrooms = '' : bathrooms = parseInt(immobileBathrooms)
+                immobileFilterBathrooms == '' ? bathrooms = '' : bathrooms = parseInt(immobileFilterBathrooms)
                 return o.bathroomsInt == bathrooms
             })
         }
 
         // VACANCIES
-        if (immobileVacancies != '') {
-            newImmobile = _.filter(newImmobile, function (o) {
+        if (immobileFilterVacancies != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
                 let vacancies
-                immobileVacancies == '' ? vacancies = '' : vacancies = parseInt(immobileVacancies)
+                immobileFilterVacancies == '' ? vacancies = '' : vacancies = parseInt(immobileFilterVacancies)
                 return o.vacanciesInt == vacancies
             })
         }
 
         // STATE
-        if (immobileState != '') {
-            newImmobile = _.filter(newImmobile, function (o) {
-                return o.state.includes(immobileState) == true
+        if (immobileFilterState != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                return o.state.includes(immobileFilterState) == true
             })
         }
 
         // CITY
-        if (immobileCity != '') {
-            newImmobile = _.filter(newImmobile, function (o) {
-                return o.city.includes(immobileCity) == true
+        if (immobileFilterCity != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                return o.city.includes(immobileFilterCity) == true
             })
         }
+
+        // FEATURES
+
 
         // KIND
         let arrKind = [];
         [
-            { status: 'Apartamento', value: immobileKindApartamento },
-            { status: 'Cobertura', value: immobileKindCobertura },
-            { status: 'Casa', value: immobileKindCasa },
-            { status: 'Casa de Condominio', value: immobileKindCasaCondominio },
-            { status: 'Terreno', value: immobileKindTerreno },
-            { status: 'Conjunto Comercial', value: immobileKindConjuntoComercial },
-            { status: 'Galpão', value: immobileKindGalpao },
-            { status: 'Sitio/Fazenda', value: immobileKindSitioFazenda },
-            { status: 'Prédio Inteiro', value: immobileKindPredioInteiro },
-            { status: 'Loja', value: immobileKindLoja },
-            { status: 'Imóvel Comercial', value: immobileKindImovelComercial }
+            { status: 'Apartamento', value: immobileFilterKindApartamento },
+            { status: 'Cobertura', value: immobileFilterKindCobertura },
+            { status: 'Casa', value: immobileFilterKindCasa },
+            { status: 'Casa de Condominio', value: immobileFilterKindCasaCondominio },
+            { status: 'Terreno', value: immobileFilterKindTerreno },
+            { status: 'Conjunto Comercial', value: immobileFilterKindConjuntoComercial },
+            { status: 'Galpão', value: immobileFilterKindGalpao },
+            { status: 'Sitio/Fazenda', value: immobileFilterKindSitioFazenda },
+            { status: 'Prédio Inteiro', value: immobileFilterKindPredioInteiro },
+            { status: 'Loja', value: immobileFilterKindLoja },
+            { status: 'Imóvel Comercial', value: immobileFilterKindImovelComercial }
         ].map((element) => { if (element.value) { arrKind.push(element.status) } })
         if (arrKind.length > 0) {
             console.log('kind', arrKind);
-            newImmobile = _.filter(newImmobile, function (o) {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
                 if (arrKind.includes(o.kind)) return o
             })
         }
@@ -154,42 +157,42 @@ export default function Research({ allImobiles }: ImmobileProps) {
         // STATUS
         let arrStatus = [];
         [
-            { status: 'Na Planta', value: immobileStatusNaPlanta },
-            { status: 'Em Construção', value: immobileStatusEmConstrucao },
-            { status: 'Pronto pra Morar', value: immobileStatusProntoPraMorar }
+            { status: 'Na Planta', value: immobileFilterStatusNaPlanta },
+            { status: 'Em Construção', value: immobileFilterStatusEmConstrucao },
+            { status: 'Pronto pra Morar', value: immobileFilterStatusProntoPraMorar }
         ].map((element) => { if (element.value) { arrStatus.push(element.status) } })
         if (arrStatus.length > 0) {
-            newImmobile = _.filter(newImmobile, function (o) {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
                 if (arrStatus.includes(o.status)) return o
             })
         }
 
-        setImmobiles(newImmobile)
+        setImmobilesFilter(newImmobileFilter)
     }, [
-        immobileStatusNaPlanta,
-        immobileStatusEmConstrucao,
-        immobileStatusProntoPraMorar,
-        immobileKindApartamento,
-        immobileKindCobertura,
-        immobileKindCasa,
-        immobileKindCasaCondominio,
-        immobileKindTerreno,
-        immobileKindConjuntoComercial,
-        immobileKindGalpao,
-        immobileKindSitioFazenda,
-        immobileKindPredioInteiro,
-        immobileKindLoja,
-        immobileKindImovelComercial,
-        immobilePriceMin,
-        immobilePriceMax,
-        immobileFootageMin,
-        immobileFootageMax,
-        immobileBedrooms,
-        immobileBathrooms,
-        immobileVacancies,
-        immobileState,
-        immobileCity,
-        immobileFeatures,
+        immobileFilterStatusNaPlanta,
+        immobileFilterStatusEmConstrucao,
+        immobileFilterStatusProntoPraMorar,
+        immobileFilterKindApartamento,
+        immobileFilterKindCobertura,
+        immobileFilterKindCasa,
+        immobileFilterKindCasaCondominio,
+        immobileFilterKindTerreno,
+        immobileFilterKindConjuntoComercial,
+        immobileFilterKindGalpao,
+        immobileFilterKindSitioFazenda,
+        immobileFilterKindPredioInteiro,
+        immobileFilterKindLoja,
+        immobileFilterKindImovelComercial,
+        immobileFilterPriceMin,
+        immobileFilterPriceMax,
+        immobileFilterFootageMin,
+        immobileFilterFootageMax,
+        immobileFilterBedrooms,
+        immobileFilterBathrooms,
+        immobileFilterVacancies,
+        immobileFilterState,
+        immobileFilterCity,
+        immobileFilterFeatures,
     ])
 
 
@@ -208,13 +211,13 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Preço Mínimo</b></b></Form.Label>
-                                    <Form.Control value={immobilePriceMin.toString()} pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" type="text" onChange={event => setImmobilePriceMin(event.target.value)} />
+                                    <Form.Control value={immobileFilterPriceMin.toString()} pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" type="text" onChange={event => setImmobileFilterPriceMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Preço Máximo</b></b></Form.Label>
-                                    <Form.Control value={immobilePriceMax.toString()} type="text" onChange={event => setImmobilePriceMax(event.target.value)} />
+                                    <Form.Control value={immobileFilterPriceMax.toString()} type="text" onChange={event => setImmobileFilterPriceMax(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -222,13 +225,13 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Área Mínima</b></b></Form.Label>
-                                    <Form.Control value={immobileFootageMin} type="text" onChange={event => setImmobileFootageMin(event.target.value)} />
+                                    <Form.Control value={immobileFilterFootageMin} type="text" onChange={event => setImmobileFilterFootageMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Área Máxima</b></b></Form.Label>
-                                    <Form.Control value={immobileFootageMax} type="text" onChange={event => setImmobileFootageMax(event.target.value)} />
+                                    <Form.Control value={immobileFilterFootageMax} type="text" onChange={event => setImmobileFilterFootageMax(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -236,19 +239,19 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Quartos</b></Form.Label>
-                                    <Form.Control value={immobileBedrooms} type="text" onChange={event => setImmobileBedrooms(event.target.value)} />
+                                    <Form.Control value={immobileFilterBedrooms} type="text" onChange={event => setImmobileFilterBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Banheiros</b></Form.Label>
-                                    <Form.Control value={immobileBathrooms} type="text" onChange={event => setImmobileBathrooms(event.target.value)} />
+                                    <Form.Control value={immobileFilterBathrooms} type="text" onChange={event => setImmobileFilterBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Vagas</b></Form.Label>
-                                    <Form.Control value={immobileVacancies} type="text" onChange={event => setImmobileVacancies(event.target.value)} />
+                                    <Form.Control value={immobileFilterVacancies} type="text" onChange={event => setImmobileFilterVacancies(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -256,72 +259,72 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             <Col xs={4}>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Estado</b></Form.Label>
-                                    <Form.Control value={immobileState} type="text" onChange={event => setImmobileState(event.target.value)} />
+                                    <Form.Control value={immobileFilterState} type="text" onChange={event => setImmobileFilterState(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Cidade</b></Form.Label>
-                                    <Form.Control value={immobileCity} type="text" onChange={event => setImmobileCity(event.target.value)} />
+                                    <Form.Control value={immobileFilterCity} type="text" onChange={event => setImmobileFilterCity(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
                         <Row>
                             <Form.Group className="mb-3">
                                 <Form.Label><b>Lazer & Características</b></Form.Label>
-                                <Form.Control as="textarea" value={immobileFeatures} type="text" onChange={event => setImmobileFeatures(event.target.value)} />
+                                <Form.Control as="textarea" value={immobileFilterFeatures} type="text" onChange={event => setImmobileFilterFeatures(event.target.value)} />
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
                                 <Form.Check inline name="tipo" type="checkbox" label="Apartamento" onChange={() => {
-                                    immobileKindApartamento ? setImmobileKindApartamento(false) : setImmobileKindApartamento(true)
-                                }} checked={immobileKindApartamento} />
+                                    immobileFilterKindApartamento ? setImmobileFilterKindApartamento(false) : setImmobileFilterKindApartamento(true)
+                                }} checked={immobileFilterKindApartamento} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Cobertura" onChange={() => {
-                                    immobileKindCobertura ? setImmobileKindCobertura(false) : setImmobileKindCobertura(true)
-                                }} checked={immobileKindCobertura} />
+                                    immobileFilterKindCobertura ? setImmobileFilterKindCobertura(false) : setImmobileFilterKindCobertura(true)
+                                }} checked={immobileFilterKindCobertura} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Casa" onChange={() => {
-                                    immobileKindCasa ? setImmobileKindCasa(false) : setImmobileKindCasa(true)
-                                }} checked={immobileKindCasa} />
+                                    immobileFilterKindCasa ? setImmobileFilterKindCasa(false) : setImmobileFilterKindCasa(true)
+                                }} checked={immobileFilterKindCasa} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Casa de Condominio" onChange={() => {
-                                    immobileKindCasaCondominio ? setImmobileKindCasaCondominio(false) : setImmobileKindCasaCondominio(true)
-                                }} checked={immobileKindCasaCondominio} />
+                                    immobileFilterKindCasaCondominio ? setImmobileFilterKindCasaCondominio(false) : setImmobileFilterKindCasaCondominio(true)
+                                }} checked={immobileFilterKindCasaCondominio} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Terreno" onChange={() => {
-                                    immobileKindTerreno ? setImmobileKindTerreno(false) : setImmobileKindTerreno(true)
-                                }} checked={immobileKindTerreno} />
+                                    immobileFilterKindTerreno ? setImmobileFilterKindTerreno(false) : setImmobileFilterKindTerreno(true)
+                                }} checked={immobileFilterKindTerreno} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Conjunto Comercial" onChange={() => {
-                                    immobileKindConjuntoComercial ? setImmobileKindConjuntoComercial(false) : setImmobileKindConjuntoComercial(true)
-                                }} checked={immobileKindConjuntoComercial} />
+                                    immobileFilterKindConjuntoComercial ? setImmobileFilterKindConjuntoComercial(false) : setImmobileFilterKindConjuntoComercial(true)
+                                }} checked={immobileFilterKindConjuntoComercial} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Galpão" onChange={() => {
-                                    immobileKindGalpao ? setImmobileKindGalpao(false) : setImmobileKindGalpao(true)
-                                }} checked={immobileKindGalpao} />
+                                    immobileFilterKindGalpao ? setImmobileFilterKindGalpao(false) : setImmobileFilterKindGalpao(true)
+                                }} checked={immobileFilterKindGalpao} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Sitio/Fazenda" onChange={() => {
-                                    immobileKindSitioFazenda ? setImmobileKindSitioFazenda(false) : setImmobileKindSitioFazenda(true)
-                                }} checked={immobileKindSitioFazenda} />
+                                    immobileFilterKindSitioFazenda ? setImmobileFilterKindSitioFazenda(false) : setImmobileFilterKindSitioFazenda(true)
+                                }} checked={immobileFilterKindSitioFazenda} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Prédio Inteiro" onChange={() => {
-                                    immobileKindPredioInteiro ? setImmobileKindPredioInteiro(false) : setImmobileKindPredioInteiro(true)
-                                }} checked={immobileKindPredioInteiro} />
+                                    immobileFilterKindPredioInteiro ? setImmobileFilterKindPredioInteiro(false) : setImmobileFilterKindPredioInteiro(true)
+                                }} checked={immobileFilterKindPredioInteiro} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Loja" onChange={() => {
-                                    immobileKindLoja ? setImmobileKindLoja(false) : setImmobileKindLoja(true)
-                                }} checked={immobileKindLoja} />
+                                    immobileFilterKindLoja ? setImmobileFilterKindLoja(false) : setImmobileFilterKindLoja(true)
+                                }} checked={immobileFilterKindLoja} />
                                 <Form.Check inline name="tipo" type="checkbox" label="Imóvel Comercial" onChange={() => {
-                                    immobileKindImovelComercial ? setImmobileKindImovelComercial(false) : setImmobileKindImovelComercial(true)
-                                }} checked={immobileKindImovelComercial} />
+                                    immobileFilterKindImovelComercial ? setImmobileFilterKindImovelComercial(false) : setImmobileFilterKindImovelComercial(true)
+                                }} checked={immobileFilterKindImovelComercial} />
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Label className="mb-3"><b>Status do Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
                                 <Form.Check inline name="status" type="checkbox" label="Na Planta" onChange={() => {
-                                    immobileStatusNaPlanta ? setImmobileStatusNaPlanta(false) : setImmobileStatusNaPlanta(true)
-                                }} checked={immobileStatusNaPlanta} />
+                                    immobileFilterStatusNaPlanta ? setImmobileFilterStatusNaPlanta(false) : setImmobileFilterStatusNaPlanta(true)
+                                }} checked={immobileFilterStatusNaPlanta} />
                                 <Form.Check inline name="status" type="checkbox" label="Em Construção" onChange={() => {
-                                    immobileStatusEmConstrucao ? setImmobileStatusEmConstrucao(false) : setImmobileStatusEmConstrucao(true)
-                                }} checked={immobileStatusEmConstrucao} />
+                                    immobileFilterStatusEmConstrucao ? setImmobileFilterStatusEmConstrucao(false) : setImmobileFilterStatusEmConstrucao(true)
+                                }} checked={immobileFilterStatusEmConstrucao} />
                                 <Form.Check inline name="status" type="checkbox" label="Pronto pra Morar" onChange={() => {
-                                    immobileStatusProntoPraMorar ? setImmobileStatusProntoPraMorar(false) : setImmobileStatusProntoPraMorar(true)
-                                }} checked={immobileStatusProntoPraMorar} />
+                                    immobileFilterStatusProntoPraMorar ? setImmobileFilterStatusProntoPraMorar(false) : setImmobileFilterStatusProntoPraMorar(true)
+                                }} checked={immobileFilterStatusProntoPraMorar} />
                             </Form.Group>
                         </Row>
                     </Form>
@@ -331,10 +334,10 @@ export default function Research({ allImobiles }: ImmobileProps) {
                 <div className={styles.immobilesContent}>
 
                     <div className={styles.immobileList}>
-                        <h1>{immobiles.length} Imóveis Encontrados</h1>
+                        <h1>{immobilesFilter.length} Imóveis Encontrados</h1>
                         <div>
                             <ul>
-                                {immobiles.map((immobile) => {
+                                {immobilesFilter.map((immobile) => {
                                     return (
                                         <li key={immobile.id}>
                                             <a href={`/immobiles/${immobile.slug}----${immobile.id}`} target="_blank">
