@@ -67,12 +67,23 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             <option value="emConstrucao">Em Construção</option>
           </select>
 
-          <input
-            style={{ width: 380 }}
-            type="text"
-            placeholder="Digite o nome de um bairro ou cidade..."
-            onChange={event => setDistrictAndCity(event.target.value)}
-          />
+          <select
+            style={{ width: 300 }}
+            defaultValue="apartamento"
+            onChange={event => setAcquisitionKindSelect(event.target.value)}
+          >
+            <option value="apartamento">Apartamento</option>
+            <option value="cobertura">Cobertura</option>
+            <option value="casa">Casa</option>
+            <option value="casaCondominio">Casa de Condominio</option>
+            <option value="terreno">Terreno</option>
+            <option value="conjuntoComercial">Conjunto Comercial</option>
+            <option value="galpao">Galpão</option>
+            <option value="sitioFazenda">Sítio & Fazenda</option>
+            <option value="predioInteiro">Prédio Inteiro</option>
+            <option value="loja">Loja</option>
+            <option value="imovelComercial">Imóvel Comercial</option>
+          </select>
 
           <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
         </div>
