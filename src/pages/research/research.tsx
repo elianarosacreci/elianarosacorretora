@@ -15,7 +15,7 @@ type Immobile = {
     id: string,
     slug: string,
     priceFormatted: string,
-    footage: number,
+    footage: string,
     bedrooms: string,
     bathrooms: string,
     vacancies: string,
@@ -34,18 +34,18 @@ type Immobile = {
 }
 
 type ImmobileProps = {
-    allImobiles: Immobile[]
+    allImmobiles: Immobile[]
 }
 
 
-export default function Research({ allImobiles }: ImmobileProps) {
+export default function Research({ allImmobiles }: ImmobileProps) {
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30;
 
+    // FILTER
     const [immobileFilterStatusNaPlanta, setImmobileFilterStatusNaPlanta] = useState(false)
     const [immobileFilterStatusEmConstrucao, setImmobileFilterStatusEmConstrucao] = useState(false)
     const [immobileFilterStatusProntoPraMorar, setImmobileFilterStatusProntoPraMorar] = useState(false)
-
     const [immobileFilterKindApartamento, setImmobileFilterKindApartamento] = useState(false)
     const [immobileFilterKindCobertura, setImmobileFilterKindCobertura] = useState(false)
     const [immobileFilterKindCasa, setImmobileFilterKindCasa] = useState(false)
@@ -57,7 +57,6 @@ export default function Research({ allImobiles }: ImmobileProps) {
     const [immobileFilterKindPredioInteiro, setImmobileFilterKindPredioInteiro] = useState(false)
     const [immobileFilterKindLoja, setImmobileFilterKindLoja] = useState(false)
     const [immobileFilterKindImovelComercial, setImmobileFilterKindImovelComercial] = useState(false)
-
     const [immobileFilterPriceMin, setImmobileFilterPriceMin] = useState('')
     const [immobileFilterPriceMax, setImmobileFilterPriceMax] = useState('')
     const [immobileFilterFootageMin, setImmobileFilterFootageMin] = useState('')
@@ -70,10 +69,10 @@ export default function Research({ allImobiles }: ImmobileProps) {
     const [immobileFilterFeatures, setImmobileFilterFeatures] = useState('')
 
     // ADVANCED FILTER
-    const [immobilesFilter, setImmobilesFilter] = useState(allImobiles)
+    const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
     useEffect(() => {
         // PRICE
-        let newImmobileFilter = _.filter(allImobiles, function (o) {
+        let newImmobileFilter = _.filter(allImmobiles, function (o) {
             let min, max;
             immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
             immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
@@ -211,7 +210,7 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Preço Mínimo</b></b></Form.Label>
-                                    <Form.Control value={immobileFilterPriceMin.toString()} pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" type="text" onChange={event => setImmobileFilterPriceMin(event.target.value)} />
+                                    <Form.Control value={immobileFilterPriceMin.toString()} type="text" onChange={event => setImmobileFilterPriceMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -236,19 +235,19 @@ export default function Research({ allImobiles }: ImmobileProps) {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col xl={4}>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Quartos</b></Form.Label>
                                     <Form.Control value={immobileFilterBedrooms} type="text" onChange={event => setImmobileFilterBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            <Col>
+                            <Col xl={4}>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Banheiros</b></Form.Label>
                                     <Form.Control value={immobileFilterBathrooms} type="text" onChange={event => setImmobileFilterBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            <Col>
+                            <Col xl={4}>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Vagas</b></Form.Label>
                                     <Form.Control value={immobileFilterVacancies} type="text" onChange={event => setImmobileFilterVacancies(event.target.value)} />
@@ -377,11 +376,11 @@ export default function Research({ allImobiles }: ImmobileProps) {
 // ----------------------------------------------------------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const allImobiles = await firebaseController.getAllImmobiles()
+    const allImmobiles = await firebaseController.getAllImmobiles()
 
     return {
         props: {
-            allImobiles,
+            allImmobiles,
         }
     }
 }
