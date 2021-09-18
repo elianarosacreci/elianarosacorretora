@@ -304,6 +304,27 @@ async function getImmobileToStaticPath() {
     });
 };
 
+async function login(email, pass) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("users").on('value', (snapshot) => {
+                let user = snapshot.val()[0]
+                if (user.email == email && user.pass == pass) {
+                    resolve(true)
+                } else {
+                    resolve(false)
+                }
+            }, (err) => {
+                console.log('services - firebaseController.js - login - Erro: ', err);
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - login - Erro: ', error);
+            reject('')
+        }
+    });
+};
+
 
 
 export default {
@@ -316,5 +337,6 @@ export default {
     removeImmobileById,
     getImmobileByIdToUpdate,
     updateImmobile,
-    getImmobileToStaticPath
+    getImmobileToStaticPath,
+    login
 };

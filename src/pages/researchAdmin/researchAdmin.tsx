@@ -164,7 +164,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             { status: 'Imóvel Comercial', value: immobileFilterKindImovelComercial }
         ].map((element) => { if (element.value) { arrKind.push(element.status) } })
         if (arrKind.length > 0) {
-            console.log('kind', arrKind);
             newImmobileFilter = _.filter(newImmobileFilter, function (o) {
                 if (arrKind.includes(o.kind)) return o
             })
@@ -544,13 +543,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Preço Mínimo</b></b></Form.Label>
-                                    <Form.Control value={immobileFilterPriceMin.toString()} type="text" onChange={event => setImmobileFilterPriceMin(event.target.value)} />
+                                    <Form.Control value={immobileFilterPriceMin.toString()} type="text" maxLength={10} onChange={event => setImmobileFilterPriceMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Preço Máximo</b></b></Form.Label>
-                                    <Form.Control value={immobileFilterPriceMax.toString()} type="text" onChange={event => setImmobileFilterPriceMax(event.target.value)} />
+                                    <Form.Control value={immobileFilterPriceMax.toString()} type="text" maxLength={10} onChange={event => setImmobileFilterPriceMax(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -602,12 +601,12 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <Form.Group className="mb-3">
                                 <Form.Label><b>Lazer & Características</b></Form.Label>
                                 <Form.Control as="textarea" value={immobileFilterFeatures} type="text" onChange={event => setImmobileFilterFeatures(event.target.value)} />
                             </Form.Group>
-                        </Row>
+                        </Row> */}
                         <Row>
                             <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">

@@ -5,6 +5,8 @@ import { useState } from 'react'
 import styles from './login.module.scss'
 import { Form, Row } from 'react-bootstrap'
 
+import firebaseController from '../../services/firebaseController'
+
 
 export default function Login() {
 
@@ -12,9 +14,14 @@ export default function Login() {
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
 
-    const handleLogin = (e: FormEvent) => {
+    const handleLogin = async (e: FormEvent) => {
         e.preventDefault()
-        router.push('/researchAdmin/researchAdmin')
+        let logged = await firebaseController.login(email, pass)
+        if (logged) {
+            router.push('/researchAdmin/researchAdmin')
+        } else {
+            alert('E-mail e Senha incorretos!')
+        }
     }
 
     return (
@@ -25,7 +32,7 @@ export default function Login() {
 
             <div className={styles.loginContainer}>
                 <div className={styles.form}>
-                    <form className={styles.loginForm}>
+                    <div className={styles.loginForm}>
                         <Form>
                             <Row>
                                 <Form.Group className="mb-3">
@@ -38,7 +45,7 @@ export default function Login() {
                         </Form>
                         <button className={styles.login} onClick={handleLogin}>entrar</button>
                         <a href='/' className={styles.returnToBrowse}>voltar a navegar</a>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div >
