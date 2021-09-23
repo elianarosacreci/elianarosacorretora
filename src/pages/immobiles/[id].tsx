@@ -1,9 +1,10 @@
-import React from 'react';
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
+import React from 'react'
+import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 
-import styles from './immobile.module.scss';
+import styles from './immobile.module.scss'
 import { Carousel } from 'react-bootstrap'
+import Image from 'next/image'
 import { Footer } from '../../components/Footer'
 
 import { BiArea } from 'react-icons/bi'
@@ -56,7 +57,9 @@ type ImmobileProps = {
 }
 
 
-export default function Immobile({ immobile }: ImmobileProps) {
+export default function Immobile({ immobile, attractivePricesList }: ImmobileProps) {
+
+    const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
     function getImmobileStatus() {
         if (immobile.status == 'Pronto pra Morar') {
@@ -87,9 +90,9 @@ export default function Immobile({ immobile }: ImmobileProps) {
                 <Carousel prevLabel="" nextLabel="">
                     {immobile.images.map((image) => {
                         return (
-                            <Carousel.Item key={image} style={{ height: "400px" }}>
+                            <Carousel.Item key={image} >
                                 <img
-                                    style={{ height: "400px", objectFit: "cover" }}
+                                    style={{ height: "500px", objectFit: "contain" }}
                                     className="d-block w-100"
                                     src={image}
                                 />
@@ -206,6 +209,38 @@ export default function Immobile({ immobile }: ImmobileProps) {
                     </div>
                 </div>
             </div>
+
+            <section className={styles.immobileList}>
+                <h1>Preços Atraentes</h1>
+                <div>
+                    <ul>
+                        {attractivePricesList.map((attractivePrices) => {
+                            return (
+                                <li key={attractivePrices.id}>
+                                    <a href={`/immobiles/${attractivePrices.slug}----${attractivePrices.id}`} target="_blank">
+                                        <div className={styles.immobileCards}>
+                                            <Image
+                                                width={500}
+                                                height={500}
+                                                src={attractivePrices.imageCard}
+                                                objectFit="cover"
+                                            />
+                                            <div className={styles.container}>
+                                                <h2>{attractivePrices.price}</h2>
+                                                <p><b>{attractivePrices.footage}</b>m² <b>{attractivePrices.bedrooms}</b> Quartos <b>{attractivePrices.bathrooms}</b> Banheiros <b>{attractivePrices.vacancies}</b> Vaga</p>
+                                                {attractivePrices.descriptionTitle.length > MAX_DESCRIPTION_TITLE_LENGTH ?
+                                                    <p>{`${attractivePrices.descriptionTitle.substring(0, MAX_DESCRIPTION_TITLE_LENGTH)}...`}</p> :
+                                                    <p>{attractivePrices.descriptionTitle}</p>}
+                                                <span>VER OS DETALHES →</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+            </section>
 
             <Footer />
         </div>
