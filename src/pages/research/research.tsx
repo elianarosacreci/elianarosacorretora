@@ -25,7 +25,6 @@ type Immobile = {
     price: number
     state: string
     city: string
-    features: Array<string>
     status: string
     kind: string
     footageInt: number
