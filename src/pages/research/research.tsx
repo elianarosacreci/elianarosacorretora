@@ -12,25 +12,27 @@ var _ = require('lodash');
 
 
 type Immobile = {
-    id: string,
-    slug: string,
-    priceFormatted: string,
-    footage: string,
-    bedrooms: string,
-    bathrooms: string,
-    vacancies: string,
-    descriptionTitle: string,
-    imageCard: string,
-    price: number,
-    state: string,
-    city: string,
-    features: Array<string>,
-    status: string,
-    kind: string,
-    footageInt: number,
-    bedroomsInt: number,
-    bathroomsInt: number,
-    vacanciesInt: number,
+    id: string
+    slug: string
+    priceFormatted: string
+    footage: string
+    bedrooms: string
+    bathrooms: string
+    vacancies: string
+    suites: string
+    descriptionTitle: string
+    imageCard: string
+    price: number
+    state: string
+    city: string
+    features: Array<string>
+    status: string
+    kind: string
+    footageInt: number
+    bedroomsInt: number
+    bathroomsInt: number
+    vacanciesInt: number
+    suitesInt: number
     code: string
 }
 
@@ -65,10 +67,10 @@ export default function Research({ allImmobiles }: ImmobileProps) {
     const [immobileFilterBedrooms, setImmobileFilterBedrooms] = useState('')
     const [immobileFilterBathrooms, setImmobileFilterBathrooms] = useState('')
     const [immobileFilterVacancies, setImmobileFilterVacancies] = useState('')
+    const [immobileFilterSuites, setImmobileFilterSuites] = useState('')
     const [immobileFilterState, setImmobileFilterState] = useState('')
     const [immobileFilterCity, setImmobileFilterCity] = useState('')
     const [immobileFilterCode, setImmobileFilterCode] = useState('')
-    const [immobileFilterFeatures, setImmobileFilterFeatures] = useState('')
 
     // ADVANCED FILTER
     const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
@@ -116,6 +118,15 @@ export default function Research({ allImmobiles }: ImmobileProps) {
             })
         }
 
+        // SUITES
+        if (immobileFilterSuites != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                let suites
+                immobileFilterSuites == '' ? suites = '' : suites = parseInt(immobileFilterSuites)
+                return o.suitesInt == suites
+            })
+        }
+
         // STATE
         if (immobileFilterState != '') {
             newImmobileFilter = _.filter(newImmobileFilter, function (o) {
@@ -129,9 +140,6 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                 return o.city.includes(immobileFilterCity) == true
             })
         }
-
-        // FEATURES
-
 
         // KIND
         let arrKind = [];
@@ -197,10 +205,10 @@ export default function Research({ allImmobiles }: ImmobileProps) {
         immobileFilterBedrooms,
         immobileFilterBathrooms,
         immobileFilterVacancies,
+        immobileFilterSuites,
         immobileFilterState,
         immobileFilterCity,
-        immobileFilterCode,
-        immobileFilterFeatures
+        immobileFilterCode
     ])
 
 
@@ -219,7 +227,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b><b>Preço Mínimo</b></b></Form.Label>
-                                    <Form.Control value={immobileFilterPriceMin.toString()} type="text" maxLength={10}  onChange={event => setImmobileFilterPriceMin(event.target.value)} />
+                                    <Form.Control value={immobileFilterPriceMin.toString()} type="text" maxLength={10} onChange={event => setImmobileFilterPriceMin(event.target.value)} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -244,19 +252,27 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xl={4}>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Quartos</b></Form.Label>
                                     <Form.Control value={immobileFilterBedrooms} type="text" onChange={event => setImmobileFilterBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            <Col xl={4}>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Banheiros</b></Form.Label>
                                     <Form.Control value={immobileFilterBathrooms} type="text" onChange={event => setImmobileFilterBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            <Col xl={4}>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label><b>Suítes</b></Form.Label>
+                                    <Form.Control value={immobileFilterSuites} type="text" onChange={event => setImmobileFilterSuites(event.target.value)} />
+                                </Form.Group>
+                            </Col>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Vagas</b></Form.Label>
                                     <Form.Control value={immobileFilterVacancies} type="text" onChange={event => setImmobileFilterVacancies(event.target.value)} />
@@ -277,12 +293,6 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Form.Group className="mb-3">
-                                <Form.Label><b>Lazer & Características</b></Form.Label>
-                                <Form.Control as="textarea" value={immobileFilterFeatures} type="text" onChange={event => setImmobileFilterFeatures(event.target.value)} />
-                            </Form.Group>
-                        </Row> */}
                         <Row>
                             <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">

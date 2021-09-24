@@ -24,6 +24,7 @@ type Immobile = {
     bedrooms: string
     bathrooms: string
     vacancies: string
+    suites: string
     features: string
     descriptionTitle: string
     description: string
@@ -38,14 +39,15 @@ type Immobile = {
     kind: string
     comments: string
 
-    imageCard: string
     priceFormatted: string
+    imageCard: string
     idx: string
 
-    footageInt: number,
-    bedroomsInt: number,
-    bathroomsInt: number,
-    vacanciesInt: number,
+    footageInt: number
+    bedroomsInt: number
+    bathroomsInt: number
+    vacanciesInt: number
+    suitesInt: number
     code: string
 }
 
@@ -80,10 +82,10 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobileFilterBedrooms, setImmobileFilterBedrooms] = useState('')
     const [immobileFilterBathrooms, setImmobileFilterBathrooms] = useState('')
     const [immobileFilterVacancies, setImmobileFilterVacancies] = useState('')
+    const [immobileFilterSuites, setImmobileFilterSuites] = useState('')
     const [immobileFilterState, setImmobileFilterState] = useState('')
     const [immobileFilterCity, setImmobileFilterCity] = useState('')
     const [immobileFilterCode, setImmobileFilterCode] = useState('')
-    const [immobileFilterFeatures, setImmobileFilterFeatures] = useState('')
 
     // ADVANCED FILTER
     const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
@@ -131,6 +133,15 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             })
         }
 
+        // SUITES
+        if (immobileFilterSuites != '') {
+            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                let suites
+                immobileFilterSuites == '' ? suites = '' : suites = parseInt(immobileFilterSuites)
+                return o.suitesInt == suites
+            })
+        }
+
         // STATE
         if (immobileFilterState != '') {
             newImmobileFilter = _.filter(newImmobileFilter, function (o) {
@@ -144,9 +155,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 return o.city.includes(immobileFilterCity) == true
             })
         }
-
-        // FEATURES
-
 
         // KIND
         let arrKind = [];
@@ -212,10 +220,10 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         immobileFilterBedrooms,
         immobileFilterBathrooms,
         immobileFilterVacancies,
+        immobileFilterSuites,
         immobileFilterState,
         immobileFilterCity,
-        immobileFilterCode,
-        immobileFilterFeatures
+        immobileFilterCode
     ])
 
     const [immobileStatus, setImmobileStatus] = useState('')
@@ -241,6 +249,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobileBedrooms, setImmobileBedrooms] = useState('')
     const [immobileBathrooms, setImmobileBathrooms] = useState('')
     const [immobileVacancies, setImmobileVacancies] = useState('')
+    const [immobileSuites, setImmobileSuites] = useState('')
     const [immobileDescriptionTitle, setImmobileDescriptionTitle] = useState('')
     const [immobileDescription, setImmobileDescription] = useState('')
     const [immobileStreet, setImmobileStreet] = useState('')
@@ -286,6 +295,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         setImmobileBedrooms('')
         setImmobileBathrooms('')
         setImmobileVacancies('')
+        setImmobileSuites('')
         setImmobileDescriptionTitle('')
         setImmobileDescription('')
         setImmobileStreet('')
@@ -353,6 +363,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileBedrooms('')
                 setImmobileBathrooms('')
                 setImmobileVacancies('')
+                setImmobileSuites('')
                 setImmobileDescriptionTitle('')
                 setImmobileDescription('')
                 setImmobileStreet('')
@@ -419,6 +430,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                 setImmobileBedrooms(immobileToUpdate.bedrooms)
                 setImmobileBathrooms(immobileToUpdate.bathrooms)
                 setImmobileVacancies(immobileToUpdate.vacancies)
+                setImmobileSuites(immobileToUpdate.suites)
                 setImmobileDescriptionTitle(immobileToUpdate.descriptionTitle)
                 setImmobileDescription(immobileToUpdate.description)
                 setImmobileStreet(immobileToUpdate.street)
@@ -454,7 +466,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     async function addOrUpdateImmobile() {
 
-        if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileFootageUseful == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
+        if (immobileTitle == '' || immobileImages.length == 0 || immobileFootage == '' || immobileFootageUseful == '' || immobileBedrooms == '' || immobileBathrooms == '' || immobileVacancies == '' ||
+            immobileSuites == '' || immobileDescriptionTitle == '' || immobileDescription == '' ||
             immobileStreet == '' || immobileNumber == '' || immobileState == '' || immobileDistrict == '' || immobileCity == '' || immobileFeatures == '' || immobileNearbyTrainsAndSubways == '' ||
             immobileStatus == '' || immobileKind == '' || immobilePrice == '' || immobileComments == '') {
             alert('Preencha todos os campos para salvar!')
@@ -488,6 +501,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             "bedrooms": immobileBedrooms,
             "bathrooms": immobileBathrooms,
             "vacancies": immobileVacancies,
+            "suites": immobileSuites,
             "features": features,
             "descriptionTitle": immobileDescriptionTitle,
             "description": immobileDescription,
@@ -568,19 +582,27 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xl={4}>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Quartos</b></Form.Label>
                                     <Form.Control value={immobileFilterBedrooms} type="text" onChange={event => setImmobileFilterBedrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            <Col xl={4}>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Banheiros</b></Form.Label>
                                     <Form.Control value={immobileFilterBathrooms} type="text" onChange={event => setImmobileFilterBathrooms(event.target.value)} />
                                 </Form.Group>
                             </Col>
-                            <Col xl={4}>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label><b>Suítes</b></Form.Label>
+                                    <Form.Control value={immobileFilterSuites} type="text" onChange={event => setImmobileFilterSuites(event.target.value)} />
+                                </Form.Group>
+                            </Col>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label><b>Vagas</b></Form.Label>
                                     <Form.Control value={immobileFilterVacancies} type="text" onChange={event => setImmobileFilterVacancies(event.target.value)} />
@@ -601,12 +623,6 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Form.Group className="mb-3">
-                                <Form.Label><b>Lazer & Características</b></Form.Label>
-                                <Form.Control as="textarea" value={immobileFilterFeatures} type="text" onChange={event => setImmobileFilterFeatures(event.target.value)} />
-                            </Form.Group>
-                        </Row> */}
                         <Row>
                             <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
@@ -760,7 +776,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         </Row>
                         <br />
                         <Row>
-                            <Col>
+                        <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Área</Form.Label>
                                     <Form.Control value={immobileFootage} type="text" placeholder="..." onChange={event => setImmobileFootage(event.target.value)} />
@@ -772,6 +788,14 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                     <Form.Control value={immobileFootageUseful} type="text" placeholder="..." onChange={event => setImmobileFootageUseful(event.target.value)} />
                                 </Form.Group>
                             </Col>
+                            <Col>
+                                <Form.Group className="mb-3">
+                                    <Form.Label>Vagas</Form.Label>
+                                    <Form.Control value={immobileVacancies} type="text" placeholder="..." onChange={event => setImmobileVacancies(event.target.value)} />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Quartos</Form.Label>
@@ -786,8 +810,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             </Col>
                             <Col>
                                 <Form.Group className="mb-3">
-                                    <Form.Label>Vagas</Form.Label>
-                                    <Form.Control value={immobileVacancies} type="text" placeholder="..." onChange={event => setImmobileVacancies(event.target.value)} />
+                                    <Form.Label>Suítes</Form.Label>
+                                    <Form.Control value={immobileSuites} type="text" placeholder="..." onChange={event => setImmobileSuites(event.target.value)} />
                                 </Form.Group>
                             </Col>
                         </Row>

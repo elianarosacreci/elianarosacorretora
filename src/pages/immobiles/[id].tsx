@@ -10,7 +10,7 @@ import { Footer } from '../../components/Footer'
 import { BiArea } from 'react-icons/bi'
 import { GiResize } from 'react-icons/gi'
 import { IoIosBed } from 'react-icons/io'
-import { FaCar } from 'react-icons/fa'
+import { FaCar, FaToilet } from 'react-icons/fa'
 import { BiBath } from 'react-icons/bi'
 import { IoSubway } from 'react-icons/io5'
 import { RiArrowRightSFill } from 'react-icons/ri'
@@ -24,30 +24,30 @@ import firebaseController from '../../services/firebaseController'
 
 
 type Immobile = {
-    id: string,
-    title: string,
-    code: string,
-    images: Array<string>,
-    footage: string,
-    footageUseful: string,
-    bedrooms: string,
-    bathrooms: string,
-    suites: string,
-    vacancies: string,
-    features: Array<string>,
-    descriptionTitle: string,
-    description: string,
-    address: string,
-    price: string,
-    nearbyTrainsAndSubways: NearbyTrainsAndSubways[],
-    status: string,
-    kind: string,
-    imageCard: string,
+    id: string
+    title: string
+    code: string
+    images: Array<string>
+    footage: string
+    footageUseful: string
+    bedrooms: string
+    bathrooms: string
+    vacancies: string
+    suites: string
+    features: Array<string>
+    descriptionTitle: string
+    description: string
+    address: string
+    price: string
+    nearbyTrainsAndSubways: NearbyTrainsAndSubways[]
+    status: string
+    kind: string
+    imageCard: string
     slug: string
 }
 
 type NearbyTrainsAndSubways = {
-    name: string,
+    name: string
     distance: string
 }
 
@@ -123,20 +123,24 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                                 <span> {immobile.footage}m²</span>
                             </li>
                             <li>
-                                <span><IoIosBed size={30} /></span>
-                                <span> {immobile.bedrooms} {parseInt(immobile.bedrooms) > 1 ? "quartos" : "quarto"}</span>
-                            </li>
-                            <li>
-                                <span><BiBath size={30} /></span>
-                                <span> {immobile.bathrooms} {parseInt(immobile.bathrooms) > 1 ? "banheiros" : "banheiro"}</span>
+                                <span><GiResize size={30} /></span>
+                                <span> {immobile.footageUseful}m² construídos</span>
                             </li>
                             <li>
                                 <span><FaCar size={30} /></span>
                                 <span> {immobile.vacancies} {parseInt(immobile.vacancies) > 1 ? "vagas" : "vaga"}</span>
                             </li>
                             <li>
-                                <span><GiResize size={30} /></span>
-                                <span> {immobile.footageUseful}m² construídos</span>
+                                <span><IoIosBed size={30} /></span>
+                                <span> {immobile.bedrooms} {parseInt(immobile.bedrooms) > 1 ? "quartos" : "quarto"}</span>
+                            </li>
+                            <li>
+                                <span><BiBath size={30} /></span>
+                                <span> {immobile.suites} {parseInt(immobile.suites) > 1 ? "suítes" : "suíte"}</span>
+                            </li>
+                            <li>
+                                <span><FaToilet size={28} /></span>
+                                <span> {immobile.bathrooms} {parseInt(immobile.bathrooms) > 1 ? "banheiros" : "banheiro"}</span>
                             </li>
                         </ul>
                     </div>

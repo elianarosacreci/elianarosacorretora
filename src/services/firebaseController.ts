@@ -139,6 +139,7 @@ async function getAllImmobiles() {
                         bedrooms: childSnapshot.child('bedrooms').val(),
                         bathrooms: childSnapshot.child('bathrooms').val(),
                         vacancies: childSnapshot.child('vacancies').val(),
+                        suites: childSnapshot.child('suites').val(),
                         descriptionTitle: childSnapshot.child('descriptionTitle').val(),
                         imageCard: childSnapshot.child('images/0').val(),
                         price: childSnapshot.child('price').val(),
@@ -151,6 +152,7 @@ async function getAllImmobiles() {
                         bedroomsInt: parseInt(childSnapshot.child('bedrooms').val()),
                         bathroomsInt: parseInt(childSnapshot.child('bathrooms').val()),
                         vacanciesInt: parseInt(childSnapshot.child('vacancies').val()),
+                        suitesInt: parseInt(childSnapshot.child('suites').val()),
                         code: childSnapshot.child('code').val().toUpperCase()
                     })
                 });
@@ -249,6 +251,7 @@ async function getImmobileByIdToUpdate(id) {
                     bedrooms: snapshot.val()[idx].bedrooms,
                     bathrooms: snapshot.val()[idx].bathrooms,
                     vacancies: snapshot.val()[idx].vacancies,
+                    suites: snapshot.val()[idx].suites,
                     features: snapshot.val()[idx].features,
                     descriptionTitle: snapshot.val()[idx].descriptionTitle,
                     description: snapshot.val()[idx].description,

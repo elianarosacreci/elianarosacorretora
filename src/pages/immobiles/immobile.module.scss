@@ -43,12 +43,14 @@
         .immobileOptions {
             padding-top: 4rem;
 
-             ul {
+            ul {
                 list-style: none;
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(3, 1fr);
 
                 li {
+                    margin-bottom: 1rem;
+
                     span {
                         vertical-align: middle;
                     }
