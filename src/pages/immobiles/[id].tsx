@@ -85,7 +85,6 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
             <Head>
                 <title>{immobile.title}</title>
             </Head>
-
             <div className={styles.carousel}>
                 <Carousel prevLabel="" nextLabel="">
                     {immobile.images.map((image) => {
@@ -101,21 +100,16 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     })}
                 </Carousel>
             </div>
-
             <div className={styles.immobileDetails}>
-
                 <div className={styles.infoContent}>
-
                     <div className={styles.title}>
                         <h1>{immobile.title}</h1>
                         <span className={styles.immobileCode}>{immobile.code.toUpperCase()}</span>
                     </div>
-
                     <p className={styles.immobileAddress}>{immobile.address}</p>
                     <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
                         <span className={styles.goToMap}>VER NO MAPA <SiGooglemaps size={25} /></span>
                     </a>
-
                     <div className={styles.immobileOptions}>
                         <ul>
                             <li>
@@ -144,7 +138,6 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                             </li>
                         </ul>
                     </div>
-
                     <div className={styles.features}>
                         <div className={styles.title}>
                             <GoChecklist size={35} />
@@ -160,10 +153,8 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                             </ul>
                         </div>
                     </div>
-
                     <h4 className={styles.descriptionTitle}>{immobile.descriptionTitle}</h4>
                     <p className={styles.description}>{immobile.description}</p>
-
                     <div className={styles.nearbyTrainsAndSubways}>
                         <div className={styles.title}>
                             <IoSubway size={35} />
@@ -180,22 +171,18 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         </div>
                     </div>
                 </div>
-
                 <div className={styles.priceContent}>
                     <div className={styles.price}>
                         <h2>____</h2>
                         <h1>{immobile.price}</h1>
                     </div>
-
                     <div className={styles.status}>
                         {getImmobileStatus()}
                     </div>
-
                     <div className={styles.status}>
                         <GrMultiple size={25} />
                         <p>{immobile.kind}</p>
                     </div>
-
                     <div className={styles.managerContacts}>
                         <div className={styles.buttons}>
                             <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
@@ -213,7 +200,6 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     </div>
                 </div>
             </div>
-
             <section className={styles.immobileList}>
                 <h1>Preços Atraentes</h1>
                 <div>
@@ -245,7 +231,6 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     </ul>
                 </div>
             </section>
-
             <Footer />
         </div>
     )

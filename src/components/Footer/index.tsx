@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import styles from './styles.module.scss';
 
+import styles from './styles.module.scss';
 import { FaInstagramSquare, FaFacebookSquare } from 'react-icons/fa'
 
 

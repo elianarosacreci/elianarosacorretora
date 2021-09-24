@@ -216,11 +216,8 @@ export default function Research({ allImmobiles }: ImmobileProps) {
             <Head>
                 <title></title>
             </Head>
-
             <div className={styles.immobileDetails}>
-
                 <div className={styles.researchContent}>
-
                     <Form>
                         <Row>
                             <Col>
@@ -353,11 +350,8 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                             </Col>
                         </Row>
                     </Form>
-
                 </div>
-
                 <div className={styles.immobilesContent}>
-
                     <div className={styles.immobileList}>
                         <h1>{immobilesFilter.length} Imóveis Encontrados</h1>
                         <div>
@@ -389,11 +383,8 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
             <Footer />
         </div>
     )

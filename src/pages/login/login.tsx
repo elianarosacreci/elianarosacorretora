@@ -29,7 +29,6 @@ export default function Login() {
             <div className={styles.loginTitle}>
                 <h1>LOGIN</h1>
             </div>
-
             <div className={styles.loginContainer}>
                 <div className={styles.form}>
                     <div className={styles.loginForm}>

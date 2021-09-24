@@ -547,11 +547,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
             <Head>
                 <title></title>
             </Head>
-
             <div className={styles.immobileDetails}>
-
                 <div className={styles.researchContent}>
-
                     <Form>
                         <Row>
                             <Col>
@@ -684,11 +681,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             </Col>
                         </Row>
                     </Form>
-
                 </div>
-
                 <div className={styles.immobilesContent}>
-
                     <div className={styles.immobileList}>
                         <div className={styles.listOptions}>
                             <h1>{immobilesFilter.length} Imóveis Encontrados</h1>
@@ -724,11 +718,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
             <Footer />
 
             {/* ADD AND UPDATE MODAL */}
@@ -776,7 +767,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         </Row>
                         <br />
                         <Row>
-                        <Col>
+                            <Col>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Área</Form.Label>
                                     <Form.Control value={immobileFootage} type="text" placeholder="..." onChange={event => setImmobileFootage(event.target.value)} />

@@ -52,10 +52,8 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
 
   return (
     <div className={styles.homepage}>
-
       <section className={styles.imageHome}>
         <h1>Encontre o seu próximo imóvel!</h1>
-
         <div className={styles.researchFields}>
           <select
             style={{ width: 200 }}
@@ -66,7 +64,6 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             <option value="naPlanta">Na Planta</option>
             <option value="emConstrucao">Em Construção</option>
           </select>
-
           <select
             style={{ width: 300 }}
             defaultValue="apartamento"
@@ -84,13 +81,10 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             <option value="loja">Loja</option>
             <option value="imovelComercial">Imóvel Comercial</option>
           </select>
-
           <button className={styles.research} type="button" onClick={onResearch}>Buscar</button>
         </div>
       </section>
-
       <section className={styles.immobileList}>
-
         <h1>Preços Atraentes</h1>
         <div>
           <ul>
@@ -120,7 +114,6 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             })}
           </ul>
         </div>
-
         <h1>Acabaram de Chegar</h1>
         <div>
           <ul>
@@ -150,7 +143,6 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
             })}
           </ul>
         </div>
-
         <h1>Mais Populares</h1>
         <div>
           <ul>
@@ -181,7 +173,6 @@ export default function Home({ attractivePricesList, justArrivedList, mostPopula
           </ul>
         </div>
       </section>
-
       <Footer />
     </div >
   )
