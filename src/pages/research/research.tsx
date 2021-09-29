@@ -351,6 +351,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                         </Row>
                     </Form>
                 </div>
+                
                 <div className={styles.immobilesContent}>
                     <div className={styles.immobileList}>
                         <h1>{immobilesFilter.length} Imóveis Encontrados</h1>

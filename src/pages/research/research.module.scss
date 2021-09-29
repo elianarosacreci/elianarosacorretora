@@ -1,7 +1,9 @@
 .immobileDetails {
     padding: 2rem 2rem;
-    margin: 2rem 4rem;
+    margin: 2rem auto;
     display: flex;
+    margin-bottom: 188px;
+    justify-content: center;
 
     .researchContent {
         border: 1px solid var(--gray-100);
@@ -10,7 +12,10 @@
         padding: 1rem 2rem;
         background: var(--green-500);
         color: var(--white);
-        display: block;
+        width: 420px;
+        height: fit-content;
+        position: sticky;
+        top: 30px;
     }
 
     .immobilesContent {
