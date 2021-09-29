@@ -620,6 +620,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <br />
                         <Row>
                             <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
@@ -658,6 +659,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                                 }} checked={immobileFilterKindImovelComercial} />
                             </Form.Group>
                         </Row>
+                        <br />
                         <Row>
                             <Form.Label className="mb-3"><b>Status do Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">

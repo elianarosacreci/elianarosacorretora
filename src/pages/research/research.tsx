@@ -289,6 +289,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        <br />
                         <Row>
                             <Form.Label className="mb-3"><b>Tipos de Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
@@ -327,6 +328,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                                 }} checked={immobileFilterKindImovelComercial} />
                             </Form.Group>
                         </Row>
+                        <br />
                         <Row>
                             <Form.Label className="mb-3"><b>Status do Imóvel</b></Form.Label>
                             <Form.Group className="mb-3">
