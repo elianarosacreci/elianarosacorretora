@@ -189,7 +189,6 @@ async function insertImmobile(immobile) {
     return new Promise(async (resolve, reject) => {
         try {
             let idx = await getNextImmobileLength()
-            console.log('IDX: ', idx);
             await app.database().ref(`immobiles/${idx}`).set(immobile)
             resolve('ok')
         } catch (error) {
