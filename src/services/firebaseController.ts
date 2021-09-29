@@ -4,7 +4,7 @@ async function getAttractivePrices() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").orderByChild('price').limitToFirst(3).on('value', (snapshot) => {
-                let result = [];
+                let result = []
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
                         id: childSnapshot.child('id').val(),
@@ -17,24 +17,24 @@ async function getAttractivePrices() {
                         descriptionTitle: childSnapshot.child('descriptionTitle').val(),
                         imageCard: childSnapshot.child('images/0').val(),
                     })
-                });
+                })
                 resolve(result)
             }, (err) => {
-                console.log('services - firebaseController.js - getAttractivePrices - Erro: ', err);
+                console.log('services - firebaseController.js - getAttractivePrices - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getAttractivePrices - Erro: ', error);
+            console.log('services - firebaseController.js - getAttractivePrices - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getJustArrived() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").orderByChild('createdAt').limitToLast(3).on('value', (snapshot) => {
-                let result = [];
+                let result = []
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
                         id: childSnapshot.child('id').val(),
@@ -47,24 +47,24 @@ async function getJustArrived() {
                         descriptionTitle: childSnapshot.child('descriptionTitle').val(),
                         imageCard: childSnapshot.child('images/0').val(),
                     })
-                });
+                })
                 resolve(result)
             }, (err) => {
-                console.log('services - firebaseController.js - getJustArrived - Erro: ', err);
+                console.log('services - firebaseController.js - getJustArrived - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getJustArrived - Erro: ', error);
+            console.log('services - firebaseController.js - getJustArrived - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getMostPopular() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").orderByChild('price').limitToLast(3).on('value', (snapshot) => {
-                let result = [];
+                let result = []
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
                         id: childSnapshot.child('id').val(),
@@ -77,18 +77,18 @@ async function getMostPopular() {
                         descriptionTitle: childSnapshot.child('descriptionTitle').val(),
                         imageCard: childSnapshot.child('images/0').val(),
                     })
-                });
+                })
                 resolve(result)
             }, (err) => {
-                console.log('services - firebaseController.js - getMostPopular - Erro: ', err);
+                console.log('services - firebaseController.js - getMostPopular - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getMostPopular - Erro: ', error);
+            console.log('services - firebaseController.js - getMostPopular - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getImmobileById(id) {
     return new Promise(async (resolve, reject) => {
@@ -115,21 +115,21 @@ async function getImmobileById(id) {
                     kind: snapshot.val()[idx].kind
                 })
             }, (err) => {
-                console.log('services - firebaseController.js - getImmobileById - Erro: ', err);
+                console.log('services - firebaseController.js - getImmobileById - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getImmobileById - Erro: ', error);
+            console.log('services - firebaseController.js - getImmobileById - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getAllImmobiles() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").on('value', (snapshot) => {
-                let result = [];
+                let result = []
                 snapshot.forEach(function (childSnapshot) {
                     result.push({
                         id: childSnapshot.child('id').val(),
@@ -155,48 +155,49 @@ async function getAllImmobiles() {
                         suitesInt: parseInt(childSnapshot.child('suites').val()),
                         code: childSnapshot.child('code').val().toUpperCase()
                     })
-                });
+                })
                 resolve(result)
             }, (err) => {
-                console.log('services - firebaseController.js - getAllImmobiles - Erro: ', err);
+                console.log('services - firebaseController.js - getAllImmobiles - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getAllImmobiles - Erro: ', error);
+            console.log('services - firebaseController.js - getAllImmobiles - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getNextImmobileLength() {
     return new Promise(async (resolve, reject) => {
         try {
             await app.database().ref("immobiles").on('value', (snapshot) => {
                 let keys = Object.keys(snapshot.val())
-                resolve(keys.length)
+                resolve(keys.length + 1)
             }, (err) => {
-                console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err);
+                console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', error);
+            console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function insertImmobile(immobile) {
     return new Promise(async (resolve, reject) => {
         try {
             let idx = await getNextImmobileLength()
-            await app.database().ref(`immobiles/${idx}`).set(immobile);
+            console.log('IDX: ', idx);
+            await app.database().ref(`immobiles/${idx}`).set(immobile)
             resolve('ok')
         } catch (error) {
-            console.log('services - firebaseController.js - insertImmobile - Erro: ', error);
+            console.log('services - firebaseController.js - insertImmobile - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getImmobileIdx(id) {
     return new Promise(async (resolve, reject) => {
@@ -205,35 +206,35 @@ async function getImmobileIdx(id) {
                 let idx = Object.keys(snapshot.val())[0]
                 resolve(idx)
             }, (err) => {
-                console.log('services - firebaseController.js - getImmobileIdx - Erro: ', err);
+                console.log('services - firebaseController.js - getImmobileIdx - Erro: ', err)
                 resolve('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getImmobileIdx - Erro: ', error);
+            console.log('services - firebaseController.js - getImmobileIdx - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function removeImmobileById(id) {
     return new Promise(async (resolve, reject) => {
         try {
-            let idx = await getImmobileIdx(id);
+            let idx = await getImmobileIdx(id)
             await app.database().ref(`immobiles/${idx}`).remove()
                 .then(function () {
                     console.log("Remove succeeded.")
                     resolve('ok')
                 })
                 .catch(function (error) {
-                    console.log('services - firebaseController.js - removeImmobileById - Erro: ', error.message);
+                    console.log('services - firebaseController.js - removeImmobileById - Erro: ', error.message)
                     reject('')
-                });
+                })
         } catch (error) {
-            console.log('services - firebaseController.js - removeImmobileById - Erro: ', error);
+            console.log('services - firebaseController.js - removeImmobileById - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getImmobileByIdToUpdate(id) {
     return new Promise(async (resolve, reject) => {
@@ -268,27 +269,27 @@ async function getImmobileByIdToUpdate(id) {
                     idx
                 })
             }, (err) => {
-                console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', err);
+                console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', error);
+            console.log('services - firebaseController.js - getImmobileByIdToUpdate - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function updateImmobile(immobile, idx) {
     return new Promise(async (resolve, reject) => {
         try {
-            await app.database().ref(`immobiles/${idx}`).set(immobile);
+            await app.database().ref(`immobiles/${idx}`).set(immobile)
             resolve('ok')
         } catch (error) {
-            console.log('services - firebaseController.js - updateImmobile - Erro: ', error);
+            console.log('services - firebaseController.js - updateImmobile - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function getImmobileToStaticPath() {
     return new Promise(async (resolve, reject) => {
@@ -297,15 +298,15 @@ async function getImmobileToStaticPath() {
                 let idx = snapshot.val()[0].id
                 resolve(idx)
             }, (err) => {
-                console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', err);
+                console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', error);
+            console.log('services - firebaseController.js - getImmobileToStaticPath - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 async function login(email, pass) {
     return new Promise(async (resolve, reject) => {
@@ -318,15 +319,15 @@ async function login(email, pass) {
                     resolve(false)
                 }
             }, (err) => {
-                console.log('services - firebaseController.js - login - Erro: ', err);
+                console.log('services - firebaseController.js - login - Erro: ', err)
                 reject('')
             })
         } catch (error) {
-            console.log('services - firebaseController.js - login - Erro: ', error);
+            console.log('services - firebaseController.js - login - Erro: ', error)
             reject('')
         }
-    });
-};
+    })
+}
 
 
 
@@ -342,4 +343,4 @@ export default {
     updateImmobile,
     getImmobileToStaticPath,
     login
-};
+}
