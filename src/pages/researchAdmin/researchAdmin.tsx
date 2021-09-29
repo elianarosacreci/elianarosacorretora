@@ -682,6 +682,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         </Row>
                     </Form>
                 </div>
+                
                 <div className={styles.immobilesContent}>
                     <div className={styles.immobileList}>
                         <div className={styles.listOptions}>
