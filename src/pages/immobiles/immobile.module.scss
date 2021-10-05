@@ -7,6 +7,7 @@
     padding: 2rem 2rem;
     margin: 1rem 10rem;
     display: flex;
+    justify-content: center;
 
     .infoContent {
         margin-right: 1rem;
@@ -136,6 +137,10 @@
     .priceContent {
         border-left: 1px solid var(--gray-100);
         padding: 0rem 1.5rem;
+        width: 280px;
+        height: fit-content;
+        position: sticky;
+        top: 30px;
 
         .price {
             h2 {
