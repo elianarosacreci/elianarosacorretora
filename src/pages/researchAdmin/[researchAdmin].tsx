@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
 
 import styles from './researchAdmin.module.scss'
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
@@ -53,10 +54,18 @@ type Immobile = {
 
 type ImmobileProps = {
     allImmobiles: Immobile[]
+    authorized: boolean
 }
 
 
-export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
+export default function ResearchAdmin({ allImmobiles, authorized }: ImmobileProps) {
+
+    const router = useRouter()
+    useEffect(() => {
+        if (authorized == false) {
+            router.push('/login/login')
+        }
+    }, [])
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
@@ -684,7 +693,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                         </Row>
                     </Form>
                 </div>
-                
+
                 <div className={styles.immobilesContent}>
                     <div className={styles.immobileList}>
                         <div className={styles.listOptions}>
@@ -1084,12 +1093,16 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { researchAdmin } = context.params
+    let authorized = await utilities.validateUUID(researchAdmin)
+
     const allImmobiles = await firebaseController.getAllImmobiles()
 
     return {
         props: {
             allImmobiles,
+            authorized
         }
     }
 }

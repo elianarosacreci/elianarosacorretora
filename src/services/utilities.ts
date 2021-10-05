@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import { validate as uuidValidate } from 'uuid';
 import slug from 'slug';
 
 const mapKind = new Map()
@@ -20,6 +21,18 @@ async function getUUID() {
             resolve(uuidv4());
         } catch (error) {
             console.log('services - utilities.js - getUUID - Erro: ', error);
+            reject('error');
+        };
+    });
+};
+
+async function validateUUID(uuid) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let validated = uuidValidate(uuid)
+            resolve(validated);
+        } catch (error) {
+            console.log('services - utilities.js - validateUUID - Erro: ', error);
             reject('error');
         };
     });
@@ -52,6 +65,7 @@ async function getSlug(text) {
 
 export default {
     getUUID,
+    validateUUID,
     getCode,
     getSlug
 };
