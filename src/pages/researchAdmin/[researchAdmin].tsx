@@ -540,13 +540,15 @@ export default function ResearchAdmin({ allImmobiles, authorized }: ImmobileProp
         }
 
         handleAddOrUpdateModalClose()
-        window.location.reload()
+        let uuid = await utilities.getUUID()
+        router.push(`/researchAdmin/${uuid}`)
         return
     }
 
     async function removeImmobile(idx) {
         await firebaseController.removeImmobileById(idx)
-        window.location.reload()
+        let uuid = await utilities.getUUID()
+        router.push(`/researchAdmin/${uuid}`)
         alert('Imóvel removido!')
     }
 
