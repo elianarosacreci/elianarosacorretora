@@ -6,7 +6,6 @@ import styles from './login.module.scss'
 import { Form, Row } from 'react-bootstrap'
 
 import firebaseController from '../../services/firebaseController'
-import utilities from '../../services/utilities'
 
 
 export default function Login() {
@@ -19,8 +18,7 @@ export default function Login() {
         e.preventDefault()
         let logged = await firebaseController.login(email, pass)
         if (logged) {
-            let uuid = await utilities.getUUID()
-            router.push(`/researchAdmin/${uuid}`)
+            router.push(`/researchAdmin/administratorManagement`)
         } else {
             alert('E-mail e Senha incorretos!')
         }

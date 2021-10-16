@@ -54,18 +54,12 @@ type Immobile = {
 
 type ImmobileProps = {
     allImmobiles: Immobile[]
-    authorized: boolean
 }
 
 
-export default function ResearchAdmin({ allImmobiles, authorized }: ImmobileProps) {
+export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     const router = useRouter()
-    useEffect(() => {
-        if (authorized == false) {
-            router.push('/login/login')
-        }
-    }, [])
 
     const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
@@ -540,15 +534,13 @@ export default function ResearchAdmin({ allImmobiles, authorized }: ImmobileProp
         }
 
         handleAddOrUpdateModalClose()
-        let uuid = await utilities.getUUID()
-        router.push(`/researchAdmin/${uuid}`)
+        router.push(`/researchAdmin/administratorManagement`)
         return
     }
 
     async function removeImmobile(idx) {
         await firebaseController.removeImmobileById(idx)
-        let uuid = await utilities.getUUID()
-        router.push(`/researchAdmin/${uuid}`)
+        router.push(`/researchAdmin/administratorManagement`)
         alert('Imóvel removido!')
     }
 
@@ -1095,16 +1087,11 @@ export default function ResearchAdmin({ allImmobiles, authorized }: ImmobileProp
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { researchAdmin } = context.params
-    let authorized = await utilities.validateUUID(researchAdmin)
-
+export const getServerSideProps: GetServerSideProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
-
     return {
         props: {
-            allImmobiles,
-            authorized
+            allImmobiles
         }
     }
 }
