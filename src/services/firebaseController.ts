@@ -156,8 +156,7 @@ async function getAllImmobiles() {
                         code: childSnapshot.child('code').val().toUpperCase()
                     })
                 })
-
-                resolve([result[0]])
+                resolve(result)
             }, (err) => {
                 console.log('services - firebaseController.js - getAllImmobiles - Erro: ', err)
                 reject('')
