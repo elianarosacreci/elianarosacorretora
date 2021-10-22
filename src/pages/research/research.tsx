@@ -397,10 +397,11 @@ export default function Research({ allImmobiles }: ImmobileProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
+    const allimmbl = _.drop(allImmobiles, 11)
 
     return {
         props: {
-            allImmobiles,
+            allimmbl
         }
     }
 }
