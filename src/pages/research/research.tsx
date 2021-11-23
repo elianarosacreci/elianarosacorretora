@@ -402,6 +402,6 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             allImmobiles,
         },
-        revalidate: 60
+        revalidate: 120
     }
 }
