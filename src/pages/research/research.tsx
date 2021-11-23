@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import Head from 'next/head'
 
 import styles from './research.module.scss'
@@ -353,7 +353,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                         </Row>
                     </Form>
                 </div>
-                
+
                 <div className={styles.immobilesContent}>
                     <div className={styles.immobileList}>
                         <h1>{immobilesFilter.length} Imóveis Encontrados</h1>
@@ -395,12 +395,23 @@ export default function Research({ allImmobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     const allImmobiles = await firebaseController.getAllImmobiles()
+
+//     return {
+//         props: {
+//             allImmobiles
+//         }
+//     }
+// }
+
+export const getStaticProps: GetStaticProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
 
     return {
         props: {
-            allImmobiles
-        }
+            allImmobiles,
+        },
+        revalidate: 120
     }
 }

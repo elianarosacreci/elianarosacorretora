@@ -173,7 +173,11 @@ async function getNextImmobileLength() {
         try {
             await app.database().ref("immobiles").on('value', (snapshot) => {
                 let keys = Object.keys(snapshot.val())
-                resolve(keys.length + 1)
+                let nextImmobileLength = 0
+                while (keys.includes(nextImmobileLength.toString())) {
+                    nextImmobileLength++
+                }
+                resolve(nextImmobileLength)
             }, (err) => {
                 console.log('services - firebaseController.js - getNextImmobileLength - Erro: ', err)
                 reject('')
