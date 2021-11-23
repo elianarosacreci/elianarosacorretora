@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 
 import styles from './researchAdmin.module.scss'
@@ -1087,11 +1087,22 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     const allImmobiles = await firebaseController.getAllImmobiles()
+//     return {
+//         props: {
+//             allImmobiles
+//         }
+//     }
+// }
+
+export const getStaticProps: GetStaticProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
+
     return {
         props: {
-            allImmobiles
-        }
+            allImmobiles,
+        },
+        revalidate: 60
     }
 }
