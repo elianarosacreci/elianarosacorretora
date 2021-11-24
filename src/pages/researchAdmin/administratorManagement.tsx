@@ -1087,22 +1087,11 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//     const allImmobiles = await firebaseController.getAllImmobiles()
-//     return {
-//         props: {
-//             allImmobiles
-//         }
-//     }
-// }
-
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
-
     return {
         props: {
-            allImmobiles,
-        },
-        revalidate: 60
+            allImmobiles
+        }
     }
 }

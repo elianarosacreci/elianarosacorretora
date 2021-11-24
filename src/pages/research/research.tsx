@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 
 import styles from './research.module.scss'
@@ -72,10 +72,18 @@ export default function Research({ allImmobiles }: ImmobileProps) {
     const [immobileFilterCode, setImmobileFilterCode] = useState('')
 
     // ADVANCED FILTER
-    const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
+    const [immobilesFilter, setImmobilesFilter] = useState([])
+    useEffect(() => {
+        async function getAllImmobiles() {
+            let allImmobilesToFilter: any = await firebaseController.getAllImmobiles()
+            setImmobilesFilter(allImmobilesToFilter)
+        }
+        getAllImmobiles()
+    }, [])
+
     useEffect(() => {
         // PRICE
-        let newImmobileFilter = _.filter(allImmobiles, function (o) {
+        let newImmobileFilter = _.filter(immobilesFilter, function (o) {
             let min, max;
             immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
             immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
