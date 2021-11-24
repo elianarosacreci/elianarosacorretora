@@ -534,13 +534,15 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         }
 
         handleAddOrUpdateModalClose()
-        router.push(`/researchAdmin/administratorManagement`)
+        // router.push(`/researchAdmin/administratorManagement`)
+        window.location.reload()
         return
     }
 
     async function removeImmobile(idx) {
         await firebaseController.removeImmobileById(idx)
-        router.push(`/researchAdmin/administratorManagement`)
+        // router.push(`/researchAdmin/administratorManagement`)
+        window.location.reload()
         alert('Imóvel removido!')
     }
 

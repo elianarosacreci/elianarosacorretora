@@ -72,15 +72,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
     const [immobileFilterCode, setImmobileFilterCode] = useState('')
 
     // ADVANCED FILTER
-    const [immobilesFilter, setImmobilesFilter] = useState([])
-    useEffect(() => {
-        async function getAllImmobiles() {
-            let allImmobilesToFilter: any = await firebaseController.getAllImmobiles()
-            setImmobilesFilter(allImmobilesToFilter)
-        }
-        getAllImmobiles()
-    }, [])
-
+    const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
     useEffect(() => {
         // PRICE
         let newImmobileFilter = _.filter(immobilesFilter, function (o) {
