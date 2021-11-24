@@ -94,7 +94,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
     const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
     useEffect(() => {
         // PRICE
-        let newImmobileFilter = _.filter(allImmobiles, function (o) {
+        let newImmobileFilter = _.filter(immobilesFilter, function (o) {
             let min, max;
             immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
             immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
@@ -1089,11 +1089,22 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-export const getServerSideProps: GetServerSideProps = async () => {
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     const allImmobiles = await firebaseController.getAllImmobiles()
+//     return {
+//         props: {
+//             allImmobiles
+//         }
+//     }
+// }
+
+export const getStaticProps: GetStaticProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
+
     return {
         props: {
-            allImmobiles
-        }
+            allImmobiles,
+        },
+        revalidate: 120
     }
 }
