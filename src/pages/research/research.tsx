@@ -75,7 +75,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
     const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
     useEffect(() => {
         // PRICE
-        let newImmobileFilter = _.filter(immobilesFilter, function (o) {
+        let newImmobileFilter = _.filter(allImmobiles, function (o) {
             let min, max;
             immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
             immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
