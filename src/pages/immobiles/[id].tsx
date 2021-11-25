@@ -64,17 +64,17 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
     function getImmobileStatus() {
         if (immobile.status == 'Pronto pra Morar') {
             return (<>
-                <GrStatusGood size={25} />
+                <GrStatusGood size={25} className={styles.icon} />
                 <p>{immobile.status}</p>
             </>)
         } else if (immobile.status == 'Em Construção') {
             return (<>
-                <GrStatusInfo size={25} />
+                <GrStatusInfo size={25} className={styles.icon} />
                 <p>{immobile.status}</p>
             </>)
         } else if (immobile.status == 'Na Planta') {
             return (<>
-                <GrStatusDisabled size={25} />
+                <GrStatusDisabled size={25} className={styles.icon} />
                 <p>{immobile.status}</p>
             </>)
         }
@@ -108,39 +108,39 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     </div>
                     <p className={styles.immobileAddress}>{immobile.address}</p>
                     <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
-                        <span className={styles.goToMap}>VER NO MAPA <SiGooglemaps size={25} /></span>
+                        <span className={styles.goToMap}>VER NO MAPA <SiGooglemaps size={25} className={styles.icon} /></span>
                     </a>
                     <div className={styles.immobileOptions}>
                         <ul>
                             <li>
-                                <span><BiArea size={30} /></span>
+                                <span><BiArea size={30} className={styles.icon} /></span>
                                 <span> {immobile.footage}m²</span>
                             </li>
                             <li>
-                                <span><GiResize size={30} /></span>
+                                <span><GiResize size={30} className={styles.icon} /></span>
                                 <span> {immobile.footageUseful}m² construídos</span>
                             </li>
                             <li>
-                                <span><FaCar size={30} /></span>
+                                <span><FaCar size={30} className={styles.icon} /></span>
                                 <span> {immobile.vacancies} {parseInt(immobile.vacancies) > 1 ? "vagas" : "vaga"}</span>
                             </li>
                             <li>
-                                <span><IoIosBed size={30} /></span>
+                                <span><IoIosBed size={30} className={styles.icon} /></span>
                                 <span> {immobile.bedrooms} {parseInt(immobile.bedrooms) > 1 ? "quartos" : "quarto"}</span>
                             </li>
                             <li>
-                                <span><BiBath size={30} /></span>
+                                <span><BiBath size={30} className={styles.icon} /></span>
                                 <span> {immobile.suites} {parseInt(immobile.suites) > 1 ? "suítes" : "suíte"}</span>
                             </li>
                             <li>
-                                <span><FaToilet size={28} /></span>
+                                <span><FaToilet size={28} className={styles.icon} /></span>
                                 <span> {immobile.bathrooms} {parseInt(immobile.bathrooms) > 1 ? "banheiros" : "banheiro"}</span>
                             </li>
                         </ul>
                     </div>
                     <div className={styles.features}>
                         <div className={styles.title}>
-                            <GoChecklist size={35} />
+                            <GoChecklist size={35} className={styles.icon} />
                             <h3>Lazer & Características</h3>
                         </div>
                         <div className={styles.itens}>
@@ -157,7 +157,7 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                     <p className={styles.description}>{immobile.description}</p>
                     <div className={styles.nearbyTrainsAndSubways}>
                         <div className={styles.title}>
-                            <IoSubway size={35} />
+                            <IoSubway size={35} className={styles.icon} />
                             <h3>Trens e Metrôs na Vizinhança</h3>
                         </div>
                         <div className={styles.itens}>
@@ -180,22 +180,22 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         {getImmobileStatus()}
                     </div>
                     <div className={styles.status}>
-                        <GrMultiple size={25} />
+                        <GrMultiple size={25} className={styles.icon} />
                         <p>{immobile.kind}</p>
                     </div>
                     <div className={styles.managerContacts}>
                         <div className={styles.buttons}>
                             <a href={`https://www.google.com.br/maps/place/${immobile.address.replace(/\s/g, '+')}`} target="_blank">
-                                <span className={styles.goToMap}>Ver no Mapa <SiGooglemaps size={25} /></span>
+                                <span className={styles.goToMap}>Ver no Mapa <SiGooglemaps size={25} className={styles.icon} /></span>
                             </a>
                         </div>
                         <div className={styles.buttons}>
                             <a href="https://api.whatsapp.com/send?phone=5511979902343" target="_blank">
-                                <span className={styles.goToWhatsApp} >WhatsApp <ImWhatsapp size={25} /></span>
+                                <span className={styles.goToWhatsApp} >WhatsApp <ImWhatsapp size={25} className={styles.icon} /></span>
                             </a>
                         </div>
                         <div className={styles.buttons}>
-                            <span className={styles.goToEmail} onClick={() => { navigator.clipboard.writeText("e-mail pendente") }}>Copiar Email <MdContentCopy size={25} /></span>
+                            <span className={styles.goToEmail} onClick={() => { navigator.clipboard.writeText("e-mail pendente") }}>Copiar Email <MdContentCopy size={25} className={styles.icon} /></span>
                         </div>
                     </div>
                 </div>

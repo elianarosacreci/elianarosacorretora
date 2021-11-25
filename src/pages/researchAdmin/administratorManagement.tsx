@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 
-import styles from './researchAdmin.module.scss'
+import styles from './administratorManagement.module.scss'
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap/'
 import Image from 'next/image'
 import Head from 'next/head'

@@ -216,6 +216,256 @@
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .immobileDetails {
+        padding: 2rem 2rem;
+        margin: 1rem 2rem;
+        margin-right: 5rem;
+        display: flex;
+        justify-content: center;
+
+        .infoContent {
+            margin-right: 1rem;
+            padding-right: 1rem;
+
+            h1 {
+                color: var(--gray-800);
+                display: inline;
+                margin-right: 1rem;
+                font-size: 5rem;
+            }
+
+            .immobileCode {
+                background: var(--gray-100);
+                color: var(--gray-200);
+                border-radius: 2rem;
+                padding: 0rem 0.5rem;
+                display: inline-block;
+                font-size: 2rem;
+            }
+
+            .immobileAddress {
+                padding-top: 1rem;
+                font-style: italic;
+                font-size: 2.5rem;
+            }
+
+            a {
+                text-decoration: none;
+                font-size: 2rem;
+            }
+
+            .goToMap {
+                color: var(--green-1000);
+                font-weight: bold;
+
+                .icon {
+                    height: 40px;
+                    width: 40px;
+                }
+            }
+
+            .immobileOptions {
+                padding-top: 4rem;
+                font-size: 2.5rem;
+
+                ul {
+                    list-style: none;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+
+                    li {
+                        margin-bottom: 1rem;
+
+                        .icon {
+                            height: 60px;
+                            width: 60px;
+                        }
+
+                        span {
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+
+            .features {
+                padding-top: 4rem;
+
+                .title {
+                    display: flex;
+                    vertical-align: middle;
+
+                    .icon {
+                        height: 80px;
+                        width: 80px;
+                    }
+
+                    h3 {
+                        margin-left: 1rem;
+                        font-size: 3.5rem;
+                    }
+                }
+
+                .itens {
+                    padding-top: 1rem;
+                    font-size: 3rem;
+
+                    ul {
+                        list-style: none;
+                        display: grid;
+                        grid-template-columns: repeat(1, 1fr);
+                    }
+                }
+            }
+
+            .descriptionTitle {
+                padding-top: 4rem;
+                text-align: justify;
+                font-size: 3.5rem;
+            }
+            .description {
+                padding-top: 0.5rem;
+                text-align: justify;
+                line-height: 2.5rem;
+                font-size: 2.5rem;
+            }
+
+            .nearbyTrainsAndSubways {
+                padding-top: 4rem;
+
+                .title {
+                    display: flex;
+                    vertical-align: middle;
+
+                    .icon {
+                        height: 80px;
+                        width: 80px;
+                    }
+
+                    h3 {
+                        margin-left: 1rem;
+                        font-size: 3.5rem;
+                    }
+                }
+
+                .itens {
+                    padding-top: 1rem;
+                    font-size: 3rem;
+
+                    ul {
+                        list-style: none;
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+
+                        li {
+                            span {
+                                vertical-align: middle;
+                                margin-right: 1rem;
+                                font-size: smaller;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .priceContent {
+            border-left: 1px solid var(--gray-100);
+            margin-right: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+
+            .price {
+                h2 {
+                    color: var(--pink-1000);
+                    font-size: 4rem;
+                }
+
+                h1 {
+                    color: var(--green-1000);
+                    font-size: 4rem;
+                }
+            }
+
+            .status {
+                margin-top: 1rem;
+                font-size: 2.5rem;
+                display: flex;
+                vertical-align: middle;
+                font-weight: bold;
+                color: var(--black);
+
+                .icon {
+                    height: 60px;
+                    width: 60px;
+                }
+
+                p {
+                    margin-left: 0.5rem;
+                    padding-top: 0.2rem;
+                }
+            }
+
+            .managerContacts {
+                margin-top: 4rem;
+                width: 100%;
+
+                .buttons {
+                    margin-top: 2rem;
+                    font-size: 2rem;
+
+                    .icon {
+                        height: 40px;
+                        width: 40px;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        cursor: pointer;
+
+                        .goToMap {
+                            background: var(--pink-400);
+                            color: var(--white);
+                            padding: 1rem 1rem;
+                            font-weight: bold;
+                            border-radius: 4px;
+                            display: block;
+                            text-align: center;
+                            font-size: larger;
+                        }
+                    }
+
+                    .goToWhatsApp {
+                        cursor: pointer;
+                        background: var(--wpp);
+                        color: var(--white);
+                        padding: 1rem 1rem;
+                        font-weight: bold;
+                        border-radius: 4px;
+                        display: block;
+                        text-align: center;
+                        font-size: larger;
+                    }
+
+                    .goToEmail {
+                        cursor: pointer;
+                        background: var(--green-800);
+                        color: var(--white);
+                        padding: 1rem 1rem;
+                        font-weight: bold;
+                        border-radius: 4px;
+                        display: block;
+                        text-align: center;
+                        font-size: larger;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .immobileList {
     text-align: center;
     margin: 0rem 10rem;
