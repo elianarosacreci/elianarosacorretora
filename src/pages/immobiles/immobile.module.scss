@@ -166,6 +166,20 @@
             }
         }
 
+        .kind {
+            margin-top: 1rem;
+
+            display: flex;
+            vertical-align: middle;
+            font-weight: bold;
+            color: var(--black);
+
+            p {
+                margin-left: 0.5rem;
+                padding-top: 0.2rem;
+            }
+        }
+
         .managerContacts {
             margin-top: 4rem;
 
@@ -220,7 +234,7 @@
     .immobileDetails {
         padding: 2rem 2rem;
         margin: 1rem 2rem;
-        margin-right: 5rem;
+        margin-right: 10rem;
         display: flex;
         justify-content: center;
 
@@ -382,10 +396,24 @@
                     color: var(--pink-1000);
                     font-size: 4rem;
                 }
-
+                
                 h1 {
                     color: var(--green-1000);
-                    font-size: 4rem;
+                    font-size: 3.5rem;
+                }
+            }
+
+            .kind {
+                margin-top: 1rem;
+                font-size: 2.5rem;
+                display: flex;
+                vertical-align: middle;
+                font-weight: bold;
+                color: var(--black);
+
+                p {
+                    margin-left: 0.5rem;
+                    padding-top: 0.2rem;
                 }
             }
 

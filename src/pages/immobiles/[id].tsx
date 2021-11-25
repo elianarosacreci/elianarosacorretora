@@ -16,6 +16,7 @@ import { IoSubway } from 'react-icons/io5'
 import { RiArrowRightSFill } from 'react-icons/ri'
 import { GoChecklist } from 'react-icons/go'
 import { GrStatusDisabled, GrStatusInfo, GrStatusGood, GrMultiple } from 'react-icons/gr'
+import { RiCheckboxMultipleBlankFill } from 'react-icons/ri'
 import { MdContentCopy } from 'react-icons/md'
 import { ImWhatsapp } from 'react-icons/im'
 import { SiGooglemaps } from 'react-icons/si'
@@ -176,12 +177,11 @@ export default function Immobile({ immobile, attractivePricesList }: ImmobilePro
                         <h2>____</h2>
                         <h1>{immobile.price}</h1>
                     </div>
-                    <div className={styles.status}>
-                        {getImmobileStatus()}
+                    <div className={styles.kind}>
+                        <p>{immobile.kind}</p>
                     </div>
                     <div className={styles.status}>
-                        <GrMultiple size={25} className={styles.icon} />
-                        <p>{immobile.kind}</p>
+                        {getImmobileStatus()}
                     </div>
                     <div className={styles.managerContacts}>
                         <div className={styles.buttons}>
