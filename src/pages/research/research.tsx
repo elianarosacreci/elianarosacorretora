@@ -395,22 +395,13 @@ export default function Research({ allImmobiles }: ImmobileProps) {
 
 // ----------------------------------------------------------------------------------------------------
 
-// export const getStaticProps: GetStaticProps = async () => {
-//     const allImmobiles = await firebaseController.getAllImmobiles()
-
-//     return {
-//         props: {
-//             allImmobiles,
-//         },
-//         revalidate: 43200
-//     }
-// }
-
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
     const allImmobiles = await firebaseController.getAllImmobiles()
+
     return {
         props: {
-            allImmobiles
-        }
+            allImmobiles,
+        },
+        revalidate: 43200
     }
 }
