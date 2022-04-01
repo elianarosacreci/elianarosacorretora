@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import Head from 'next/head'
 
 import styles from './research.module.scss'
@@ -8,7 +8,11 @@ import { Col, Form, Row } from 'react-bootstrap'
 import { Footer } from '../../components/Footer'
 
 import firebaseController from '../../services/firebaseController'
-var _ = require('lodash');
+var _ = require('lodash')
+
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+import PaginationItem from '@mui/material/PaginationItem'
 
 
 type Immobile = {
@@ -35,14 +39,17 @@ type Immobile = {
     code: string
 }
 
+type PagesItens = string
+
 type ImmobileProps = {
-    allImmobiles: Immobile[]
+    allImmobiles: Immobile[],
+    pagesByImmobiles: PagesItens
 }
 
 
-export default function Research({ allImmobiles }: ImmobileProps) {
+export default function Research({ allImmobiles, pagesByImmobiles }: ImmobileProps) {
 
-    const MAX_DESCRIPTION_TITLE_LENGTH = 30;
+    const MAX_DESCRIPTION_TITLE_LENGTH = 30
 
     // FILTER
     const [immobileFilterStatusNaPlanta, setImmobileFilterStatusNaPlanta] = useState(false)
@@ -73,115 +80,134 @@ export default function Research({ allImmobiles }: ImmobileProps) {
 
     // ADVANCED FILTER
     const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
+
+    const [page, setPage] = React.useState(1);
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
+
     useEffect(() => {
-        // PRICE
-        let newImmobileFilter = _.filter(allImmobiles, function (o) {
-            let min, max;
-            immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
-            immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
-            return o.price >= min && o.price <= max
-        })
-
-        // FOOTAGE
-        newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-            let min, max;
-            immobileFilterFootageMin == '' ? min = 0 : min = parseInt(immobileFilterFootageMin)
-            immobileFilterFootageMax == '' ? max = Infinity : max = parseInt(immobileFilterFootageMax)
-            return o.footageInt >= min && o.footageInt <= max
-        })
-
-        // BEDROOMS
-        if (immobileFilterBedrooms != '') {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                let bedrooms
-                immobileFilterBedrooms == '' ? bedrooms = '' : bedrooms = parseInt(immobileFilterBedrooms)
-                return o.bedroomsInt == bedrooms
-            })
+        async function actionTypeEffect() {
+            const newAllImmobiles: any = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), page)
+            setImmobilesFilter(newAllImmobiles)
         }
+        actionTypeEffect()
+    }, [page])
 
-        // BATHROOMS
-        if (immobileFilterBathrooms != '') {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                let bathrooms
-                immobileFilterBathrooms == '' ? bathrooms = '' : bathrooms = parseInt(immobileFilterBathrooms)
-                return o.bathroomsInt == bathrooms
+    useEffect(() => {
+        async function actionTypeEffect() {
+            const newAllImmobiles: any = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), page)
+
+            // PRICE
+            let newImmobileFilter = _.filter(newAllImmobiles, function (o) {
+                let min, max;
+                immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
+                immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
+                return o.price >= min && o.price <= max
             })
-        }
 
-        // VACANCIES
-        if (immobileFilterVacancies != '') {
+            // FOOTAGE
             newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                let vacancies
-                immobileFilterVacancies == '' ? vacancies = '' : vacancies = parseInt(immobileFilterVacancies)
-                return o.vacanciesInt == vacancies
+                let min, max;
+                immobileFilterFootageMin == '' ? min = 0 : min = parseInt(immobileFilterFootageMin)
+                immobileFilterFootageMax == '' ? max = Infinity : max = parseInt(immobileFilterFootageMax)
+                return o.footageInt >= min && o.footageInt <= max
             })
-        }
 
-        // SUITES
-        if (immobileFilterSuites != '') {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                let suites
-                immobileFilterSuites == '' ? suites = '' : suites = parseInt(immobileFilterSuites)
-                return o.suitesInt == suites
-            })
-        }
+            // BEDROOMS
+            if (immobileFilterBedrooms != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    let bedrooms
+                    immobileFilterBedrooms == '' ? bedrooms = '' : bedrooms = parseInt(immobileFilterBedrooms)
+                    return o.bedroomsInt == bedrooms
+                })
+            }
 
-        // STATE
-        if (immobileFilterState != '') {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                return o.state.includes(immobileFilterState) == true
-            })
-        }
+            // BATHROOMS
+            if (immobileFilterBathrooms != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    let bathrooms
+                    immobileFilterBathrooms == '' ? bathrooms = '' : bathrooms = parseInt(immobileFilterBathrooms)
+                    return o.bathroomsInt == bathrooms
+                })
+            }
 
-        // CITY
-        if (immobileFilterCity != '') {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                return o.city.includes(immobileFilterCity) == true
-            })
-        }
+            // VACANCIES
+            if (immobileFilterVacancies != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    let vacancies
+                    immobileFilterVacancies == '' ? vacancies = '' : vacancies = parseInt(immobileFilterVacancies)
+                    return o.vacanciesInt == vacancies
+                })
+            }
 
-        // KIND
-        let arrKind = [];
-        [
-            { status: 'Apartamento', value: immobileFilterKindApartamento },
-            { status: 'Cobertura', value: immobileFilterKindCobertura },
-            { status: 'Casa', value: immobileFilterKindCasa },
-            { status: 'Casa de Condominio', value: immobileFilterKindCasaCondominio },
-            { status: 'Terreno', value: immobileFilterKindTerreno },
-            { status: 'Conjunto Comercial', value: immobileFilterKindConjuntoComercial },
-            { status: 'Galpão', value: immobileFilterKindGalpao },
-            { status: 'Sitio/Fazenda', value: immobileFilterKindSitioFazenda },
-            { status: 'Prédio Inteiro', value: immobileFilterKindPredioInteiro },
-            { status: 'Loja', value: immobileFilterKindLoja },
-            { status: 'Imóvel Comercial', value: immobileFilterKindImovelComercial }
-        ].map((element) => { if (element.value) { arrKind.push(element.status) } })
-        if (arrKind.length > 0) {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                if (arrKind.includes(o.kind)) return o
-            })
-        }
+            // SUITES
+            if (immobileFilterSuites != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    let suites
+                    immobileFilterSuites == '' ? suites = '' : suites = parseInt(immobileFilterSuites)
+                    return o.suitesInt == suites
+                })
+            }
 
-        // STATUS
-        let arrStatus = [];
-        [
-            { status: 'Na Planta', value: immobileFilterStatusNaPlanta },
-            { status: 'Em Construção', value: immobileFilterStatusEmConstrucao },
-            { status: 'Pronto pra Morar', value: immobileFilterStatusProntoPraMorar }
-        ].map((element) => { if (element.value) { arrStatus.push(element.status) } })
-        if (arrStatus.length > 0) {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                if (arrStatus.includes(o.status)) return o
-            })
-        }
+            // STATE
+            if (immobileFilterState != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    return o.state.includes(immobileFilterState) == true
+                })
+            }
 
-        // CODE
-        if (immobileFilterCode != '') {
-            newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-                return o.code.includes(immobileFilterCode) == true
-            })
-        }
+            // CITY
+            if (immobileFilterCity != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    return o.city.includes(immobileFilterCity) == true
+                })
+            }
 
-        setImmobilesFilter(newImmobileFilter)
+            // KIND
+            let arrKind = [];
+            [
+                { status: 'Apartamento', value: immobileFilterKindApartamento },
+                { status: 'Cobertura', value: immobileFilterKindCobertura },
+                { status: 'Casa', value: immobileFilterKindCasa },
+                { status: 'Casa de Condominio', value: immobileFilterKindCasaCondominio },
+                { status: 'Terreno', value: immobileFilterKindTerreno },
+                { status: 'Conjunto Comercial', value: immobileFilterKindConjuntoComercial },
+                { status: 'Galpão', value: immobileFilterKindGalpao },
+                { status: 'Sitio/Fazenda', value: immobileFilterKindSitioFazenda },
+                { status: 'Prédio Inteiro', value: immobileFilterKindPredioInteiro },
+                { status: 'Loja', value: immobileFilterKindLoja },
+                { status: 'Imóvel Comercial', value: immobileFilterKindImovelComercial }
+            ].map((element) => { if (element.value) { arrKind.push(element.status) } })
+            if (arrKind.length > 0) {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    if (arrKind.includes(o.kind)) return o
+                })
+            }
+
+            // STATUS
+            let arrStatus = [];
+            [
+                { status: 'Na Planta', value: immobileFilterStatusNaPlanta },
+                { status: 'Em Construção', value: immobileFilterStatusEmConstrucao },
+                { status: 'Pronto pra Morar', value: immobileFilterStatusProntoPraMorar }
+            ].map((element) => { if (element.value) { arrStatus.push(element.status) } })
+            if (arrStatus.length > 0) {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    if (arrStatus.includes(o.status)) return o
+                })
+            }
+
+            // CODE
+            if (immobileFilterCode != '') {
+                newImmobileFilter = _.filter(newImmobileFilter, function (o) {
+                    return o.code.includes(immobileFilterCode) == true
+                })
+            }
+
+            setImmobilesFilter(newImmobileFilter)
+        }
+        actionTypeEffect()
     }, [
         immobileFilterStatusNaPlanta,
         immobileFilterStatusEmConstrucao,
@@ -216,6 +242,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
             <Head>
                 <title></title>
             </Head>
+
             <div className={styles.immobileDetails}>
                 <div className={styles.researchContent}>
                     <Form>
@@ -356,7 +383,7 @@ export default function Research({ allImmobiles }: ImmobileProps) {
 
                 <div className={styles.immobilesContent}>
                     <div className={styles.immobileList}>
-                        <h1>{immobilesFilter.length} Imóveis Encontrados</h1>
+                        <h1>Imóveis Encontrados</h1>
                         <div>
                             <ul>
                                 {immobilesFilter.map((immobile) => {
@@ -386,6 +413,24 @@ export default function Research({ allImmobiles }: ImmobileProps) {
                             </ul>
                         </div>
                     </div>
+                    <br />
+                    <Stack
+                        className={styles.pagination}
+                        spacing={2}>
+                        <Pagination
+                            count={_.chunk(pagesByImmobiles, 6).length}
+                            shape="rounded"
+                            size="large"
+                            variant="outlined"
+                            renderItem={(item) => (
+                                <PaginationItem
+                                    {...item}
+                                />
+                            )}
+                            page={page}
+                            onChange={handleChange}
+                        />
+                    </Stack>
                 </div>
             </div>
             <Footer />
@@ -394,14 +439,14 @@ export default function Research({ allImmobiles }: ImmobileProps) {
 }
 
 // ----------------------------------------------------------------------------------------------------
-
-export const getStaticProps: GetStaticProps = async () => {
-    const allImmobiles = await firebaseController.getAllImmobiles()
+export const getServerSideProps: GetServerSideProps = async () => {
+    const pagesByImmobiles = await firebaseController.getPagesByImmobiles()
+    const allImmobiles = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), 1)
 
     return {
         props: {
             allImmobiles,
-        },
-        revalidate: 43200
+            pagesByImmobiles,
+        }
     }
 }

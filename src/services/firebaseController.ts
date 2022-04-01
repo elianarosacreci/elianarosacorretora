@@ -1,4 +1,5 @@
 import app from './firebase'
+const _ = require('lodash')
 
 async function getAttractivePrices() {
     return new Promise(async (resolve, reject) => {
@@ -156,13 +157,79 @@ async function getAllImmobiles() {
                         code: childSnapshot.child('code').val().toUpperCase()
                     })
                 })
-                resolve(result)
+                let drop = (result.length - 6)
+                resolve(_.drop(result, drop))
             }, (err) => {
                 console.log('services - firebaseController.js - getAllImmobiles - Erro: ', err)
                 reject('')
             })
         } catch (error) {
             console.log('services - firebaseController.js - getAllImmobiles - Erro: ', error)
+            reject('')
+        }
+    })
+}
+
+async function getPagesByImmobiles() {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
+                let result = []
+                snapshot.forEach(function (childSnapshot) {
+                    result.push(childSnapshot.child('id').val())
+                })
+                resolve(result)
+            }, (err) => {
+                console.log('services - firebaseController.js - getPagesByImmobiles - Erro: ', err)
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getPagesByImmobiles - Erro: ', error)
+            reject('')
+        }
+    })
+}
+
+async function getImmobilesByPage(pagesByImmobiles, page) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await app.database().ref("immobiles").on('value', (snapshot) => {
+                let result = []
+                snapshot.forEach(function (childSnapshot) {
+                    if (_.includes(pagesByImmobiles[page - 1], childSnapshot.child('id').val())) {
+                        result.push({
+                            id: childSnapshot.child('id').val(),
+                            slug: childSnapshot.child('slug').val(),
+                            priceFormatted: childSnapshot.child('price').val().toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+                            footage: childSnapshot.child('footage').val(),
+                            bedrooms: childSnapshot.child('bedrooms').val(),
+                            bathrooms: childSnapshot.child('bathrooms').val(),
+                            vacancies: childSnapshot.child('vacancies').val(),
+                            suites: childSnapshot.child('suites').val(),
+                            descriptionTitle: childSnapshot.child('descriptionTitle').val(),
+                            imageCard: childSnapshot.child('images/0').val(),
+                            price: childSnapshot.child('price').val(),
+                            state: childSnapshot.child('address/state').val(),
+                            city: childSnapshot.child('address/city').val(),
+                            features: childSnapshot.child('features').val(),
+                            status: childSnapshot.child('status').val(),
+                            kind: childSnapshot.child('kind').val(),
+                            footageInt: parseInt(childSnapshot.child('footage').val().replace(/\./, '').replace(/,.*/, '')),
+                            bedroomsInt: parseInt(childSnapshot.child('bedrooms').val()),
+                            bathroomsInt: parseInt(childSnapshot.child('bathrooms').val()),
+                            vacanciesInt: parseInt(childSnapshot.child('vacancies').val()),
+                            suitesInt: parseInt(childSnapshot.child('suites').val()),
+                            code: childSnapshot.child('code').val().toUpperCase()
+                        })
+                    }
+                })
+                resolve(result)
+            }, (err) => {
+                console.log('services - firebaseController.js - getImmobilesByPage - Erro: ', err)
+                reject('')
+            })
+        } catch (error) {
+            console.log('services - firebaseController.js - getImmobilesByPage - Erro: ', error)
             reject('')
         }
     })
@@ -340,6 +407,8 @@ export default {
     getMostPopular,
     getImmobileById,
     getAllImmobiles,
+    getPagesByImmobiles,
+    getImmobilesByPage,
     insertImmobile,
     removeImmobileById,
     getImmobileByIdToUpdate,
