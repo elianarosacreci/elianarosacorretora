@@ -719,7 +719,7 @@ export default function ResearchAdmin({ allImmobiles, pagesByImmobiles }: Immobi
                 <div className={styles.immobilesContent}>
                     <div className={styles.immobileList}>
                         <div className={styles.listOptions}>
-                            <h1>{immobilesFilter.length} Imóveis Encontrados</h1>
+                            <h1>Imóveis Encontrados</h1>
                             <span>
                                 <button onClick={() => { setActionType("Create"); setAddOrUpdateModalShow(true) }}><MdLibraryAdd size={40} /></button>
                             </span>
