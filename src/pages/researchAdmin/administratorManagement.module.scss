@@ -19,6 +19,7 @@
     }
 
     .immobilesContent {
+
         .immobileList {
             text-align: center;
             margin: 0rem 2rem;
@@ -48,6 +49,7 @@
                     }
                 }
             }
+            
 
             ul {
                 list-style: none;
@@ -110,6 +112,11 @@
                     }
                 }
             }
+        }
+
+        .pagination {
+            align-items: center;
+
         }
     }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 
 import styles from './administratorManagement.module.scss'
@@ -13,7 +13,11 @@ import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa'
 
 import firebaseController from '../../services/firebaseController'
 import utilities from '../../services/utilities'
-var _ = require('lodash');
+var _ = require('lodash')
+
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+import PaginationItem from '@mui/material/PaginationItem'
 
 
 type Immobile = {
@@ -52,12 +56,15 @@ type Immobile = {
     code: string
 }
 
+type PagesItens = string
+
 type ImmobileProps = {
-    allImmobiles: Immobile[]
+    allImmobiles: Immobile[],
+    pagesByImmobiles: PagesItens
 }
 
 
-export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
+export default function ResearchAdmin({ allImmobiles, pagesByImmobiles }: ImmobileProps) {
 
     const router = useRouter()
 
@@ -92,10 +99,27 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
     // ADVANCED FILTER
     const [immobilesFilter, setImmobilesFilter] = useState(allImmobiles)
+
+    const [page, setPage] = React.useState(1)
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value)
+    }
+
     useEffect(() => {
+        async function actionTypeEffect() {
+            const newAllImmobiles: any = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), page)
+            setImmobilesFilter(newAllImmobiles)
+        }
+        actionTypeEffect()
+    }, [page])
+
+    useEffect(() => {
+        async function actionTypeEffect() {
+            const newAllImmobiles: any = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), page)
+
         // PRICE
         let newImmobileFilter = _.filter(allImmobiles, function (o) {
-            let min, max;
+            let min, max
             immobileFilterPriceMin == '' ? min = 0 : min = parseInt(immobileFilterPriceMin)
             immobileFilterPriceMax == '' ? max = Infinity : max = parseInt(immobileFilterPriceMax)
             return o.price >= min && o.price <= max
@@ -103,7 +127,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 
         // FOOTAGE
         newImmobileFilter = _.filter(newImmobileFilter, function (o) {
-            let min, max;
+            let min, max
             immobileFilterFootageMin == '' ? min = 0 : min = parseInt(immobileFilterFootageMin)
             immobileFilterFootageMax == '' ? max = Infinity : max = parseInt(immobileFilterFootageMax)
             return o.footageInt >= min && o.footageInt <= max
@@ -201,6 +225,8 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         }
 
         setImmobilesFilter(newImmobileFilter)
+    }
+    actionTypeEffect()
     }, [
         immobileFilterStatusNaPlanta,
         immobileFilterStatusEmConstrucao,
@@ -332,9 +358,9 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         }
     }
     const removeImmobileImagesPreview = idx => {
-        const temp = [...immobileImages];
-        temp.splice(idx, 1);
-        setImmobileImages(temp);
+        const temp = [...immobileImages]
+        temp.splice(idx, 1)
+        setImmobileImages(temp)
     }
 
     useEffect(() => {
@@ -450,7 +476,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                     } else {
                         features += `${feature},`
                     }
-                });
+                })
                 setImmobileFeatures(features)
                 let nearbyTrainsAndSubways = ''
                 immobileToUpdate.nearbyTrainsAndSubways.forEach(function (nearbyTrainAndSubway, idx, array) {
@@ -459,7 +485,7 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                     } else {
                         nearbyTrainsAndSubways += `${nearbyTrainAndSubway.name} - ${nearbyTrainAndSubway.distance},`
                     }
-                });
+                })
                 setImmobileNearbyTrainsAndSubways(nearbyTrainsAndSubways)
                 setImmobileIdx(immobileToUpdate.idx)
             }
@@ -534,15 +560,15 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
         }
 
         handleAddOrUpdateModalClose()
-        // router.push(`/researchAdmin/administratorManagement`)
-        window.location.reload()
+        router.push(`/researchAdmin/administratorManagement`)
+        // window.location.reload()
         return
     }
 
     async function removeImmobile(idx) {
         await firebaseController.removeImmobileById(idx)
-        // router.push(`/researchAdmin/administratorManagement`)
-        window.location.reload()
+        router.push(`/researchAdmin/administratorManagement`)
+        // window.location.reload()
         alert('Imóvel removido!')
     }
 
@@ -726,6 +752,24 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
                             </ul>
                         </div>
                     </div>
+                    <br />
+                    <Stack
+                        className={styles.pagination}
+                        spacing={2}>
+                        <Pagination
+                            count={_.chunk(pagesByImmobiles, 6).length}
+                            shape="rounded"
+                            size="large"
+                            variant="outlined"
+                            renderItem={(item) => (
+                                <PaginationItem
+                                    {...item}
+                                />
+                            )}
+                            page={page}
+                            onChange={handleChange}
+                        />
+                    </Stack>
                 </div>
             </div>
             <Footer />
@@ -1090,10 +1134,13 @@ export default function ResearchAdmin({ allImmobiles }: ImmobileProps) {
 // ----------------------------------------------------------------------------------------------------
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const allImmobiles = await firebaseController.getAllImmobiles()
+    const pagesByImmobiles = await firebaseController.getPagesByImmobiles()
+    const allImmobiles = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), 1)
+
     return {
         props: {
-            allImmobiles
+            allImmobiles,
+            pagesByImmobiles,
         }
     }
 }

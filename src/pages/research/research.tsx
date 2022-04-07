@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GetServerSideProps, GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 
 import styles from './research.module.scss'
@@ -439,6 +439,7 @@ export default function Research({ allImmobiles, pagesByImmobiles }: ImmobilePro
 }
 
 // ----------------------------------------------------------------------------------------------------
+
 export const getServerSideProps: GetServerSideProps = async () => {
     const pagesByImmobiles = await firebaseController.getPagesByImmobiles()
     const allImmobiles = await firebaseController.getImmobilesByPage(_.chunk(pagesByImmobiles, 6), 1)
